@@ -35,13 +35,13 @@ export default function Header() {
 
     let headerClass = 'transition-all duration-300 py-4';
 
-    if (isHome && !isScrolled) {
-        headerClass += ' bg-transparent';
-    } else {
+    if (isScrolled) {
         headerClass += ' header-controlled-bg py-2';
+    } else {
+        headerClass += ' header-controlled-bg py-4';
     }
 
-    const textColorClass = (isHome && !isScrolled) ? 'text-white' : 'text-[var(--foreground)]';
+    const textColorClass = '';
 
     return (
         <header className={`fixed w-full top-0 z-50 ${headerClass}`}>
