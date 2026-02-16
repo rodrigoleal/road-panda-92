@@ -9,21 +9,29 @@ import dompurify from 'isomorphic-dompurify';
 export const revalidate = 600; // 10 minutes ISR
 
 export async function generateMetadata({ params }) {
-  const { slug } = await params;
-  const client = getClient();
-  const { data } = await client.query({
-    query: GET_POST_BY_SLUG,
-    variables: { slug },
-  });
+  try {
+    const { slug } = await params;
+    const client = getClient();
+    const { data } = await client.query({
+      query: GET_POST_BY_SLUG,
+      variables: { slug },
+    });
 
-  const post = data?.post;
+    const post = data?.post;
 
-  if (!post) return { title: 'Post Not Found' };
+    if (!post) return { title: 'Artigo Não Encontrado' };
 
-  return {
-    title: `${post.title} | Road Panda 92`,
-    description: post.excerpt?.replace(/<[^>]*>/g, '') || '',
-  };
+    return {
+      title: `${post.title} | Road Panda 92`,
+      description: post.excerpt?.replace(/<[^>]*>/g, '') || '',
+    };
+  } catch (error) {
+    console.error("Metadata Error:", error);
+    return {
+      title: 'Erro ao carregar artigo | Road Panda 92',
+      description: 'Ocorreu um erro ao carregar os dados deste artigo.'
+    };
+  }
 }
 
 export default async function SinglePost({ params }) {
