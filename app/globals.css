@@ -1,26 +1,100 @@
 @import "tailwindcss";
+/* Trigger Rebuild */
+
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Mode Palette (Inverted) */
+  --background: #FFFFFF;
+  /* White */
+  --foreground: #1C2120;
+  /* Charcoal Green for Text */
+
+  --color-secondary: #F4F6F6;
+  /* Light Gray for Cards/Sections */
+  --color-accent: #C44536;
+  /* Terracota Avermelhado */
+  --color-detail: #197278;
+  /* Azul Petróleo */
 }
 
-@theme inline {
+:root.dark {
+  /* Dark Mode Palette */
+  --background: #121212;
+  /* Almost Black */
+  --foreground: #E3E5E5;
+  /* Off-white */
+  --color-secondary: #1C2120;
+  /* Dark Charcoal */
+  --color-accent: #EF4444;
+  /* Bright Red */
+  --color-detail: #22A6B3;
+  /* Brighter Teal */
+}
+
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-detail: var(--color-detail);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Using Poppins for everything */
+  --font-sans: var(--font-main);
+  --font-serif: var(--font-main);
+  --font-display: var(--font-main);
+  --font-body: var(--font-main);
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  /* Increased base size */
+  line-height: 1.8;
+  /* Improved readability */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  /* Bold for titles */
+  letter-spacing: -0.02em;
+}
+
+/* Scrollbar Hide Utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Explicit Card Background Control */
+.card-controlled-bg {
+  background-color: #FFFFFF;
+  border-color: #F5F5F5;
+  /* neutral-100 */
+}
+
+:root.dark .card-controlled-bg {
+  background-color: #1C2120;
+  border-color: #262626;
+  /* neutral-800 */
+}
+
+/* Explicit Header Background Control to avoid Tailwind Config issues */
+.header-controlled-bg {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+:root.dark .header-controlled-bg {
+  background-color: rgba(28, 33, 32, 0.95);
+  /* #1C2120 */
+  border-bottom-width: 1px;
+  border-color: #262626;
+  /* neutral-800 */
 }
