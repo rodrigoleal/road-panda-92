@@ -1,6 +1,7 @@
 
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { format, formatDistanceToNow } from 'date-fns';
 import { pt } from 'date-fns/locale';
 
@@ -38,10 +39,12 @@ export default function Hero({ featuredPosts }) {
     const renderCard = (post, isSmall = false) => (
         <div key={post.id} className="flex flex-col group h-full card-controlled-bg rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border">
             <Link href={`/${post.slug}`} className="block w-full aspect-video overflow-hidden mb-4 relative shadow-md group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
-                <img
+                <Image
                     src={post.featuredImage?.node?.sourceUrl || '/placeholder.jpg'}
                     alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
             </Link>
@@ -82,10 +85,13 @@ export default function Hero({ featuredPosts }) {
                 {/* Main Feature (Left) */}
                 <div className={`w-full ${hasSubFeatures ? 'md:w-2/3' : 'w-full'} relative group h-[500px] md:h-[550px] overflow-hidden rounded-2xl shadow-lg`}>
                     <Link href={`/${mainFeature.slug}`} className="block w-full h-full relative z-0">
-                        <img
+                        <Image
                             src={mainFeature.featuredImage?.node?.sourceUrl || '/placeholder.jpg'}
                             alt={mainFeature.title}
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                            fill
+                            priority
+                            className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, 66vw"
                         />
                         {/* Gradient Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-80" />
@@ -113,10 +119,12 @@ export default function Hero({ featuredPosts }) {
                         {subFeatures.map((post) => (
                             <div key={post.id} className="relative group h-[250px] md:h-1/2 overflow-hidden rounded-2xl flex-1 shadow-md">
                                 <Link href={`/${post.slug}`} className="block w-full h-full">
-                                    <img
+                                    <Image
                                         src={post.featuredImage?.node?.sourceUrl || '/placeholder.jpg'}
                                         alt={post.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                        sizes="(max-width: 768px) 100vw, 33vw"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-300 group-hover:bg-black/80" />
 

@@ -1,5 +1,6 @@
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { format } from 'date-fns';
 import { pt } from 'date-fns/locale';
 
@@ -33,10 +34,12 @@ export default function PostGrid({ posts, showHeader = true }) {
                         return (
                             <article key={post.id} className={`group flex flex-col h-full card-controlled-bg border shadow-sm hover:shadow-xl hover:shadow-[var(--color-accent)]/10 transition-all duration-300 rounded-xl overflow-hidden ${isLarge ? 'md:col-span-2 md:flex-row' : ''}`}>
                                 <Link href={`/${post.slug}`} className={`block overflow-hidden relative ${isLarge ? 'w-full md:w-1/2 aspect-video md:aspect-auto' : 'aspect-[3/2]'}`}>
-                                    <img
+                                    <Image
                                         src={imageUrl}
                                         alt={post.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
                                     {category && (
                                         <span className="absolute top-4 left-4 bg-[var(--color-accent)] text-white text-[10px] font-bold uppercase px-3 py-1 tracking-wider shadow-sm rounded-md">
