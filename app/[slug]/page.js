@@ -3,7 +3,8 @@ import { GET_POST_BY_SLUG } from '../../lib/queries';
 import GuestAuthor from '../../components/GuestAuthor';
 import AdUnit from '../../components/AdUnit';
 import { format } from 'date-fns';
-// import dompurify from 'isomorphic-dompurify';
+import Image from 'next/image';
+import dompurify from 'isomorphic-dompurify';
 
 export const revalidate = 600; // 10 minutes ISR
 
@@ -53,8 +54,7 @@ export default async function SinglePost({ params }) {
       );
     }
 
-    // const sanitizedContent = dompurify.sanitize(post.content);
-    const sanitizedContent = post.content;
+    const sanitizedContent = dompurify.sanitize(post.content);
 
     return (
       <article className="min-h-screen pb-20 pt-10">
@@ -83,11 +83,16 @@ export default async function SinglePost({ params }) {
         {/* Featured Image */}
         {post.featuredImage?.node?.sourceUrl && (
           <div className="container mx-auto max-w-5xl mb-12 px-4">
-            <img
-              src={post.featuredImage.node.sourceUrl}
-              alt={post.title}
-              className="w-full h-auto rounded-xl shadow-xl"
-            />
+            <div className="relative w-full h-auto aspect-video rounded-xl shadow-xl overflow-hidden">
+              <Image
+                src={post.featuredImage.node.sourceUrl}
+                alt={post.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 1024px) 100vw, 1024px"
+              />
+            </div>
           </div>
         )}
 
