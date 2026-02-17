@@ -4,7 +4,7 @@ import GuestAuthor from '../../components/GuestAuthor';
 import AdUnit from '../../components/AdUnit';
 import { format } from 'date-fns';
 import Image from 'next/image';
-import dompurify from 'isomorphic-dompurify';
+import sanitizeHtml from 'sanitize-html';
 
 export const revalidate = 600; // 10 minutes ISR
 
@@ -54,7 +54,18 @@ export default async function SinglePost({ params }) {
       );
     }
 
-    const sanitizedContent = dompurify.sanitize(post.content);
+    const sanitizedContent = sanitizeHtml(post.content, {
+      allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure', 'figcaption', 'iframe', 'div', 'span']),
+      allowedAttributes: {
+        ...sanitizeHtml.defaults.allowedAttributes,
+        'img': ['src', 'alt', 'width', 'height', 'class', 'srcset'],
+        'iframe': ['src', 'width', 'height', 'allow', 'allowfullscreen', 'frameborder', 'referrerpolicy', 'loading'],
+        'div': ['class', 'style'],
+        'span': ['class', 'style'],
+        '*': ['style', 'id']
+      },
+      allowedIframeHostnames: ['www.youtube.com', 'player.vimeo.com']
+    });
 
     return (
       <article className="min-h-screen pb-20 pt-10">
