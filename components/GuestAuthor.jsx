@@ -1,20 +1,22 @@
 
 import Image from 'next/image';
-
+import { normalizeImageUrl } from '../lib/utils';
+// ...
 export default function GuestAuthor({ author }) {
     if (!author) return null;
 
     const { name, description, avatar } = author;
-    const avatarUrl = avatar?.url || '/placeholder_avatar.png';
+    const avatarUrl = normalizeImageUrl(avatar?.url) || '/placeholder_avatar.png';
 
     return (
         <div className="bg-neutral-50 border border-neutral-200 p-8 my-10 flex flex-col md:flex-row items-center md:items-start gap-6 rounded-lg">
             <div className="shrink-0">
                 <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-[var(--color-accent)]">
-                    <img
+                    <Image
                         src={avatarUrl}
                         alt={name}
-                        className="object-cover w-full h-full"
+                        fill
+                        className="object-cover"
                     />
                 </div>
             </div>

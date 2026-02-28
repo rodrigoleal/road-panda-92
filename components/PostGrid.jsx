@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
 import { pt } from 'date-fns/locale';
+import { normalizeImageUrl } from '../lib/utils';
 
 export default function PostGrid({ posts, showHeader = true }) {
     if (!posts || posts.length === 0) return null;
@@ -25,7 +26,7 @@ export default function PostGrid({ posts, showHeader = true }) {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {posts.map((post, index) => {
-                        const imageUrl = post.featuredImage?.node?.sourceUrl || '/placeholder_thumb.jpg';
+                        const imageUrl = normalizeImageUrl(post.featuredImage?.node?.sourceUrl) || '/placeholder_thumb.jpg';
                         const category = post.categories?.nodes[0]?.name;
 
                         // First item is larger (2 columns wide) if it's the start of the grid

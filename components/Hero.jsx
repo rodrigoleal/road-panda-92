@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { format, formatDistanceToNow } from 'date-fns';
 import { pt } from 'date-fns/locale';
+import { normalizeImageUrl } from '../lib/utils';
 
 export default function Hero({ featuredPosts }) {
     const mainFeature = featuredPosts?.[0];
@@ -40,7 +41,7 @@ export default function Hero({ featuredPosts }) {
         <div key={post.id} className="flex flex-col group h-full card-controlled-bg rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border">
             <Link href={`/${post.slug}`} className="block w-full aspect-video overflow-hidden mb-4 relative shadow-md group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
                 <Image
-                    src={post.featuredImage?.node?.sourceUrl || '/placeholder.jpg'}
+                    src={normalizeImageUrl(post.featuredImage?.node?.sourceUrl) || '/placeholder.jpg'}
                     alt={post.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -86,7 +87,7 @@ export default function Hero({ featuredPosts }) {
                 <div className={`w-full ${hasSubFeatures ? 'md:w-2/3' : 'w-full'} relative group h-[500px] md:h-[550px] overflow-hidden rounded-2xl shadow-lg`}>
                     <Link href={`/${mainFeature.slug}`} className="block w-full h-full relative z-0">
                         <Image
-                            src={mainFeature.featuredImage?.node?.sourceUrl || '/placeholder.jpg'}
+                            src={normalizeImageUrl(mainFeature.featuredImage?.node?.sourceUrl) || '/placeholder.jpg'}
                             alt={mainFeature.title}
                             fill
                             priority
@@ -120,7 +121,7 @@ export default function Hero({ featuredPosts }) {
                             <div key={post.id} className="relative group h-[250px] md:h-1/2 overflow-hidden rounded-2xl flex-1 shadow-md">
                                 <Link href={`/${post.slug}`} className="block w-full h-full">
                                     <Image
-                                        src={post.featuredImage?.node?.sourceUrl || '/placeholder.jpg'}
+                                        src={normalizeImageUrl(post.featuredImage?.node?.sourceUrl) || '/placeholder.jpg'}
                                         alt={post.title}
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-105"

@@ -19,7 +19,10 @@ export default async function CategoryPage({ params }) {
   // Handle slug mismatches (URL -> DB)
   const slugMapping = {
     'classics': 'classicos',
-    'history': 'historia' // Potential future case
+    'history': 'historia',
+    'reviews': 'ensaios',
+    'news': 'noticias',
+    'opinion': 'opiniao'
   };
 
   const querySlug = slugMapping[slug] || slug;

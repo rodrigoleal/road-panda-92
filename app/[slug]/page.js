@@ -34,6 +34,8 @@ export async function generateMetadata({ params }) {
   }
 }
 
+import { normalizeImageUrl } from '../../lib/utils';
+
 export default async function SinglePost({ params }) {
   try {
     const { slug } = await params;
@@ -84,7 +86,14 @@ export default async function SinglePost({ params }) {
             </h1>
             <div className="flex items-center justify-center space-x-3">
               {post.author?.node?.avatar?.url && (
-                <img src={post.author.node.avatar.url} alt={post.author.node.name} className="w-10 h-10 rounded-full border-2 border-[var(--color-accent)]" />
+                <div className="relative w-10 h-10 rounded-full border-2 border-[var(--color-accent)] overflow-hidden">
+                  <Image
+                    src={normalizeImageUrl(post.author.node.avatar.url)}
+                    alt={post.author.node.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               )}
               <span className="text-sm font-bold tracking-wide uppercase text-neutral-500">Por {post.author?.node?.name}</span>
             </div>
@@ -96,7 +105,7 @@ export default async function SinglePost({ params }) {
           <div className="container mx-auto max-w-5xl mb-12 px-4">
             <div className="relative w-full h-auto aspect-video rounded-xl shadow-xl overflow-hidden">
               <Image
-                src={post.featuredImage.node.sourceUrl}
+                src={normalizeImageUrl(post.featuredImage.node.sourceUrl)}
                 alt={post.title}
                 fill
                 className="object-cover"

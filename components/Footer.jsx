@@ -49,11 +49,12 @@ export default function Footer() {
                     <p className="text-neutral-400 text-sm leading-relaxed mb-6">
                         Jornalismo automóvel sem compromissos. Histórias diretamente do asfalto para o seu ecrã.
                     </p>
-                    <div className="flex space-x-4">
-                        {/* Social Icons Placeholders */}
-                        {['Twitter', 'Instagram', 'YouTube'].map(social => (
-                            <a key={social} href="#" className="text-[var(--color-detail)] hover:text-white transition-colors text-xs uppercase font-bold tracking-widest">{social}</a>
-                        ))}
+                    <div className="flex space-x-4 flex-wrap">
+                        {/* Social Links */}
+                        <a href="https://www.instagram.com/roadpanda92" target="_blank" rel="noopener noreferrer" className="text-[var(--color-detail)] hover:text-white transition-colors text-xs uppercase font-bold tracking-widest mb-2">Instagram</a>
+                        <a href="https://www.facebook.com/share/1awmpWymbn/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="text-[var(--color-detail)] hover:text-white transition-colors text-xs uppercase font-bold tracking-widest mb-2">Facebook</a>
+                        <a href="https://open.spotify.com/show/1NS8NiCNdROB8BDXIWYYdl?si=baED7fPzTZC-95ZHLARE3Q" target="_blank" rel="noopener noreferrer" className="text-[var(--color-detail)] hover:text-white transition-colors text-xs uppercase font-bold tracking-widest mb-2">Spotify</a>
+                        <a href="https://youtube.com/@roadpanda92?si=kyxLSfwGxutEjJ5x" target="_blank" rel="noopener noreferrer" className="text-[var(--color-detail)] hover:text-white transition-colors text-xs uppercase font-bold tracking-widest mb-2">YouTube</a>
                     </div>
                 </div>
 
@@ -110,9 +111,10 @@ export default function Footer() {
 
             <div className="container mx-auto px-4 pt-8 border-t border-[var(--color-secondary)] text-center md:text-left flex flex-col md:flex-row justify-between items-center text-xs text-neutral-500 uppercase tracking-widest">
                 <p>&copy; {currentYear} Road Panda 92 Media. Todos os direitos reservados.</p>
-                <div className="flex space-x-6 mt-4 md:mt-0">
-                    <Link href="/privacy" className="hover:text-white transition-colors">Política de Privacidade</Link>
-                    <Link href="/terms" className="hover:text-white transition-colors">Termos de Serviço</Link>
+                <div className="flex space-x-6 mt-4 md:mt-0 flex-wrap justify-center md:justify-end">
+                    <Link href="/estatuto-editorial" className="hover:text-white transition-colors">Estatuto Editorial</Link>
+                    <Link href="/privacy" className="hover:text-white transition-colors ml-6">Política de Privacidade</Link>
+                    <Link href="/terms" className="hover:text-white transition-colors ml-6">Termos de Serviço</Link>
                 </div>
             </div>
         </footer>
