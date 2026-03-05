@@ -1,72 +1,80 @@
 export const metadata = {
-    title: 'Termos de Serviço | Road Panda 92',
-    description: 'Termos de Serviço do Road Panda 92.',
+    title: 'Termos de Utilização | Road Panda 92',
+    description: 'Termos de Utilização da Road Panda 92.',
 };
 
-export default function TermsPage() {
+export default function TermsOfUsePage() {
     return (
         <main className="min-h-screen pt-32 pb-20">
-            <div className="container mx-auto px-4 max-w-4xl">
-                <span className="text-[var(--color-accent)] font-bold tracking-widest uppercase text-xs mb-4 block text-center">
-                    Legal
-                </span>
-                <h1 className="text-4xl md:text-5xl font-black text-[var(--foreground)] mb-12 text-center">
-                    Termos de Serviço
-                </h1>
+            <div className="container mx-auto px-4 max-w-3xl text-[var(--foreground)]">
+                <div className="text-center mb-16">
+                    <span className="text-[var(--color-accent)] font-bold tracking-widest uppercase text-xs mb-4 block">
+                        Road Panda 92
+                    </span>
+                    <h1 className="text-4xl md:text-5xl font-black mb-6">
+                        Termos de Utilização
+                    </h1>
+                </div>
 
-                <div className="prose prose-lg prose-neutral mx-auto max-w-3xl prose-p:leading-loose prose-p:mb-8 prose-li:leading-loose prose-headings:font-bold prose-headings:tracking-tight prose-headings:mt-12 prose-headings:mb-6">
-                    <h3>1. Termos</h3>
-                    <p>
-                        Ao aceder ao site <a href="/">Road Panda 92</a>, concorda em cumprir estes termos de serviço, todas as leis e regulamentos aplicáveis ​​e concorda que é responsável pelo cumprimento de todas as leis locais aplicáveis. Se você não concordar com algum desses termos, está proibido de usar ou aceder este site. Os materiais contidos neste site são protegidos pelas leis de direitos de autor e marcas comerciais aplicáveis.
-                    </p>
+                <div className="prose prose-lg dark:prose-invert mx-auto">
+                    <h2 className="mt-12 text-2xl font-bold">1. Identificação do Responsável</h2>
+                    <p>O presente site é operado por:<br />
+                        <strong>SINGELO E CRISTALINO UNIPESSOAL LDA</strong><br />
+                        NIF: 514762144<br />
+                        Morada: Rua Jorge Bento, Número 34, 4450 Leça da Palmeira, Portugal<br />
+                        Email: roadpanda92@gmail.com</p>
 
-                    <h3>2. Uso de Licença</h3>
-                    <p>
-                        É concedida permissão para baixar temporariamente uma cópia dos materiais (informações ou software) no site Road Panda 92 , apenas para visualização transitória pessoal e não comercial. Esta é a concessão de uma licença, não uma transferência de título e, sob esta licença, você não pode:
-                    </p>
+                    <h2 className="mt-12 text-2xl font-bold">2. Objeto e Âmbito</h2>
+                    <p>Os presentes Termos de Utilização regulam o acesso e a utilização do site www.roadpanda92.com, enquanto plataforma digital de conteúdos editoriais, informativos e institucionais, incluindo artigos, notícias, crónicas, imagens, vídeos e outros conteúdos publicados.<br />
+                        Ao aceder e utilizar o site, o utilizador aceita estes Termos de Utilização.</p>
+
+                    <h2 className="mt-12 text-2xl font-bold">3. Acesso ao Site</h2>
+                    <p>3.1. O acesso ao site é gratuito e não requer registo prévio, salvo funcionalidades específicas que o possam exigir.<br />
+                        3.2. O responsável reserva-se o direito de suspender, limitar ou interromper o acesso ao site, temporária ou definitivamente, por razões técnicas, legais ou editoriais.</p>
+
+                    <h2 className="mt-12 text-2xl font-bold">4. Conteúdos Editorais</h2>
+                    <p>4.1. Os conteúdos publicados refletem uma abordagem editorial própria, de natureza informativa, cultural e opinativa.<br />
+                        4.2. A informação disponibilizada tem caráter informativo e editorial, não constituindo aconselhamento técnico, jurídico ou profissional.<br />
+                        4.3. Apesar do cuidado na produção e verificação dos conteúdos, não é garantida a inexistência de erros, omissões ou desatualizações.</p>
+
+                    <h2 className="mt-12 text-2xl font-bold">5. Direitos de Autor e Propriedade Intelectual</h2>
+                    <p>5.1. Todos os conteúdos presentes no site, incluindo textos, imagens, vídeos, ilustrações, design gráfico e logótipos, são propriedade da Road Panda 92 ou utilizados com autorização dos respetivos titulares, estando protegidos por direitos de autor.<br />
+                        5.2. É permitida a partilha de excertos dos conteúdos, desde que:</p>
                     <ul>
-                        <li>modificar ou copiar os materiais;</li>
-                        <li>usar os materiais para qualquer finalidade comercial ou para exibição pública (comercial ou não comercial);</li>
-                        <li>tentar descompilar ou fazer engenharia reversa de qualquer software contido no site Road Panda 92;</li>
-                        <li>remover quaisquer direitos de autor ou outras notações de propriedade dos materiais; ou</li>
-                        <li>transferir os materiais para outra pessoa ou 'espelhe' os materiais em qualquer outro servidor.</li>
+                        <li>seja indicada a fonte</li>
+                        <li>seja incluído link para o artigo original</li>
+                        <li>não haja alteração do sentido do conteúdo</li>
                     </ul>
-                    <p>
-                        Esta licença será automaticamente rescindida se você violar alguma dessas restrições e poderá ser rescindida por Road Panda 92 a qualquer momento. Ao encerrar a visualização desses materiais ou após o término desta licença, você deve apagar todos os materiais baixados em sua posse, seja em formato eletrónico ou impresso.
-                    </p>
+                    <p>5.3. A reprodução total ou parcial para fins comerciais, sem autorização prévia, é proibida.</p>
 
-                    <h3>3. Isenção de responsabilidade</h3>
-                    <p>
-                        Os materiais no site da Road Panda 92 são fornecidos 'como estão'. Road Panda 92 não oferece garantias, expressas ou implícitas, e, por este meio, isenta e nega todas as outras garantias, incluindo, sem limitação, garantias implícitas ou condições de comercialização, adequação a um fim específico ou não violação de propriedade intelectual ou outra violação de direitos.
-                    </p>
-                    <p>
-                        Além disso, o Road Panda 92 não garante ou faz qualquer representação relativa à precisão, aos resultados prováveis ​​ou à confiabilidade do uso dos materiais em seu site ou de outra forma relacionado a esses materiais ou em sites vinculados a este site.
-                    </p>
+                    <h2 className="mt-12 text-2xl font-bold">6. Comentários e Interação (quando aplicável)</h2>
+                    <p>6.1. Caso o site disponibilize áreas de comentários ou interação, o utilizador compromete-se a utilizar essas funcionalidades de forma responsável, respeitosa e legal.<br />
+                        6.2. Não são permitidos comentários que:</p>
+                    <ul>
+                        <li>sejam ofensivos, discriminatórios ou difamatórios</li>
+                        <li>contenham discurso de ódio ou incitação à violência</li>
+                        <li>violem direitos de terceiros</li>
+                        <li>tenham caráter promocional não autorizado</li>
+                    </ul>
+                    <p>6.3. O responsável pelo site reserva-se o direito de moderar, editar ou remover comentários que violem estes Termos.</p>
 
-                    <h3>4. Limitações</h3>
-                    <p>
-                        Em nenhum caso o Road Panda 92 ou seus fornecedores serão responsáveis ​​por quaisquer danos (incluindo, sem limitação, danos por perda de dados ou lucro ou devido a interrupção dos negócios) decorrentes do uso ou da incapacidade de usar os materiais em Road Panda 92, mesmo que Road Panda 92 ou um representante autorizado da Road Panda 92 tenha sido notificado oralmente ou por escrito da possibilidade de tais danos. Como algumas jurisdições não permitem limitações em garantias implícitas, ou limitações de responsabilidade por danos conseqüentes ou incidentais, essas limitações podem não se aplicar a você.
-                    </p>
+                    <h2 className="mt-12 text-2xl font-bold">7. Ligações para Sites de Terceiros</h2>
+                    <p>7.1. O site pode conter ligações para sites externos.<br />
+                        7.2. A SINGELO E CRISTALINO UNIPESSOAL LDA não é responsável pelo conteúdo, políticas ou práticas desses sites de terceiros.</p>
 
-                    <h3>5. Precisão dos materiais</h3>
-                    <p>
-                        Os materiais exibidos no site da Road Panda 92 podem incluir erros técnicos, tipográficos ou fotográficos. Road Panda 92 não garante que qualquer material em seu site seja preciso, completo ou atual. Road Panda 92 pode fazer alterações nos materiais contidos em seu site a qualquer momento, sem aviso prévio. No entanto, Road Panda 92 não se compromete a atualizar os materiais.
-                    </p>
+                    <h2 className="mt-12 text-2xl font-bold">8. Responsabilidade</h2>
+                    <p>8.1. O utilizador reconhece que a utilização do site é feita por sua conta e risco.<br />
+                        8.2. O responsável pelo site não pode ser responsabilizado por danos resultantes da utilização ou impossibilidade de utilização do site, salvo nos casos legalmente previstos.</p>
 
-                    <h3>6. Links</h3>
-                    <p>
-                        O Road Panda 92 não analisou todos os sites vinculados ao seu site e não é responsável pelo conteúdo de nenhum site vinculado. A inclusão de qualquer link não implica endosso por Road Panda 92 do site. O uso de qualquer site vinculado é por conta e risco do usuário.
-                    </p>
+                    <h2 className="mt-12 text-2xl font-bold">9. Proteção de Dados Pessoais</h2>
+                    <p>O tratamento de dados pessoais efetuado no âmbito da utilização do site encontra-se regulado pela Política de Privacidade, disponível no site.</p>
 
-                    <h3>Modificações</h3>
-                    <p>
-                        O Road Panda 92 pode revisar estes termos de serviço do site a qualquer momento, sem aviso prévio. Ao usar este site, você concorda em ficar vinculado à versão atual desses termos de serviço.
-                    </p>
+                    <h2 className="mt-12 text-2xl font-bold">10. Alterações aos Termos de Utilização</h2>
+                    <p>Os presentes Termos de Utilização podem ser alterados a qualquer momento.<br />
+                        As alterações serão publicadas no site www.roadpanda92.com e produzem efeitos a partir da data da sua publicação.</p>
 
-                    <h3>Lei aplicável</h3>
-                    <p>
-                        Estes termos e condições são regidos e interpretados de acordo com as leis do Road Panda 92 e você se submete irrevogavelmente à jurisdição exclusiva dos tribunais naquele estado ou localidade.
-                    </p>
+                    <h2 className="mt-12 text-2xl font-bold">11. Lei Aplicável</h2>
+                    <p>Os presentes Termos de Utilização são regidos pela lei portuguesa.</p>
                 </div>
             </div>
         </main>

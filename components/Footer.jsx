@@ -70,12 +70,12 @@ export default function Footer() {
                 </div>
 
                 <div>
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-[var(--color-detail)] mb-6">Recursos</h3>
-                    <ul className="space-y-3 text-sm font-medium">
-                        <li><Link href="/about" className="hover:text-[var(--color-accent)] transition-colors">Sobre Nós</Link></li>
-                        <li><Link href="/contact" className="hover:text-[var(--color-accent)] transition-colors">Contacto</Link></li>
-                        <li><Link href="/advertise" className="hover:text-[var(--color-accent)] transition-colors">Publicidade</Link></li>
-                        <li><Link href="/careers" className="hover:text-[var(--color-accent)] transition-colors">Carreiras</Link></li>
+                    <h3 className="text-sm font-bold uppercase tracking-widest text-white mb-6">Outros</h3>
+                    <ul className="space-y-3 font-medium text-neutral-400 text-base">
+                        <li><Link href="/about" className="hover:text-white transition-colors">Quem somos</Link></li>
+                        <li><Link href="/estatuto-editorial" className="hover:text-white transition-colors">Estatuto Editorial</Link></li>
+                        <li><Link href="/ficha-tecnica" className="hover:text-white transition-colors">Ficha Técnica</Link></li>
+                        <li><Link href="/contact" className="hover:text-white transition-colors">Contactos</Link></li>
                     </ul>
                 </div>
 
@@ -111,10 +111,10 @@ export default function Footer() {
 
             <div className="container mx-auto px-4 pt-8 border-t border-[var(--color-secondary)] text-center md:text-left flex flex-col md:flex-row justify-between items-center text-xs text-neutral-500 uppercase tracking-widest">
                 <p>&copy; {currentYear} Road Panda 92 Media. Todos os direitos reservados.</p>
-                <div className="flex space-x-6 mt-4 md:mt-0 flex-wrap justify-center md:justify-end">
-                    <Link href="/estatuto-editorial" className="hover:text-white transition-colors">Estatuto Editorial</Link>
-                    <Link href="/privacy" className="hover:text-white transition-colors ml-6">Política de Privacidade</Link>
-                    <Link href="/terms" className="hover:text-white transition-colors ml-6">Termos de Serviço</Link>
+                <div className="flex flex-col space-y-2 mt-6 md:mt-0 text-left md:text-right font-medium text-neutral-400 text-base">
+                    <Link href="/privacy" className="hover:text-white hover:underline transition-all">Política de Privacidade</Link>
+                    <Link href="/cookies" className="hover:text-white hover:underline transition-all">Política de Cookies</Link>
+                    <Link href="/terms" className="hover:text-white hover:underline transition-all">Termos de Utilização</Link>
                 </div>
             </div>
         </footer>
