@@ -4,6 +4,7 @@ import "./globals.css";
 import ThemeProvider from '../components/ThemeProvider';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CookieConsent from '../components/CookieConsent';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
             {children}
           </main>
           <Footer />
+          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>
