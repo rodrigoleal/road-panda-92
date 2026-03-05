@@ -61,20 +61,20 @@ export default function Footer() {
                 {/* SECÇÕES */}
                 <div className="lg:col-span-2">
                     <h3 className="text-sm font-bold uppercase tracking-widest text-white mb-6">Secções</h3>
-                    <ul className="space-y-3 font-medium text-neutral-400 text-base">
+                    <ul className="space-y-2 font-medium text-neutral-400 text-base">
+                        <li><Link href="/latest" className="hover:text-white transition-colors">Últimas</Link></li>
+                        <li><Link href="/category/reviews" className="hover:text-white transition-colors">Ensaios</Link></li>
                         <li><Link href="/category/news" className="hover:text-white transition-colors">Notícias</Link></li>
-                        <li><Link href="/category/reviews" className="hover:text-white transition-colors">Testes</Link></li>
-                        <li><Link href="/category/autopedia" className="hover:text-white transition-colors">Autopédia</Link></li>
-                        <li><Link href="/category/classics" className="hover:text-white transition-colors">Clássicos</Link></li>
-                        <li><Link href="/category/chronicles" className="hover:text-white transition-colors">Crónicas</Link></li>
+                        <li><Link href="/category/videos" className="hover:text-white transition-colors">Vídeos</Link></li>
                         <li><Link href="/category/opinion" className="hover:text-white transition-colors">Opinião</Link></li>
+                        <li><Link href="/category/classics" className="hover:text-white transition-colors">Clássicos</Link></li>
                     </ul>
                 </div>
 
                 {/* OUTROS */}
                 <div className="lg:col-span-2">
                     <h3 className="text-sm font-bold uppercase tracking-widest text-white mb-6">Outros</h3>
-                    <ul className="space-y-3 font-medium text-neutral-400 text-base">
+                    <ul className="space-y-2 font-medium text-neutral-400 text-base">
                         <li><Link href="/about" className="hover:text-white transition-colors">Quem somos</Link></li>
                         <li><Link href="/estatuto-editorial" className="hover:text-white transition-colors">Estatuto Editorial</Link></li>
                         <li><Link href="/ficha-tecnica" className="hover:text-white transition-colors">Ficha Técnica</Link></li>
@@ -84,7 +84,7 @@ export default function Footer() {
 
                 {/* LEGAL LINKS */}
                 <div className="lg:col-span-2 lg:pt-11 mt-6 lg:mt-0">
-                    <ul className="space-y-3 font-medium text-neutral-400 text-base">
+                    <ul className="space-y-2 font-medium text-neutral-400 text-base">
                         <li><Link href="/privacy" className="hover:text-white transition-colors">Política de Privacidade</Link></li>
                         <li><Link href="/cookies" className="hover:text-white transition-colors">Política de Cookies</Link></li>
                         <li><Link href="/terms" className="hover:text-white transition-colors">Termos de Utilização</Link></li>
