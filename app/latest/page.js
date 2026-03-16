@@ -1,6 +1,9 @@
 import { getClient } from '../../lib/apollo-client';
 import { GET_MORE_POSTS } from '../../lib/queries';
 import PostGrid from '../../components/PostGrid';
+import AdRotatorClient from '../../components/AdRotatorClient';
+import { GET_ALL_ADS } from '../../lib/queries';
+import { normalizeImageUrl } from '../../lib/utils';
 
 export const revalidate = 600;
 
@@ -11,10 +14,26 @@ export const metadata = {
 
 export default async function LatestPage() {
     const client = getClient();
-    const { data } = await client.query({
-        query: GET_MORE_POSTS,
-        variables: { first: 20 },
-    });
+    const [dataResponse, adsResponse] = await Promise.all([
+        client.query({
+            query: GET_MORE_POSTS,
+            variables: { first: 20 },
+        }),
+        client.query({ query: GET_ALL_ADS })
+    ]);
+
+    const data = dataResponse.data;
+    const rawAds = adsResponse.data?.ads?.nodes || [];
+
+    const allAds = rawAds.map(adNode => ({
+        id: adNode.id,
+        title: adNode.title,
+        position: adNode.placement,
+        linkUrl: adNode.linkUrl,
+        imageUrl: normalizeImageUrl(adNode.featuredImage?.node?.sourceUrl)
+    }));
+
+    const latestTopAds = allAds.filter(ad => ad.position === 'latest-top');
 
     const posts = data?.posts?.nodes || [];
 
@@ -22,9 +41,6 @@ export default async function LatestPage() {
         <main className="min-h-screen pt-20 pb-20">
             <div className="container mx-auto px-4">
                 <div className="mb-16 text-center">
-                    <span className="inline-block text-[var(--color-accent)] font-bold tracking-[0.2em] uppercase text-xs mb-4 px-3 py-1 bg-red-50 rounded-full">
-                        Arquivo
-                    </span>
                     <h1 className="text-5xl md:text-7xl font-black text-[var(--foreground)] mb-6 tracking-tighter">
                         Últimas Histórias
                     </h1>
@@ -34,6 +50,12 @@ export default async function LatestPage() {
                         Das últimas novidades aos ensaios aprofundados.
                     </p>
                 </div>
+
+                {latestTopAds.length > 0 && (
+                    <div className="mb-16">
+                        <AdRotatorClient activeAds={latestTopAds} />
+                    </div>
+                )}
 
                 {posts.length > 0 ? (
                     <PostGrid posts={posts} showHeader={false} />

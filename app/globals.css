@@ -102,3 +102,12 @@ h6 {
   color: #E3E5E5;
   /* Force Light Text */
 }
+
+/* Custom utility for the dynamic logo to avoid Tailwind v4 filter composition conflicts */
+.dynamic-logo {
+  filter: brightness(0); /* Pure black in light mode */
+}
+
+:root.dark .dynamic-logo {
+  filter: brightness(0) invert(1); /* Pure white in dark mode */
+}

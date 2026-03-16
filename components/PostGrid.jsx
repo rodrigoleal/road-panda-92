@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
 import { pt } from 'date-fns/locale';
-import { normalizeImageUrl } from '../lib/utils';
+import { normalizeImageUrl, getCategoryColor } from '../lib/utils';
 
 export default function PostGrid({ posts, showHeader = true }) {
     if (!posts || posts.length === 0) return null;
@@ -42,11 +42,18 @@ export default function PostGrid({ posts, showHeader = true }) {
                                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
-                                    {category && (
-                                        <span className="absolute top-4 left-4 bg-[var(--color-accent)] text-white text-[10px] font-bold uppercase px-3 py-1 tracking-wider shadow-sm rounded-md">
-                                            {category}
-                                        </span>
-                                    )}
+                                    {(() => {
+                                        const displayCategory = post.categories?.nodes?.find(cat => cat.slug !== 'featured');
+                                        if (!displayCategory) return null;
+                                        return (
+                                            <span 
+                                                className="absolute top-4 left-4 text-white text-[10px] font-bold uppercase px-3 py-1 tracking-wider shadow-sm rounded-md"
+                                                style={{ backgroundColor: getCategoryColor(displayCategory.slug) }}
+                                            >
+                                                {displayCategory.name}
+                                            </span>
+                                        );
+                                    })()}
                                 </Link>
 
                                 <div className={`p-6 flex flex-col ${isLarge ? 'w-full md:w-1/2 justify-center p-8 md:p-12' : 'flex-1'}`}>

@@ -3,6 +3,8 @@ import Image from 'next/image';
 export default function ArticleHeader({ post }) {
     if (!post) return null;
 
+    const photoCredits = post.featuredImage?.node?.caption || post.featuredImage?.node?.description;
+
     return (
         <header className="mb-8">
             {/* Category Label */}
@@ -37,14 +39,20 @@ export default function ArticleHeader({ post }) {
 
             {/* Featured Image */}
             {post.featuredImage?.node?.sourceUrl && (
-                <div className="relative w-full aspect-video md:aspect-[21/9] rounded-sm overflow-hidden shadow-lg">
+                <div className="relative w-full aspect-video md:aspect-[21/9] rounded-sm overflow-hidden shadow-lg group">
                     <Image
                         src={post.featuredImage.node.sourceUrl}
                         alt={post.title}
-                        fill // Replaces layout="fill"
+                        fill
                         className="object-cover"
                         priority
                     />
+                    {photoCredits && (
+                        <div className="absolute bottom-0 left-0 bg-white/90 backdrop-blur-sm text-neutral-600 px-3 py-1 text-[10px] md:text-xs font-bold tracking-widest uppercase flex items-center space-x-1 shadow-[2px_-2px_10px_rgba(0,0,0,0.1)] rounded-tr-md">
+                            <span>&copy;</span>
+                            <span dangerouslySetInnerHTML={{ __html: photoCredits.replace(/<[^>]*>?/gm, '') }} />
+                        </div>
+                    )}
                 </div>
             )}
         </header>

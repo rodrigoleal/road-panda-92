@@ -1,28 +1,84 @@
 
 import { getClient } from '../lib/apollo-client';
-import { HOMEPAGE_QUERY } from '../lib/queries';
+import { HOMEPAGE_QUERY, GET_ALL_ADS } from '../lib/queries';
 import Hero from '../components/Hero';
-import PostGrid from '../components/PostGrid';
 import VideoCarousel from '../components/VideoCarousel';
+import InfiniteFeed from '../components/InfiniteFeed';
+import AdRotatorClient from '../components/AdRotatorClient';
+import { normalizeImageUrl } from '../lib/utils';
 
 export const revalidate = 600;
 
 export default async function Home() {
   const client = getClient();
-  const { data } = await client.query({
-    query: HOMEPAGE_QUERY,
-  });
+  const [homeResponse, adsResponse] = await Promise.all([
+      client.query({ query: HOMEPAGE_QUERY }),
+      client.query({ query: GET_ALL_ADS })
+  ]);
 
-  // Hero now expects an array of 3 posts
-  const heroPosts = data?.heroSettings?.nodes || [];
-  const latestPosts = data?.latestPosts?.nodes || [];
+  const data = homeResponse.data;
+  const rawAds = adsResponse.data?.ads?.nodes || [];
+  
+  // Format the GraphQL Ads object into simpler ad objects for the client
+  const allAds = rawAds.map(adNode => ({
+      id: adNode.id,
+      title: adNode.title,
+      position: adNode.placement,
+      linkUrl: adNode.linkUrl,
+      imageUrl: normalizeImageUrl(adNode.featuredImage?.node?.sourceUrl)
+  }));
+
+  const homeTopAds = allAds.filter(ad => ad.position === 'home-top');
+  const heroSidebarAds = allAds.filter(ad => ad.position === 'hero-sidebar');
+  const infiniteAds = allAds.filter(ad => ad.position === 'infinite-feed');
+
+  // Hero section Logic
+  const manualHero = data?.heroSettings?.nodes || [];
+  const scrollHighlights = data?.scrollHighlights?.nodes || [];
+  const allLatest = data?.latestPosts?.nodes || [];
   const seriesVideos = data?.seriesVideos?.nodes || [];
+
+  // Main feature: Prioritize manualHero[0], fallback to 1st of allLatest
+  const mainFeature = manualHero[0] || allLatest[0];
+  
+  // Collect all excluded IDs for the lists
+  const heroId = mainFeature?.id;
+  const highlightIds = new Set(scrollHighlights.map(h => h.id));
+  
+  // Latest for sidebar: take first 6 from allLatest ensuring no conflict with mainFeature or scrollHighlights
+  const sidebarLatest = allLatest
+    .filter(p => p.id !== heroId && !highlightIds.has(p.id))
+    .slice(0, 6);
+  
+  // Feed starts after the sidebar items
+  const sidebarIds = new Set(sidebarLatest.map(p => p.id));
+  const feedInitialLatest = allLatest.filter(p => 
+    p.id !== heroId && 
+    !highlightIds.has(p.id) && 
+    !sidebarIds.has(p.id)
+  );
+
+  const feedEndCursor = data?.latestPosts?.pageInfo?.endCursor;
+  const feedHasNextInfo = data?.latestPosts?.pageInfo?.hasNextPage;
 
   return (
     <div className="min-h-screen">
-      <Hero featuredPosts={heroPosts} />
-      {/* <PostGrid posts={latestPosts} /> */}
+      <Hero 
+        featuredPosts={mainFeature ? [mainFeature] : []} 
+        latestPosts={sidebarLatest} 
+        ads={heroSidebarAds}
+      />
+      
       <VideoCarousel videos={seriesVideos} />
+
+      <InfiniteFeed 
+          initialPosts={feedInitialLatest} 
+          initialCursor={feedEndCursor} 
+          initialHasNext={feedHasNextInfo}
+          allAds={infiniteAds}
+          excludedPostIds={[heroId, ...Array.from(highlightIds), ...sidebarLatest.map(p => p.id)]}
+          manualHighlights={scrollHighlights}
+      />
     </div>
   );
 }

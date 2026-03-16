@@ -1,161 +1,159 @@
-
+'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { format, formatDistanceToNow } from 'date-fns';
-import { pt } from 'date-fns/locale';
-import { normalizeImageUrl } from '../lib/utils';
+import { normalizeImageUrl, getCategoryColor } from '../lib/utils';
+import { useState, useRef } from 'react';
+import { getClient } from '../lib/apollo-client';
+import { GET_MORE_POSTS } from '../lib/queries';
+import AdRotatorClient from './AdRotatorClient';
 
-export default function Hero({ featuredPosts }) {
+export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
     const mainFeature = featuredPosts?.[0];
-    const subFeatures = featuredPosts?.slice(1, 3);
-    const bottomFeatures = featuredPosts?.slice(3, 7);
+    
+    const [posts, setPosts] = useState(latestPosts || []);
+    const [hasMore, setHasMore] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [endCursor, setEndCursor] = useState(null);
+    const listRef = useRef(null);
 
-    // Fallback if no featured posts exist (prevents broken header on fresh install)
-    if (!mainFeature) {
-        return (
-            <section className="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center bg-[var(--color-secondary)] overflow-hidden border-b-4 border-[var(--color-accent)]">
-                <div className="absolute inset-0 bg-black/30" />
-                <div className="relative z-10 text-center px-4 max-w-4xl">
-                    <span className="inline-block bg-[var(--color-accent)] text-white text-xs font-bold uppercase px-4 py-1.5 mb-6 tracking-widest rounded-full">
-                        Bem-vindo ao Road Panda 92
-                    </span>
-                    <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6">
-                        O seu motor de cultura automóvel.
-                    </h1>
-                    <p className="text-xl text-neutral-300 mb-8 font-light max-w-2xl mx-auto">
-                        Para ver conteúdo aqui, crie um post no WordPress e adicione a categoria <strong>"Featured"</strong>.
-                    </p>
-                    <Link href="/latest" className="inline-block bg-[var(--color-accent)] text-white px-8 py-3 text-sm font-bold uppercase tracking-wider rounded-lg hover:bg-red-700 transition-colors shadow-lg shadow-red-900/20">
-                        Ver Últimas Notícias
-                    </Link>
-                </div>
-            </section>
-        );
-    }
+    const loadMorePosts = async () => {
+        if (loading || !hasMore) return;
+        setLoading(true);
+        try {
+            const client = getClient();
+            const { data } = await client.query({
+                query: GET_MORE_POSTS,
+                variables: {
+                    first: 5,
+                    after: endCursor,
+                }
+            });
 
-    const hasSubFeatures = subFeatures && subFeatures.length > 0;
-    const hasBottomFeatures = bottomFeatures && bottomFeatures.length > 0;
+            const newPosts = data?.posts?.nodes || [];
+            const uniqueNewPosts = newPosts.filter(
+                newPost => !posts.find(p => p.id === newPost.id) && newPost.id !== mainFeature?.id
+            );
 
-    const renderCard = (post, isSmall = false) => (
-        <div key={post.id} className="flex flex-col group h-full card-controlled-bg rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border">
-            <Link href={`/${post.slug}`} className="block w-full aspect-video overflow-hidden mb-4 relative shadow-md group-hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
-                <Image
-                    src={normalizeImageUrl(post.featuredImage?.node?.sourceUrl) || '/placeholder.jpg'}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
-            </Link>
-            <div className="flex flex-col flex-grow p-4">
-                {post.categories?.nodes?.[0]?.name && (
-                    <span className="text-[10px] font-bold text-[var(--color-accent)] uppercase mb-2 tracking-widest flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]"></span>
-                        {post.categories.nodes[0].name}
-                    </span>
-                )}
-                <Link href={`/${post.slug}`}>
-                    <h2 className={`${isSmall ? 'text-lg' : 'text-xl'} font-bold text-[var(--foreground)] leading-snug mb-3 group-hover:text-[var(--color-accent)] transition-colors`}>
-                        {post.title}
-                    </h2>
-                </Link>
-                <div className="text-neutral-500 text-sm line-clamp-2 mb-4 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+            if (newPosts.length === 0) {
+                setHasMore(false);
+            } else {
+                setPosts(prev => [...prev, ...uniqueNewPosts]);
+                setEndCursor(data?.posts?.pageInfo?.endCursor);
+                if (!data?.posts?.pageInfo?.hasNextPage) {
+                    setHasMore(false);
+                }
+            }
+        } catch (error) {
+            console.error("Failed to load more posts", error);
+        }
+        setLoading(false);
+    };
 
-                <div className="mt-auto text-[10px] text-neutral-400 font-bold uppercase tracking-wider border-t border-neutral-100 pt-3">
-                    {formatDistanceToNow(new Date(post.date), { locale: pt, addSuffix: true })}
-                </div>
-            </div>
-        </div>
-    );
+    const handleScroll = () => {
+        if (!listRef.current) return;
+        const { scrollTop, scrollHeight, clientHeight } = listRef.current;
+        if (scrollTop + clientHeight >= scrollHeight - 200) {
+            loadMorePosts();
+        }
+    };
+
+    if (!mainFeature) return null;
 
     return (
-        <section className="container mx-auto px-4 py-16">
-            <div className="flex items-center justify-between mb-12 border-b border-neutral-200 dark:border-neutral-800 pb-4">
-                <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-[var(--foreground)] relative">
-                    Notícias
-                    <span className="absolute -bottom-5 left-0 w-24 h-1 bg-[var(--color-accent)]"></span>
-                </h1>
-                <Link href="/latest" className="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-[var(--color-accent)] transition-colors">
-                    Ver Todas <span className="text-[var(--color-accent)] text-lg">→</span>
-                </Link>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-6 mb-16">
-                {/* Main Feature (Left) */}
-                <div className={`w-full ${hasSubFeatures ? 'md:w-2/3' : 'w-full'} relative group h-[500px] md:h-[550px] overflow-hidden rounded-2xl shadow-lg`}>
-                    <Link href={`/${mainFeature.slug}`} className="block w-full h-full relative z-0">
-                        <Image
-                            src={normalizeImageUrl(mainFeature.featuredImage?.node?.sourceUrl) || '/placeholder.jpg'}
-                            alt={mainFeature.title}
-                            fill
-                            priority
-                            className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, 66vw"
-                        />
-                        {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-80" />
-
-                        <div className="absolute bottom-0 left-0 p-8 md:p-12 max-w-4xl z-10">
-                            {mainFeature.categories?.nodes?.[0]?.name && (
-                                <span className="inline-block bg-[var(--color-accent)] text-white text-[10px] font-bold uppercase px-3 py-1.5 mb-4 rounded-full tracking-widest shadow-md">
-                                    {mainFeature.categories.nodes[0].name}
-                                </span>
-                            )}
-                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-none mb-6 group-hover:text-neutral-200 transition-colors drop-shadow-lg tracking-tight">
-                                {mainFeature.title}
-                            </h1>
-                            <div className="text-white/80 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-                                <span className="w-8 h-[2px] bg-[var(--color-accent)]"></span>
-                                {formatDistanceToNow(new Date(mainFeature.date), { locale: pt, addSuffix: true })}
-                            </div>
-                        </div>
-                    </Link>
+        <section className="container mx-auto px-4 py-12">
+            <div className="flex flex-col lg:flex-row gap-8">
+                
+                {/* 1. Left Column: Últimas */}
+                <div className="w-full lg:w-1/4 flex flex-col">
+                    <h2 className="text-xl font-black uppercase tracking-tight mb-6 border-b-2 border-[var(--color-accent)] pb-2 inline-block self-start">
+                        Últimas
+                    </h2>
+                    
+                    <div 
+                        ref={listRef}
+                        onScroll={handleScroll}
+                        className="flex-1 overflow-y-auto max-h-[500px] lg:max-h-[600px] pr-4 custom-scrollbar space-y-2"
+                    >
+                        {posts.map((post) => (
+                            <Link key={post.id} href={`/${post.slug}`} className="group block border-b border-neutral-200/50 dark:border-neutral-800/50 pt-2 pb-6 last:border-0 transition-colors">
+                                <h3 className="text-[15px] font-black leading-tight group-hover:text-[var(--color-accent)] transition-colors mb-2 uppercase tracking-tight">
+                                    {post.title}
+                                </h3>
+                                <div className="flex items-center justify-between text-[11px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity">
+                                    <span>{post.author?.node?.name || 'Road Panda'}</span>
+                                </div>
+                            </Link>
+                        ))}
+                        
+                        {loading && <div className="py-4 text-center text-xs font-bold animate-pulse">A carregar...</div>}
+                    </div>
                 </div>
 
-                {/* Sub Features (Right) */}
-                {hasSubFeatures && (
-                    <div className="w-full md:w-1/3 flex flex-col gap-6 h-auto md:h-[550px]">
-                        {subFeatures.map((post) => (
-                            <div key={post.id} className="relative group h-[250px] md:h-1/2 overflow-hidden rounded-2xl flex-1 shadow-md">
-                                <Link href={`/${post.slug}`} className="block w-full h-full">
-                                    <Image
-                                        src={normalizeImageUrl(post.featuredImage?.node?.sourceUrl) || '/placeholder.jpg'}
-                                        alt={post.title}
-                                        fill
-                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                        sizes="(max-width: 768px) 100vw, 33vw"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-300 group-hover:bg-black/80" />
-
-                                    <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10 w-full">
-                                        {post.categories?.nodes?.[0]?.name && (
-                                            <span className="inline-block text-white/90 text-[10px] font-bold uppercase mb-2 tracking-widest flex items-center gap-2">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_5px_var(--color-accent)]"></span>
-                                                {post.categories.nodes[0].name}
-                                            </span>
-                                        )}
-                                        <h2 className="text-xl md:text-2xl font-bold text-white leading-tight mb-2 group-hover:text-[var(--color-accent)] transition-colors drop-shadow-md">
-                                            {post.title}
-                                        </h2>
-                                        <div className="text-white/60 text-[10px] font-bold uppercase tracking-wider">
-                                            {formatDistanceToNow(new Date(post.date), { locale: pt, addSuffix: true })}
-                                        </div>
-                                    </div>
-                                </Link>
+                {/* 2. Center Column: Main Feature */}
+                <div className="w-full lg:w-2/3">
+                    <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mb-6 group">
+                        <Link href={`/${mainFeature.slug}`}>
+                            <Image
+                                src={normalizeImageUrl(mainFeature.featuredImage?.node?.sourceUrl) || '/placeholder.jpg'}
+                                alt={mainFeature.title}
+                                fill
+                                priority
+                                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
+                            {/* Category Tag (Filters out 'featured') */}
+                            {(() => {
+                                const category = mainFeature.categories?.nodes?.find(cat => cat.slug !== 'featured');
+                                if (!category) return null;
+                                return (
+                                    <span 
+                                        className="absolute top-4 left-4 text-white text-[10px] font-bold uppercase px-3 py-1.5 rounded shadow-lg tracking-widest z-10"
+                                        style={{ backgroundColor: getCategoryColor(category.slug) }}
+                                    >
+                                        {category.name}
+                                    </span>
+                                );
+                            })()}
+                        </Link>
+                    </div>
+                    
+                    <div className="text-center md:text-left px-2">
+                         <Link href={`/${mainFeature.slug}`} className="group block">
+                            <h2 className="text-3xl md:text-5xl font-black leading-tight mb-4 hover:text-[var(--color-accent)] transition-colors tracking-tighter uppercase">
+                                {mainFeature.title}
+                            </h2>
+                            <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[var(--color-accent)]">
+                                <span className="w-10 h-0.5 bg-[var(--color-accent)]"></span>
+                                Ler História &rarr;
                             </div>
-                        ))}
+                         </Link>
+                    </div>
+                </div>
+
+                {/* 3. Right Column: Ad Placement */}
+                {ads.length > 0 && (
+                    <div className="hidden lg:block lg:w-1/4">
+                        <div className="sticky top-24">
+                           <AdRotatorClient activeAds={ads} orientation="vertical" />
+                        </div>
                     </div>
                 )}
-            </div>
 
-            {/* Bottom Features */}
-            {hasBottomFeatures && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-                    {bottomFeatures.map((post) => renderCard(post))}
-                </div>
-            )}
+            </div>
+            
+            <style jsx>{`
+                .custom-scrollbar::-webkit-scrollbar {
+                    width: 4px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background-color: var(--color-accent);
+                    border-radius: 10px;
+                }
+            `}</style>
         </section>
     );
 }

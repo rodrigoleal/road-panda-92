@@ -44,7 +44,7 @@ export default function Footer() {
                 {/* Branding */}
                 <div className="lg:col-span-3">
                     <Link href="/" className="block mb-6">
-                        <img src="/logo.png" alt="Road Panda 92" className="h-14 w-auto object-contain" />
+                        <img src="/logo.png" alt="Road Panda 92" className="h-14 w-auto object-contain brightness-0 invert" />
                     </Link>
                     <p className="text-neutral-400 text-sm leading-relaxed mb-6">
                         Jornalismo automóvel sem compromissos. Histórias diretamente do asfalto para o seu ecrã.
@@ -79,6 +79,7 @@ export default function Footer() {
                         <li><Link href="/estatuto-editorial" className="hover:text-white transition-colors">Estatuto Editorial</Link></li>
                         <li><Link href="/ficha-tecnica" className="hover:text-white transition-colors">Ficha Técnica</Link></li>
                         <li><Link href="/contact" className="hover:text-white transition-colors">Contactos</Link></li>
+                        <li><a href="https://open.spotify.com/show/1NS8NiCNdROB8BDXIWYYdl" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-[var(--color-detail)] flex items-center gap-2">Podcast Copiloto <span className="text-[10px]">↗</span></a></li>
                     </ul>
                 </div>
 
@@ -98,8 +99,8 @@ export default function Footer() {
                     <form onSubmit={handleSubscribe} className="flex flex-col space-y-2">
                         <input
                             type="email"
-                            placeholder="O seu email"
-                            className="bg-[var(--color-secondary)] border border-[var(--color-secondary)] text-white px-4 py-3 text-sm focus:outline-none focus:border-[var(--color-accent)] transition-colors rounded-lg placeholder-neutral-500"
+                            placeholder="O seu email principal..."
+                            className="bg-white/10 border border-white/10 text-white px-4 py-3.5 text-sm focus:outline-none focus:border-[var(--color-accent)] focus:bg-white/20 transition-all rounded-xl placeholder-neutral-500"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             disabled={status === 'loading' || status === 'success'}
@@ -107,7 +108,7 @@ export default function Footer() {
                         />
                         <button
                             type="submit"
-                            className={`bg-[var(--color-accent)] text-white px-4 py-3 text-sm font-bold uppercase tracking-wider hover:bg-red-700 transition-colors rounded-lg shadow-lg shadow-red-900/20 ${status === 'loading' ? 'opacity-50 cursor-wait' : ''}`}
+                            className={`bg-[var(--color-accent)] text-white px-4 py-4 text-xs font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black active:scale-95 transition-all rounded-xl shadow-xl shadow-red-900/10 ${status === 'loading' ? 'opacity-50 cursor-wait' : ''}`}
                             disabled={status === 'loading' || status === 'success'}
                         >
                             {status === 'loading' ? 'A enviar...' : (status === 'success' ? 'Subscrito!' : 'Subscrever')}
