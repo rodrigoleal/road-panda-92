@@ -117,17 +117,17 @@ export default function Header() {
                     </button>
                 </div>
 
-                <form onSubmit={handleSearch} className="mb-8">
-                    <div className="relative group p-1 bg-neutral-100 dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700">
+                <form onSubmit={handleSearch} className="mb-8 px-1">
+                    <div className="relative group">
                         <input 
                             type="text" 
                             placeholder="Pesquisar artigos..." 
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full bg-white dark:bg-neutral-900 border-none rounded-xl py-4 pl-5 pr-12 text-[15px] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20 transition-all duration-300 font-bold text-[var(--foreground)] placeholder-neutral-400 dark:placeholder-neutral-600 shadow-inner"
+                            className="w-full bg-neutral-50 dark:bg-neutral-800 border-2 border-transparent focus:border-[var(--color-accent)] rounded-xl py-3.5 pl-5 pr-12 text-[15px] focus:outline-none transition-all duration-300 font-bold text-[var(--foreground)] placeholder-neutral-400 dark:placeholder-neutral-500 shadow-sm focus:shadow-md"
                         />
-                        <button type="submit" className="absolute right-5 top-1/2 -translate-y-1/2 text-neutral-400 group-focus-within:text-[var(--color-accent)] transition-all duration-300 transform group-focus-within:scale-110">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <button type="submit" className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 group-focus-within:text-[var(--color-accent)] transition-all duration-300 transform group-focus-within:scale-110">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </button>
                     </div>
                 </form>
