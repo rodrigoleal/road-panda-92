@@ -11,7 +11,7 @@ import AdRotatorClient from './AdRotatorClient';
 export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
     const mainFeature = featuredPosts?.[0];
     
-    const [posts, setPosts] = useState(latestPosts || []);
+    const [posts, setPosts] = useState((latestPosts || []).slice(0, 5));
     const [hasMore, setHasMore] = useState(true);
     const [loading, setLoading] = useState(false);
     const [endCursor, setEndCursor] = useState(null);
@@ -64,8 +64,8 @@ export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
         <section className="container mx-auto px-4 py-12">
             <div className="flex flex-col lg:flex-row gap-8">
                 
-                {/* 1. Left Column: Últimas */}
-                <div className="w-full lg:w-1/4 flex flex-col">
+                {/* 1. Left Column: Últimas (Pushed to 2nd position on mobile) */}
+                <div className="w-full lg:w-1/4 flex flex-col order-2 lg:order-1">
                     <h2 className="text-xl font-black uppercase tracking-tight mb-6 border-b-2 border-[var(--color-accent)] pb-2 inline-block self-start">
                         Últimas
                     </h2>
@@ -90,9 +90,9 @@ export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
                     </div>
                 </div>
 
-                {/* 2. Center Column: Main Feature */}
-                <div className="w-full lg:w-2/3">
-                    <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mb-6 group">
+                {/* 2. Center Column: Main Feature (Pushed to 1st position on mobile) */}
+                <div className="w-full lg:w-2/3 order-1 lg:order-2">
+                    <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl group">
                         <Link href={`/${mainFeature.slug}`}>
                             <Image
                                 src={normalizeImageUrl(mainFeature.featuredImage?.node?.sourceUrl) || '/placeholder.jpg'}
@@ -102,39 +102,42 @@ export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
                                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                 sizes="(max-width: 1024px) 100vw, 50vw"
                             />
-                            {/* Category Tag (Filters out internal management categories) */}
+                            
+                            {/* Overlay Gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#1C2120]/90 via-[#1C2120]/20 to-transparent pointer-events-none" />
+
+                            {/* Category Tag */}
                             {(() => {
                                 const internalSlugs = ['featured', 'destaque-principal', 'destaque-scroll'];
                                 const category = mainFeature.categories?.nodes?.find(cat => !internalSlugs.includes(cat.slug));
                                 if (!category) return null;
                                 return (
                                     <span 
-                                        className="absolute top-4 left-4 text-white text-[10px] font-bold uppercase px-3 py-1.5 rounded shadow-lg tracking-widest z-10"
+                                        className="absolute top-6 left-6 text-white text-[10px] font-bold uppercase px-4 py-2 rounded shadow-lg tracking-[0.2em] z-20"
                                         style={{ backgroundColor: getCategoryColor(category.slug) }}
                                     >
                                         {category.name}
                                     </span>
                                 );
                             })()}
-                        </Link>
-                    </div>
-                    
-                    <div className="text-center md:text-left px-2">
-                         <Link href={`/${mainFeature.slug}`} className="group block">
-                            <h2 className="text-3xl md:text-5xl font-black leading-tight mb-4 hover:text-[var(--color-accent)] transition-colors tracking-tighter uppercase">
-                                {mainFeature.title}
-                            </h2>
-                            <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-[var(--color-accent)]">
-                                <span className="w-10 h-0.5 bg-[var(--color-accent)]"></span>
-                                Ler História &rarr;
+
+                            {/* Title Overlay */}
+                            <div className="absolute inset-x-0 bottom-0 p-6 md:p-12 z-20 flex flex-col justify-end">
+                                <h2 className="text-2xl md:text-5xl lg:text-6xl font-black leading-[0.9] text-white mb-6 transition-all duration-500 group-hover:-translate-y-2 uppercase tracking-tighter">
+                                    {mainFeature.title}
+                                </h2>
+                                <div className="flex items-center gap-4 text-xs md:text-sm font-black uppercase tracking-[0.3em] text-[var(--color-detail)] group-hover:text-white transition-colors duration-300">
+                                    <span className="w-12 h-1 bg-[var(--color-detail)] group-hover:bg-white transition-all duration-300"></span>
+                                    Ler História &rarr;
+                                </div>
                             </div>
-                         </Link>
+                        </Link>
                     </div>
                 </div>
 
-                {/* 3. Right Column: Ad Placement */}
+                {/* 3. Right Column: Ad Placement (Always last) */}
                 {ads.length > 0 && (
-                    <div className="hidden lg:block lg:w-1/4">
+                    <div className="hidden lg:block lg:w-1/4 order-3">
                         <div className="sticky top-24">
                            <AdRotatorClient activeAds={ads} orientation="vertical" />
                         </div>

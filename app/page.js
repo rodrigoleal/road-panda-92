@@ -45,10 +45,10 @@ export default async function Home() {
   const heroId = mainFeature?.id;
   const highlightIds = new Set(scrollHighlights.map(h => h.id));
   
-  // Latest for sidebar: take first 6 from allLatest ensuring no conflict with mainFeature or scrollHighlights
+  // Latest for sidebar: take first 5 from allLatest ensuring no conflict with mainFeature or scrollHighlights
   const sidebarLatest = allLatest
     .filter(p => p.id !== heroId && !highlightIds.has(p.id))
-    .slice(0, 6);
+    .slice(0, 5);
   
   // Feed starts after the sidebar items
   const sidebarIds = new Set(sidebarLatest.map(p => p.id));

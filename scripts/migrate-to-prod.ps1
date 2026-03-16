@@ -17,7 +17,7 @@ docker cp wordpress:/tmp/uploads.tar.gz ./local_uploads.tar.gz
 # 3. Upload to GCP
 Write-Host "Uploading files to GCP VM..."
 # Uploading to home directory using dot (.) to avoid path issues
-gcloud compute scp local_dump.sql local_uploads.tar.gz scripts/import-remote.sh "${InstanceName}:." --project=$ProjectId --zone=$Zone
+gcloud compute scp local_dump.sql local_uploads.tar.gz scripts/import-remote.sh scripts/roadpanda-ads-plugin.php "${InstanceName}:." --project=$ProjectId --zone=$Zone
 
 # 4. Execute Import Script on GCP
 Write-Host "Executing import script on GCP..."

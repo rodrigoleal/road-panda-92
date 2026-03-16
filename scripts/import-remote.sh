@@ -19,6 +19,13 @@ sudo docker cp local_uploads.tar.gz wordpress:/tmp/uploads.tar.gz
 sudo docker exec wordpress tar -xzf /tmp/uploads.tar.gz -C /var/www/html/wp-content
 sudo docker exec wordpress chown -R www-data:www-data /var/www/html/wp-content/uploads
 
+echo "Deploying Ad Plugin..."
+sudo docker cp roadpanda-ads-plugin.php wordpress:/var/www/html/wp-content/plugins/roadpanda-ads-plugin.php
+sudo docker exec wordpress chown www-data:www-data /var/www/html/wp-content/plugins/roadpanda-ads-plugin.php
+
+echo "Activating Plugin..."
+sudo docker exec -u www-data wordpress wp plugin activate roadpanda-ads-plugin || echo "WP-CLI not found or activation failed. Please activate manually in Admin."
+
 echo "Replacing URLs..."
 # Run replacements
 sudo docker exec -i mysql mysql -u wordpress -proadpanda_wp_secret wordpress -e "UPDATE wp_options SET option_value = REPLACE(option_value, 'http://localhost:8000', 'http://35.188.192.145') WHERE option_name = 'home' OR option_name = 'siteurl';"
