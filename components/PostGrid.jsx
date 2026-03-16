@@ -43,7 +43,8 @@ export default function PostGrid({ posts, showHeader = true }) {
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
                                     {(() => {
-                                        const displayCategory = post.categories?.nodes?.find(cat => cat.slug !== 'featured');
+                                        const internalSlugs = ['featured', 'destaque-principal', 'destaque-scroll'];
+                                        const displayCategory = post.categories?.nodes?.find(cat => !internalSlugs.includes(cat.slug));
                                         if (!displayCategory) return null;
                                         return (
                                             <span 

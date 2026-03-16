@@ -102,9 +102,10 @@ export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
                                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                 sizes="(max-width: 1024px) 100vw, 50vw"
                             />
-                            {/* Category Tag (Filters out 'featured') */}
+                            {/* Category Tag (Filters out internal management categories) */}
                             {(() => {
-                                const category = mainFeature.categories?.nodes?.find(cat => cat.slug !== 'featured');
+                                const internalSlugs = ['featured', 'destaque-principal', 'destaque-scroll'];
+                                const category = mainFeature.categories?.nodes?.find(cat => !internalSlugs.includes(cat.slug));
                                 if (!category) return null;
                                 return (
                                     <span 

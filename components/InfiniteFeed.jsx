@@ -111,7 +111,8 @@ export default function InfiniteFeed({ initialPosts = [], initialCursor, initial
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     {(() => {
-                        const displayCategory = post.categories?.nodes?.find(cat => cat.slug !== 'featured');
+                        const internalSlugs = ['featured', 'destaque-principal', 'destaque-scroll'];
+                        const displayCategory = post.categories?.nodes?.find(cat => !internalSlugs.includes(cat.slug));
                         if (!displayCategory) return null;
                         return (
                             <span 
@@ -152,7 +153,8 @@ export default function InfiniteFeed({ initialPosts = [], initialCursor, initial
                     <div className="flex flex-col lg:flex-row items-center gap-12">
                         <div className="w-full lg:w-1/2 flex flex-col justify-center order-2 lg:order-1">
                             {(() => {
-                                const displayCategory = post.categories?.nodes?.find(cat => cat.slug !== 'featured');
+                                const internalSlugs = ['featured', 'destaque-principal', 'destaque-scroll'];
+                                const displayCategory = post.categories?.nodes?.find(cat => !internalSlugs.includes(cat.slug));
                                 if (!displayCategory) return null;
                                 return (
                                     <span 
