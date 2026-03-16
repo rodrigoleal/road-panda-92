@@ -28,6 +28,14 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/graphql',
+        destination: process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'http://localhost:8000/graphql',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
