@@ -123,13 +123,9 @@ export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
 
                             {/* Title Overlay */}
                             <div className="absolute inset-x-0 bottom-0 p-6 md:p-12 z-20 flex flex-col justify-end">
-                                <h2 className="text-2xl md:text-5xl lg:text-6xl font-black leading-[0.9] text-white mb-6 transition-all duration-500 group-hover:-translate-y-2 uppercase tracking-tighter">
+                                <h2 className="text-xl md:text-4xl lg:text-5xl font-black leading-[1.1] text-white mb-2 transition-all duration-500 group-hover:-translate-y-2 tracking-tighter">
                                     {mainFeature.title}
                                 </h2>
-                                <div className="flex items-center gap-4 text-xs md:text-sm font-black uppercase tracking-[0.3em] text-[var(--color-detail)] group-hover:text-white transition-colors duration-300">
-                                    <span className="w-12 h-1 bg-[var(--color-detail)] group-hover:bg-white transition-all duration-300"></span>
-                                    Ler História &rarr;
-                                </div>
                             </div>
                         </Link>
                     </div>

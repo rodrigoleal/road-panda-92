@@ -2,7 +2,7 @@
 import { getClient } from '../lib/apollo-client';
 import { HOMEPAGE_QUERY, GET_ALL_ADS } from '../lib/queries';
 import Hero from '../components/Hero';
-import VideoCarousel from '../components/VideoCarousel';
+import VideoGallery from '../components/VideoGallery';
 import InfiniteFeed from '../components/InfiniteFeed';
 import AdRotatorClient from '../components/AdRotatorClient';
 import { normalizeImageUrl } from '../lib/utils';
@@ -69,7 +69,7 @@ export default async function Home() {
         ads={heroSidebarAds}
       />
       
-      <VideoCarousel videos={seriesVideos} />
+      <VideoGallery />
 
       <InfiniteFeed 
           initialPosts={feedInitialLatest} 
