@@ -9,12 +9,12 @@ export const metadata = {
 export default function VideosPage() {
     return (
         <div className="min-h-screen pt-20">
-            <div className="container mx-auto px-4 py-20 text-center">
-                <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-[var(--foreground)]">
+            <div className="mb-16 text-center">
+                <h1 className="text-5xl md:text-7xl font-black text-[var(--foreground)] mb-6 tracking-tighter capitalize">
                     Vídeos
                 </h1>
-                <div className="w-20 h-1 bg-[var(--color-accent)] mx-auto mb-8"></div>
-                <p className="text-neutral-500 dark:text-neutral-400 text-lg md:text-2xl font-medium max-w-3xl mx-auto tracking-tight">
+                <div className="w-24 h-1 bg-[var(--color-accent)] mx-auto mb-6"></div>
+                <p className="text-xl text-neutral-500 max-w-2xl mx-auto font-light leading-relaxed">
                     Explore todas as histórias, ensaios e notícias sobre Vídeos.
                 </p>
             </div>
