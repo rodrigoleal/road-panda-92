@@ -108,7 +108,7 @@ export default function Header() {
         )}
 
         {/* Sidebar Menu */}
-        <div className={`fixed top-0 left-0 h-full w-80 max-w-full header-controlled-bg z-[110] transform transition-transform duration-300 ease-in-out shadow-2xl border-r border-neutral-200 dark:border-neutral-800 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className={`fixed top-0 left-0 h-full w-80 max-w-full header-controlled-bg z-[110] transform transition-transform duration-300 ease-in-out shadow-2xl border-r border-[var(--color-secondary)] ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
             <div className="flex flex-col h-full p-6">
                 <div className="flex justify-between items-center mb-8">
                     <img src="/logo.png" alt="Road Panda 92" className="h-8 w-auto object-contain dynamic-logo" />
@@ -124,7 +124,7 @@ export default function Header() {
                             placeholder="Pesquisar artigos..." 
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full bg-neutral-50 dark:bg-neutral-800 border-2 border-transparent focus:border-[var(--color-accent)] rounded-xl py-3.5 pl-5 pr-12 text-[15px] focus:outline-none transition-all duration-300 font-bold text-[var(--foreground)] placeholder-neutral-400 dark:placeholder-neutral-500 shadow-sm focus:shadow-md"
+                            className="w-full bg-[var(--color-secondary)] border-2 border-transparent focus:border-[var(--color-accent)] rounded-xl py-3.5 pl-5 pr-12 text-[15px] focus:outline-none transition-all duration-300 font-bold text-[var(--foreground)] placeholder-[var(--foreground)]/40 shadow-sm focus:shadow-md"
                         />
                         <button type="submit" className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-400 group-focus-within:text-[var(--color-accent)] transition-all duration-300 transform group-focus-within:scale-110">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -133,16 +133,16 @@ export default function Header() {
                 </form>
 
                 <nav className="flex flex-col space-y-4">
-                    <span className="text-xs font-black uppercase tracking-widest text-neutral-400 mb-2 border-b border-neutral-200 dark:border-neutral-800 pb-2">Navegação</span>
+                    <span className="text-xs font-black uppercase tracking-widest opacity-40 mb-2 border-b border-[var(--color-secondary)] pb-2 text-[var(--foreground)]">Navegação</span>
                     {navItems.map((item) => (
-                        <Link key={item.href} href={item.href} className="text-lg font-bold hover:text-[var(--color-accent)] transition-colors flex items-center">
+                        <Link key={item.href} href={item.href} className="text-lg font-bold hover:text-[var(--color-accent)] transition-colors flex items-center text-[var(--foreground)]">
                             {item.label}
                         </Link>
                     ))}
                 </nav>
 
-                <div className="mt-auto pt-6 border-t border-neutral-200 dark:border-neutral-800">
-                    <p className="text-xs text-neutral-500 font-medium">© {new Date().getFullYear()} Road Panda 92</p>
+                <div className="mt-auto pt-6 border-t border-[var(--color-secondary)]">
+                    <p className="text-xs opacity-50 font-medium text-[var(--foreground)]">© {new Date().getFullYear()} Road Panda 92</p>
                 </div>
             </div>
         </div>
