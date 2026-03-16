@@ -69,7 +69,7 @@ export default async function Home() {
         ads={heroSidebarAds}
       />
       
-      <VideoGallery />
+      <VideoGallery limit={3} />
 
       <InfiniteFeed 
           initialPosts={feedInitialLatest} 

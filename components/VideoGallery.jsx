@@ -3,8 +3,9 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-export default function VideoGallery() {
+export default function VideoGallery({ limit = 15 }) {
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedVideo, setSelectedVideo] = useState(null);
@@ -15,7 +16,7 @@ export default function VideoGallery() {
                 const res = await fetch('/api/youtube-feed');
                 const data = await res.json();
                 if (Array.isArray(data)) {
-                    setVideos(data);
+                    setVideos(data.slice(0, limit));
                 }
             } catch (error) {
                 console.error('Failed to load videos', error);
@@ -24,7 +25,7 @@ export default function VideoGallery() {
             }
         }
         fetchVideos();
-    }, []);
+    }, [limit]);
 
     if (loading) {
         return (
@@ -45,14 +46,25 @@ export default function VideoGallery() {
                         Original <span className="text-[var(--color-accent)]">Series</span>
                     </h2>
                 </div>
-                <a 
-                    href="https://www.youtube.com/@roadpanda92" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hidden md:flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#E3E5E5]/50 hover:text-white transition-colors"
-                >
-                    Ver Canal <span className="text-lg">↗</span>
-                </a>
+                
+                <div className="flex items-center gap-6">
+                    {limit < 10 && (
+                        <Link 
+                            href="/videos" 
+                            className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#E3E5E5]/50 hover:text-white transition-colors border-r border-white/10 pr-6"
+                        >
+                            Ver Tudo <span className="text-lg">→</span>
+                        </Link>
+                    )}
+                    <a 
+                        href="https://www.youtube.com/@roadpanda92" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hidden md:flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#E3E5E5]/50 hover:text-white transition-colors"
+                    >
+                        Canal YouTube <span className="text-lg">↗</span>
+                    </a>
+                </div>
             </div>
 
             <div className="container mx-auto px-4">
