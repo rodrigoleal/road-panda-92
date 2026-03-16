@@ -80,6 +80,7 @@ export default function VideoGallery({ limit = 15 }) {
                                     src={video.thumbnail}
                                     alt={video.title}
                                     fill
+                                    unoptimized
                                     className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
