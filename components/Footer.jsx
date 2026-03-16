@@ -65,7 +65,7 @@ export default function Footer() {
                         <li><Link href="/latest" className="hover:text-white transition-colors">Últimas</Link></li>
                         <li><Link href="/category/reviews" className="hover:text-white transition-colors">Ensaios</Link></li>
                         <li><Link href="/category/news" className="hover:text-white transition-colors">Notícias</Link></li>
-                        <li><Link href="/category/videos" className="hover:text-white transition-colors">Vídeos</Link></li>
+                        <li><Link href="/videos" className="hover:text-white transition-colors">Vídeos</Link></li>
                         <li><Link href="/category/opinion" className="hover:text-white transition-colors">Opinião</Link></li>
                         <li><Link href="/category/classics" className="hover:text-white transition-colors">Clássicos</Link></li>
                     </ul>

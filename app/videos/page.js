@@ -10,11 +10,12 @@ export default function VideosPage() {
     return (
         <div className="min-h-screen pt-20">
             <div className="container mx-auto px-4 py-20 text-center">
-                <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-4">
+                <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-[var(--foreground)]">
                     Vídeos
                 </h1>
-                <p className="text-neutral-500 text-lg md:text-xl font-medium max-w-2xl mx-auto uppercase tracking-widest">
-                    Acompanhe as nossas séries originais diretamente do YouTube.
+                <div className="w-20 h-1 bg-[var(--color-accent)] mx-auto mb-8"></div>
+                <p className="text-neutral-500 dark:text-neutral-400 text-lg md:text-2xl font-medium max-w-3xl mx-auto tracking-tight">
+                    Explore todas as histórias, ensaios e notícias sobre Vídeos.
                 </p>
             </div>
             

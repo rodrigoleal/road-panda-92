@@ -39,7 +39,7 @@ export default function Header() {
         { label: 'Últimas', href: '/latest' },
         { label: 'Ensaios', href: '/category/reviews' },
         { label: 'Notícias', href: '/category/news' },
-        { label: 'Vídeos', href: '/category/videos' },
+        { label: 'Vídeos', href: '/videos' },
         { label: 'Opinião', href: '/category/opinion' },
         { label: 'Clássicos', href: '/category/classics' },
     ];
