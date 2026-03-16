@@ -20,14 +20,16 @@ export default function VideosPage() {
             
             <VideoGallery limit={24} />
             
-            <section className="py-20 bg-white dark:bg-[#121212]">
+            <section className="py-20 bg-neutral-50 dark:bg-[#0a0a0a] border-t border-neutral-100 dark:border-white/5 transition-colors duration-300">
                 <div className="container mx-auto px-4 text-center">
-                    <h3 className="text-2xl font-bold mb-6 italic">Gosta do nosso conteúdo?</h3>
+                    <h3 className="text-2xl md:text-3xl font-black mb-8 italic text-neutral-800 dark:text-[#E3E5E5] tracking-tight">
+                        Gosta do nosso conteúdo?
+                    </h3>
                     <a 
                         href="https://www.youtube.com/@roadpanda92?sub_confirmation=1" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-block bg-[var(--color-accent)] text-white px-10 py-5 rounded-full text-lg font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl"
+                        className="inline-block bg-[var(--color-accent)] text-white px-10 py-5 rounded-full text-lg font-black uppercase tracking-widest hover:scale-110 active:scale-95 transition-all shadow-[0_20px_50px_rgba(227,24,55,0.3)]"
                     >
                         Subscrever no YouTube
                     </a>
