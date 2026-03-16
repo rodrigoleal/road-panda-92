@@ -10,7 +10,7 @@ export default function VideosPage() {
     return (
         <div className="min-h-screen pt-20">
             <div className="mb-16 text-center">
-                <h1 className="text-5xl md:text-7xl font-black text-[var(--foreground)] mb-6 tracking-tighter capitalize">
+                <h1 className="text-5xl md:text-7xl font-black text-[var(--foreground)] mb-6 tracking-tighter !normal-case">
                     Vídeos
                 </h1>
                 <div className="w-24 h-1 bg-[var(--color-accent)] mx-auto mb-6"></div>

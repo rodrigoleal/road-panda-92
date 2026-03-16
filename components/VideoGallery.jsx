@@ -42,7 +42,7 @@ export default function VideoGallery({ limit = 15 }) {
             <div className="container mx-auto px-4 mb-12 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <span className="w-12 h-1 bg-[var(--color-accent)]"></span>
-                    <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-[var(--foreground)]">
+                    <h2 className="text-3xl md:text-5xl font-black !normal-case tracking-tighter text-[var(--foreground)]">
                         Galeria de <span className="text-[var(--color-accent)]">Vídeos</span>
                     </h2>
                 </div>
