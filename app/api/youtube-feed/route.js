@@ -32,7 +32,7 @@ export async function GET() {
                     id: videoId,
                     title: decodeHtmlEntities(title),
                     published,
-                    thumbnail: `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`
+                    thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
                 });
             }
         }
