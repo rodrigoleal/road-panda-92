@@ -29,8 +29,8 @@ export default function VideoGallery({ limit = 15 }) {
 
     if (loading) {
         return (
-            <div className="py-20 bg-[#121212] flex items-center justify-center">
-                <div className="animate-pulse text-white font-bold tracking-widest uppercase">Carregando Galeria...</div>
+            <div className="py-20 bg-white dark:bg-[#0a0a0a] flex items-center justify-center transition-colors duration-500">
+                <div className="animate-pulse text-neutral-900 dark:text-white font-bold tracking-widest uppercase">Carregando Galeria...</div>
             </div>
         );
     }
@@ -38,11 +38,11 @@ export default function VideoGallery({ limit = 15 }) {
     if (videos.length === 0) return null;
 
     return (
-        <section className="py-24 bg-[#121212] text-white overflow-hidden relative border-y border-white/5">
+        <section className="py-24 bg-white dark:bg-[#0a0a0a] text-neutral-900 dark:text-white overflow-hidden relative border-y border-neutral-100 dark:border-white/5 transition-colors duration-500">
             <div className="container mx-auto px-4 mb-12 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <span className="w-12 h-1 bg-[var(--color-accent)]"></span>
-                    <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">
+                    <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-neutral-900 dark:text-white">
                         Original <span className="text-[var(--color-accent)]">Series</span>
                     </h2>
                 </div>
@@ -51,7 +51,7 @@ export default function VideoGallery({ limit = 15 }) {
                     {limit < 10 && (
                         <Link 
                             href="/videos" 
-                            className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#E3E5E5]/50 hover:text-white transition-colors border-r border-white/10 pr-6"
+                            className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-neutral-400 dark:text-[#E3E5E5]/50 hover:text-neutral-900 dark:hover:text-white transition-colors border-r border-neutral-200 dark:border-white/10 pr-6"
                         >
                             Ver Tudo <span className="text-lg">→</span>
                         </Link>
@@ -60,7 +60,7 @@ export default function VideoGallery({ limit = 15 }) {
                         href="https://www.youtube.com/@roadpanda92" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="hidden md:flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#E3E5E5]/50 hover:text-white transition-colors"
+                        className="hidden md:flex items-center gap-2 text-xs font-black uppercase tracking-widest text-neutral-400 dark:text-[#E3E5E5]/50 hover:text-neutral-900 dark:hover:text-white transition-colors"
                     >
                         Canal YouTube <span className="text-lg">↗</span>
                     </a>
