@@ -20,9 +20,9 @@ export default function VideosPage() {
             
             <VideoGallery limit={24} />
             
-            <section className="py-20 bg-neutral-50 dark:bg-[#0a0a0a] border-t border-neutral-100 dark:border-white/5 transition-colors duration-300">
+            <section className="py-24 bg-[var(--color-secondary)] border-t border-neutral-100 dark:border-white/5 transition-colors duration-500">
                 <div className="container mx-auto px-4 text-center">
-                    <h3 className="text-2xl md:text-3xl font-black mb-8 italic text-neutral-800 dark:text-[#E3E5E5] tracking-tight">
+                    <h3 className="text-2xl md:text-3xl font-black mb-8 italic text-[var(--foreground)] tracking-tight">
                         Gosta do nosso conteúdo?
                     </h3>
                     <a 
