@@ -10,7 +10,15 @@ import { getClient } from '../lib/apollo-client';
 import { GET_MORE_POSTS } from '../lib/queries';
 import AdRotatorClient from './AdRotatorClient';
 
-export default function InfiniteFeed({ initialPosts = [], initialCursor, initialHasNext = true, allAds = [], excludedPostIds = [], manualHighlights = [] }) {
+export default function InfiniteFeed({ 
+    initialPosts = [], 
+    initialCursor, 
+    initialHasNext = true, 
+    allAds = [], 
+    excludedPostIds = [], 
+    manualHighlights = [],
+    categorizedPosts = {} 
+}) {
     const [posts, setPosts] = useState(initialPosts);
     const [loading, setLoading] = useState(false);
     const [cursor, setCursor] = useState(initialCursor);
@@ -33,7 +41,7 @@ export default function InfiniteFeed({ initialPosts = [], initialCursor, initial
             const { data } = await client.query({
                 query: GET_MORE_POSTS,
                 variables: {
-                    first: 7, 
+                    first: 12, 
                     after: cursor,
                 }
             });
@@ -44,6 +52,7 @@ export default function InfiniteFeed({ initialPosts = [], initialCursor, initial
             if (newPosts.length === 0) {
                 setHasMore(false);
             } else {
+                let uniqueNew = [];
                 setPosts(prev => {
                     // Get all IDs that are currently visible or excluded
                     const currentIds = new Set([
@@ -53,7 +62,6 @@ export default function InfiniteFeed({ initialPosts = [], initialCursor, initial
                     ]);
                     
                     // Filter new ones that aren't already there
-                    const uniqueNew = [];
                     const tempNewIds = new Set();
                     
                     for (const post of newPosts) {
@@ -69,6 +77,11 @@ export default function InfiniteFeed({ initialPosts = [], initialCursor, initial
                 setCursor(pageInfo?.endCursor);
                 if (!pageInfo?.hasNextPage) {
                     setHasMore(false);
+                } else if (uniqueNew.length === 0) {
+                    // If we got posts but all were already shown, load more immediately
+                    isFetchingRef.current = false;
+                    setLoading(false);
+                    return loadMore();
                 }
             }
         } catch (error) {
@@ -200,35 +213,145 @@ export default function InfiniteFeed({ initialPosts = [], initialCursor, initial
         );
     };
     
+    const renderCategorySection = (title, categoryPosts, slug) => {
+        if (!categoryPosts || categoryPosts.length === 0) return null;
+        
+        return (
+            <div key={`category-${slug}`} className="container mx-auto px-4 pt-16 pb-8 border-t border-[var(--color-secondary)]">
+                <div className="flex justify-between items-end mb-12 border-b-4 border-double border-[var(--color-secondary)] pb-4">
+                    <h2 className="text-4xl font-black text-[var(--foreground)] pl-2 border-l-8 border-[var(--color-accent)] uppercase tracking-tighter">
+                        {title}
+                    </h2>
+                    <Link 
+                        href={`/category/${slug}`}
+                        className="text-xs font-black uppercase tracking-widest text-[var(--color-accent)] hover:opacity-70 transition-opacity"
+                    >
+                        Ver Tudo →
+                    </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {categoryPosts.map(post => renderGridCard(post))}
+                </div>
+            </div>
+        );
+    };
+    
     // Chunking logic for rendering grid + highlight pattern
     const renderFeed = () => {
         const elements = [];
+        const renderedIds = new Set();
+
+        const filterNew = (sectionPosts) => {
+            const result = [];
+            for (const p of sectionPosts) {
+                if (p && p.id && !renderedIds.has(p.id)) {
+                    result.push(p);
+                    renderedIds.add(p.id);
+                }
+            }
+            return result;
+        };
+
+        const renderNextHighlight = () => {
+            let highlightPost = null;
+            while (manualHighlightIndex < highlightsPool.length && !highlightPost) {
+                const potential = highlightsPool[manualHighlightIndex];
+                if (!renderedIds.has(potential.id)) {
+                    highlightPost = potential;
+                    renderedIds.add(potential.id);
+                }
+                manualHighlightIndex++;
+            }
+            // Fallback to latest posts pool if needed
+            if (!highlightPost) {
+                while (postsIndex < posts.length && !highlightPost) {
+                    const p = posts[postsIndex];
+                    if (!renderedIds.has(p.id)) {
+                        highlightPost = p;
+                        renderedIds.add(p.id);
+                    }
+                    postsIndex++;
+                }
+            }
+            if (highlightPost) return renderInvertedHighlight(highlightPost);
+            return null;
+        };
+
         let postsIndex = 0;
         let manualHighlightIndex = 0;
         let chunkCount = 0;
 
-        while (postsIndex < posts.length) {
-            // Take up to 6 posts for a grid chunk
-            const gridPosts = posts.slice(postsIndex, postsIndex + 6);
-            postsIndex += gridPosts.length;
-            
-            elements.push(
-                <div key={`chunk-${chunkCount}`} className="container mx-auto px-4 pt-16 pb-8 border-t border-[var(--color-secondary)]">
-                    {chunkCount === 0 && (
-                        <div className="flex justify-between items-end mb-12 border-b-4 border-double border-[var(--color-secondary)] pb-4">
-                            <h2 className="text-4xl font-black text-[var(--foreground)] pl-2 border-l-8 border-[var(--color-accent)] uppercase tracking-tighter">
-                                Mais Notícias
-                            </h2>
+        // Add Categorized Sections with interleaved Highlights
+        if (categorizedPosts.classicos?.length > 0) {
+            const filtered = filterNew(categorizedPosts.classicos);
+            if (filtered.length > 0) {
+                elements.push(renderNextHighlight());
+                elements.push(renderCategorySection('Clássicos', filtered, 'classicos'));
+            }
+        }
+        if (categorizedPosts.opiniao?.length > 0) {
+            const filtered = filterNew(categorizedPosts.opiniao);
+            if (filtered.length > 0) {
+                elements.push(renderNextHighlight());
+                elements.push(renderCategorySection('Opinião', filtered, 'opiniao'));
+            }
+        }
+        if (categorizedPosts.ensaios?.length > 0) {
+            const filtered = filterNew(categorizedPosts.ensaios);
+            if (filtered.length > 0) {
+                elements.push(renderNextHighlight());
+                elements.push(renderCategorySection('Ensaios', filtered, 'ensaios'));
+            }
+        }
+        if (categorizedPosts.noticias?.length > 0) {
+            const filtered = filterNew(categorizedPosts.noticias);
+            if (filtered.length > 0) {
+                elements.push(renderNextHighlight());
+                elements.push(renderCategorySection('Notícias', filtered, 'noticias'));
+            }
+        }
+        if (categorizedPosts.videos?.length > 0) {
+            const filtered = filterNew(categorizedPosts.videos);
+            if (filtered.length > 0) {
+                elements.push(renderNextHighlight());
+                elements.push(renderCategorySection('Vídeos', filtered, 'videos'));
+            }
+        }
+
+        while (postsIndex < posts.length || manualHighlightIndex < highlightsPool.length) {
+            // Take next slice for grid
+            const rawChunk = posts.slice(postsIndex, postsIndex + 12); // Slightly larger slice to account for filtering
+            const gridPosts = [];
+            let i = 0;
+            while (gridPosts.length < 6 && i < rawChunk.length) {
+                const p = rawChunk[i];
+                if (!renderedIds.has(p.id)) {
+                    gridPosts.push(p);
+                    renderedIds.add(p.id);
+                }
+                i++;
+                postsIndex++;
+            }
+
+            if (gridPosts.length > 0) {
+                elements.push(
+                    <div key={`chunk-${chunkCount}`} className="container mx-auto px-4 pt-16 pb-8 border-t border-[var(--color-secondary)]">
+                        {chunkCount === 0 && (
+                            <div className="flex justify-between items-end mb-12 border-b-4 border-double border-[var(--color-secondary)] pb-4">
+                                <h2 className="text-4xl font-black text-[var(--foreground)] pl-2 border-l-8 border-[var(--color-accent)] uppercase tracking-tighter">
+                                    Últimas Histórias
+                                </h2>
+                            </div>
+                        )}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {gridPosts.map(post => renderGridCard(post))}
                         </div>
-                    )}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {gridPosts.map(post => renderGridCard(post))}
                     </div>
-                </div>
-            );
+                );
+            }
 
             // Ads insertion
-            if (chunkCount > 0 && feedAds.length > 0) {
+            if (chunkCount > 0 && feedAds.length > 0 && gridPosts.length > 0) {
                 elements.push(
                     <div key={`ad-${chunkCount}`} className="container mx-auto px-4 mt-8 mb-4">
                         <AdRotatorClient activeAds={feedAds} />
@@ -239,16 +362,31 @@ export default function InfiniteFeed({ initialPosts = [], initialCursor, initial
             // Decide which highlight to show
             let highlightPost = null;
             if (manualHighlightIndex < highlightsPool.length) {
-                highlightPost = highlightsPool[manualHighlightIndex];
+                const potential = highlightsPool[manualHighlightIndex];
+                if (!renderedIds.has(potential.id)) {
+                    highlightPost = potential;
+                    renderedIds.add(potential.id);
+                }
                 manualHighlightIndex++;
             } else if (postsIndex < posts.length) {
-                // Fallback to next post in main list if no manual highlights left
-                highlightPost = posts[postsIndex];
-                postsIndex++;
+                // Find next available post for highlight
+                while (postsIndex < posts.length && !highlightPost) {
+                    const p = posts[postsIndex];
+                    if (!renderedIds.has(p.id)) {
+                        highlightPost = p;
+                        renderedIds.add(p.id);
+                    }
+                    postsIndex++;
+                }
             }
 
             if (highlightPost) {
                 elements.push(renderInvertedHighlight(highlightPost));
+            }
+
+            // Safety break to prevent infinite loop if no progress made
+            if (gridPosts.length === 0 && !highlightPost && postsIndex >= posts.length && manualHighlightIndex >= highlightsPool.length) {
+                break;
             }
 
             chunkCount++;

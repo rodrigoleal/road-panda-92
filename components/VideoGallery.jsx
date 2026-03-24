@@ -43,7 +43,7 @@ export default function VideoGallery({ limit = 15 }) {
                 <div className="flex items-center gap-4">
                     <span className="w-12 h-1 bg-[var(--color-accent)]"></span>
                     <h2 className="text-3xl md:text-5xl font-black !normal-case tracking-tighter text-[var(--foreground)]">
-                        Galeria de <span className="text-[var(--color-accent)]">Vídeos</span>
+                        Histórias em <span className="text-[var(--color-accent)]">Movimento</span>
                     </h2>
                 </div>
                 

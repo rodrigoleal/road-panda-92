@@ -38,6 +38,22 @@ export default async function Home() {
   const allLatest = data?.latestPosts?.nodes || [];
   const seriesVideos = data?.seriesVideos?.nodes || [];
 
+  const categorizedPosts = {
+    classicos: data?.classicos?.nodes || [],
+    ensaios: data?.ensaios?.nodes || [],
+    noticias: data?.noticias?.nodes || [],
+    opiniao: data?.opiniao?.nodes || [],
+    videos: data?.videos?.nodes || []
+  };
+
+  const categorizedIds = [
+    ...categorizedPosts.classicos.map(p => p.id),
+    ...categorizedPosts.ensaios.map(p => p.id),
+    ...categorizedPosts.noticias.map(p => p.id),
+    ...categorizedPosts.opiniao.map(p => p.id),
+    ...categorizedPosts.videos.map(p => p.id)
+  ];
+
   // Main feature: Prioritize manualHero[0], fallback to 1st of allLatest
   const mainFeature = manualHero[0] || allLatest[0];
   
@@ -50,16 +66,19 @@ export default async function Home() {
     .filter(p => p.id !== heroId && !highlightIds.has(p.id))
     .slice(0, 5);
   
-  // Feed starts after the sidebar items
+  // Feed starts after the sidebar items and categorized sections
   const sidebarIds = new Set(sidebarLatest.map(p => p.id));
+  const catIdsSet = new Set(categorizedIds);
   const feedInitialLatest = allLatest.filter(p => 
     p.id !== heroId && 
     !highlightIds.has(p.id) && 
-    !sidebarIds.has(p.id)
+    !sidebarIds.has(p.id) &&
+    !catIdsSet.has(p.id)
   );
 
   const feedEndCursor = data?.latestPosts?.pageInfo?.endCursor;
   const feedHasNextInfo = data?.latestPosts?.pageInfo?.hasNextPage;
+
 
   return (
     <div className="min-h-screen">
@@ -69,16 +88,17 @@ export default async function Home() {
         ads={heroSidebarAds}
       />
       
-      <VideoGallery limit={3} />
-
       <InfiniteFeed 
           initialPosts={feedInitialLatest} 
           initialCursor={feedEndCursor} 
           initialHasNext={feedHasNextInfo}
           allAds={infiniteAds}
-          excludedPostIds={[heroId, ...Array.from(highlightIds), ...sidebarLatest.map(p => p.id)]}
+          excludedPostIds={[heroId, ...Array.from(highlightIds), ...sidebarLatest.map(p => p.id), ...categorizedIds]}
           manualHighlights={scrollHighlights}
+          categorizedPosts={categorizedPosts}
       />
+
+      <VideoGallery limit={3} />
     </div>
   );
 }
