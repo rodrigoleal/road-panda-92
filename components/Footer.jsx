@@ -63,11 +63,12 @@ export default function Footer() {
                     <h3 className="text-sm font-bold uppercase tracking-widest text-white mb-6">Secções</h3>
                     <ul className="space-y-2 font-medium text-neutral-400 text-base">
                         <li><Link href="/latest" className="hover:text-white transition-colors">Últimas</Link></li>
-                        <li><Link href="/category/reviews" className="hover:text-white transition-colors">Ensaios</Link></li>
-                        <li><Link href="/category/news" className="hover:text-white transition-colors">Notícias</Link></li>
+                        <li><Link href="/category/maquinas-intemporais" className="hover:text-white transition-colors">Máquinas Intemporais</Link></li>
+                        <li><Link href="/category/viagem-atlantica" className="hover:text-white transition-colors">Viagem Atlântica</Link></li>
                         <li><Link href="/videos" className="hover:text-white transition-colors">Vídeos</Link></li>
-                        <li><Link href="/category/opinion" className="hover:text-white transition-colors">Opinião</Link></li>
-                        <li><Link href="/category/classics" className="hover:text-white transition-colors">Clássicos</Link></li>
+                        <li><Link href="/category/historias-iconicas" className="hover:text-white transition-colors">Histórias Icónicas</Link></li>
+                        <li><Link href="/category/encontros-3g" className="hover:text-white transition-colors">Encontros 3G</Link></li>
+                        <li><Link href="/category/copiloto" className="hover:text-white transition-colors">Copiloto</Link></li>
                     </ul>
                 </div>
 

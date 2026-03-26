@@ -21,11 +21,15 @@ export default async function CategoryPage({ params }) {
 
   // Handle slug mismatches (URL -> DB)
   const slugMapping = {
-    'classics': 'classicos',
+    'classics': 'encontros-3g',
+    'classicos': 'encontros-3g',
     'history': 'historia',
-    'reviews': 'ensaios',
-    'news': 'noticias',
-    'opinion': 'opiniao'
+    'reviews': 'maquinas-intemporais',
+    'ensaios': 'maquinas-intemporais',
+    'news': 'viagem-atlantica',
+    'noticias': 'viagem-atlantica',
+    'opinion': 'historias-iconicas',
+    'opiniao': 'historias-iconicas'
   };
 
   const querySlug = slugMapping[slug] || slug;
@@ -54,12 +58,12 @@ export default async function CategoryPage({ params }) {
 
   // Manual mapping for category display names
   const categoryDisplayMapping = {
-    'reviews': 'Ensaios',
-    'news': 'Notícias',
+    'maquinas-intemporais': 'Máquinas Intemporais',
+    'viagem-atlantica': 'Viagem Atlântica',
     'videos': 'Vídeos',
-    'opinion': 'Opinião',
-    'classics': 'Clássicos',
-    'classicos': 'Clássicos',
+    'historias-iconicas': 'Histórias Icónicas',
+    'encontros-3g': 'Encontros 3G',
+    'copiloto': 'Copiloto',
     'dailydriver': 'Dia-a-Dia'
   };
 

@@ -37,11 +37,12 @@ export default function Header() {
 
     const navItems = [
         { label: 'Últimas', href: '/latest' },
-        { label: 'Ensaios', href: '/category/reviews' },
-        { label: 'Notícias', href: '/category/news' },
+        { label: 'Máquinas Intemporais', href: '/category/maquinas-intemporais' },
+        { label: 'Viagem Atlântica', href: '/category/viagem-atlantica' },
         { label: 'Vídeos', href: '/videos' },
-        { label: 'Opinião', href: '/category/opinion' },
-        { label: 'Clássicos', href: '/category/classics' },
+        { label: 'Histórias Icónicas', href: '/category/historias-iconicas' },
+        { label: 'Encontros 3G', href: '/category/encontros-3g' },
+        { label: 'Copiloto', href: '/category/copiloto' },
     ];
 
     let headerClass = 'transition-all duration-300 py-4';

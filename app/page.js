@@ -39,11 +39,12 @@ export default async function Home() {
   const seriesVideos = data?.seriesVideos?.nodes || [];
 
   const categorizedPosts = {
-    classicos: data?.classicos?.nodes || [],
-    ensaios: data?.ensaios?.nodes || [],
-    noticias: data?.noticias?.nodes || [],
-    opiniao: data?.opiniao?.nodes || [],
-    videos: data?.videos?.nodes || []
+    classicos: data?.encontros3g?.nodes || [],
+    ensaios: data?.maquinasIntemporais?.nodes || [],
+    noticias: data?.viagemAtlantica?.nodes || [],
+    opiniao: data?.historiasIconicas?.nodes || [],
+    videos: data?.videos?.nodes || [],
+    copiloto: data?.copiloto?.nodes || []
   };
 
   const categorizedIds = [
@@ -51,7 +52,8 @@ export default async function Home() {
     ...categorizedPosts.ensaios.map(p => p.id),
     ...categorizedPosts.noticias.map(p => p.id),
     ...categorizedPosts.opiniao.map(p => p.id),
-    ...categorizedPosts.videos.map(p => p.id)
+    ...categorizedPosts.videos.map(p => p.id),
+    ...categorizedPosts.copiloto.map(p => p.id)
   ];
 
   // Main feature: Prioritize manualHero[0], fallback to 1st of allLatest

@@ -286,28 +286,28 @@ export default function InfiniteFeed({
             const filtered = filterNew(categorizedPosts.classicos);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection('Clássicos', filtered, 'classicos'));
+                elements.push(renderCategorySection('Encontros 3G', filtered, 'encontros-3g'));
             }
         }
         if (categorizedPosts.opiniao?.length > 0) {
             const filtered = filterNew(categorizedPosts.opiniao);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection('Opinião', filtered, 'opiniao'));
+                elements.push(renderCategorySection('Histórias Icónicas', filtered, 'historias-iconicas'));
             }
         }
         if (categorizedPosts.ensaios?.length > 0) {
             const filtered = filterNew(categorizedPosts.ensaios);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection('Ensaios', filtered, 'ensaios'));
+                elements.push(renderCategorySection('Máquinas Intemporais', filtered, 'maquinas-intemporais'));
             }
         }
         if (categorizedPosts.noticias?.length > 0) {
             const filtered = filterNew(categorizedPosts.noticias);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection('Notícias', filtered, 'noticias'));
+                elements.push(renderCategorySection('Viagem Atlântica', filtered, 'viagem-atlantica'));
             }
         }
         if (categorizedPosts.videos?.length > 0) {
@@ -315,6 +315,13 @@ export default function InfiniteFeed({
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
                 elements.push(renderCategorySection('Vídeos', filtered, 'videos'));
+            }
+        }
+        if (categorizedPosts.copiloto?.length > 0) {
+            const filtered = filterNew(categorizedPosts.copiloto);
+            if (filtered.length > 0) {
+                elements.push(renderNextHighlight());
+                elements.push(renderCategorySection('Copiloto', filtered, 'copiloto'));
             }
         }
 

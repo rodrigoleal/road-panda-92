@@ -74,7 +74,7 @@ export default function FichaTecnicaPage() {
                         
                         <div className="flex flex-col sm:flex-row sm:justify-between pt-2">
                             <span className="font-bold text-neutral-500 dark:text-neutral-400">Número de Registo na ERC</span>
-                            <span className="font-bold text-[var(--foreground)]">[COLOCAR Nº]</span>
+                            <span className="font-bold text-[var(--foreground)]">128210</span>
                         </div>
                     </div>
                 </div>
