@@ -81,9 +81,10 @@ export default async function CategoryPage({ params }) {
           </h1>
           <div className="w-24 h-1 bg-[var(--color-accent)] mx-auto mb-6"></div>
           {description ? (
-            <p className="text-xl text-neutral-500 max-w-2xl mx-auto font-light leading-relaxed">
-              {description}
-            </p>
+            <div 
+              className="text-xl text-neutral-500 max-w-2xl mx-auto font-light leading-relaxed prose prose-neutral dark:prose-invert"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
           ) : (
             <p className="text-xl text-neutral-500 max-w-2xl mx-auto font-light leading-relaxed">
               Explore todas as histórias, ensaios e notícias sobre {categoryName}.
