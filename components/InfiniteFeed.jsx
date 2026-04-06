@@ -4,8 +4,9 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { format, formatDistanceToNow } from 'date-fns';
-import { pt } from 'date-fns/locale';
-import { normalizeImageUrl, getCategoryColor } from '../lib/utils';
+import { pt, enUS, es, it } from 'date-fns/locale';
+import { normalizeImageUrl, getCategoryColor, getBaseSlug, formatLocalizedDate } from '../lib/utils';
+import { getDisplayCategory } from '../lib/categoryUtils';
 import { getClient } from '../lib/apollo-client';
 import { GET_MORE_POSTS } from '../lib/queries';
 import AdRotatorClient from './AdRotatorClient';
@@ -17,8 +18,12 @@ export default function InfiniteFeed({
     allAds = [], 
     excludedPostIds = [], 
     manualHighlights = [],
-    categorizedPosts = {} 
+    categorizedPosts = {},
+    lang = 'pt-PT',
+    dict
 }) {
+    const dateLocales = { 'pt-PT': pt, 'en-US': enUS, 'es-ES': es, 'it-IT': it };
+    const dateLocale = dateLocales[lang] || pt;
     const [posts, setPosts] = useState(initialPosts);
     const [loading, setLoading] = useState(false);
     const [cursor, setCursor] = useState(initialCursor);
@@ -43,6 +48,7 @@ export default function InfiniteFeed({
                 variables: {
                     first: 12, 
                     after: cursor,
+                    lang: lang.split('-')[0].toUpperCase(),
                 }
             });
 
@@ -115,7 +121,7 @@ export default function InfiniteFeed({
 
         return (
             <article key={post.id} className="group flex flex-col h-full card-controlled-bg border shadow-sm hover:shadow-xl hover:shadow-[var(--color-accent)]/10 transition-all duration-300 rounded-xl overflow-hidden">
-                <Link href={`/${post.slug}`} className="block overflow-hidden relative aspect-[3/2]">
+                <Link href={`/${lang}/${post.slug}`} className="block overflow-hidden relative aspect-[3/2]">
                     <Image
                         src={imageUrl}
                         alt={post.title}
@@ -124,8 +130,7 @@ export default function InfiniteFeed({
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     {(() => {
-                        const internalSlugs = ['featured', 'destaque-principal', 'destaque-scroll'];
-                        const displayCategory = post.categories?.nodes?.find(cat => !internalSlugs.includes(cat.slug));
+                        const displayCategory = getDisplayCategory(post.categories);
                         if (!displayCategory) return null;
                         return (
                             <span 
@@ -140,16 +145,16 @@ export default function InfiniteFeed({
 
                 <div className="p-6 flex flex-col flex-1">
                     <div className="text-[10px] text-[var(--color-detail)] mb-3 font-bold uppercase tracking-widest flex items-center gap-2">
-                        <span className="capitalize">{format(new Date(post.date), "d 'de' MMMM, yyyy", { locale: pt })}</span>
+                        <span className="capitalize">{formatLocalizedDate(post.date, lang)}</span>
                     </div>
                     <h3 className="text-xl font-bold text-[var(--foreground)] mb-3 leading-tight group-hover:text-[var(--color-accent)] transition-colors">
-                        <Link href={`/${post.slug}`}>
+                        <Link href={`/${lang}/${post.slug}`}>
                             {post.title}
                         </Link>
                     </h3>
                     <div className="mt-auto pt-4 border-t border-[var(--color-secondary)]">
-                        <Link href={`/${post.slug}`} className="inline-flex items-center text-[var(--foreground)] font-bold text-xs uppercase tracking-widest hover:text-[var(--color-accent)] transition-colors group/link">
-                            Ler História <span className="ml-2 transform group-hover/link:translate-x-1 transition-transform text-[var(--color-accent)]">&rarr;</span>
+                        <Link href={`/${lang}/${post.slug}`} className="inline-flex items-center text-[var(--foreground)] font-bold text-xs uppercase tracking-widest hover:text-[var(--color-accent)] transition-colors group/link">
+                            {dict?.components?.postGrid?.readStory || 'Ler História'} <span className="ml-2 transform group-hover/link:translate-x-1 transition-transform text-[var(--color-accent)]">&rarr;</span>
                         </Link>
                     </div>
                 </div>
@@ -166,8 +171,7 @@ export default function InfiniteFeed({
                     <div className="flex flex-col lg:flex-row items-center gap-12">
                         <div className="w-full lg:w-1/2 flex flex-col justify-center order-2 lg:order-1">
                             {(() => {
-                                const internalSlugs = ['featured', 'destaque-principal', 'destaque-scroll'];
-                                const displayCategory = post.categories?.nodes?.find(cat => !internalSlugs.includes(cat.slug));
+                                const displayCategory = getDisplayCategory(post.categories);
                                 if (!displayCategory) return null;
                                 return (
                                     <span 
@@ -179,7 +183,7 @@ export default function InfiniteFeed({
                                 );
                             })()}
                             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight hover:text-[var(--color-accent)] transition-colors">
-                                <Link href={`/${post.slug}`}>
+                                <Link href={`/${lang}/${post.slug}`}>
                                     {post.title}
                                 </Link>
                             </h2>
@@ -187,17 +191,17 @@ export default function InfiniteFeed({
                                 <div className="text-lg opacity-80 mb-8 leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                             )}
                             <div className="flex items-center gap-6">
-                                <Link href={`/${post.slug}`} className="inline-flex items-center font-bold text-sm uppercase tracking-widest hover:text-[var(--color-accent)] transition-colors group/link">
-                                    Ler História <span className="ml-2 transform group-hover/link:translate-x-1 transition-transform text-[var(--color-accent)]">&rarr;</span>
+                                <Link href={`/${lang}/${post.slug}`} className="inline-flex items-center font-bold text-sm uppercase tracking-widest hover:text-[var(--color-accent)] transition-colors group/link">
+                                    {dict?.components?.postGrid?.readStory || 'Ler História'} <span className="ml-2 transform group-hover/link:translate-x-1 transition-transform text-[var(--color-accent)]">&rarr;</span>
                                 </Link>
                                 <span className="text-xs font-bold opacity-50 uppercase tracking-widest flex items-center gap-2">
                                     <span className="w-8 h-[2px] bg-[var(--color-accent)]"></span>
-                                    {formatDistanceToNow(new Date(post.date), { locale: pt, addSuffix: true })}
+                                    {formatDistanceToNow(new Date(post.date), { locale: dateLocale, addSuffix: true })}
                                 </span>
                             </div>
                         </div>
                         <div className="w-full lg:w-1/2 order-1 lg:order-2">
-                             <Link href={`/${post.slug}`} className="block relative w-full rounded-2xl overflow-hidden shadow-2xl group min-h-[300px] md:min-h-[400px]">
+                             <Link href={`/${lang}/${post.slug}`} className="block relative w-full rounded-2xl overflow-hidden shadow-2xl group min-h-[300px] md:min-h-[400px]">
                                 <Image
                                     src={imageUrl}
                                     alt={post.title}
@@ -224,10 +228,10 @@ export default function InfiniteFeed({
                         {title}
                     </h2>
                     <Link 
-                        href={`/category/${slug}`}
+                        href={`/${lang}/category/${slug}`}
                         className="text-xs font-black uppercase tracking-widest text-[var(--color-accent)] hover:opacity-70 transition-opacity"
                     >
-                        Ver Tudo →
+                        {dict?.components?.infiniteFeed?.viewAll || 'Ver Tudo'} →
                     </Link>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -287,42 +291,42 @@ export default function InfiniteFeed({
             const filtered = filterNew(categorizedPosts.classicos);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection('Encontros 3G', filtered, 'encontros-3g'));
+                elements.push(renderCategorySection(dict?.components?.categories?.['encontros-3g']?.title || 'Encontros 3G', filtered, 'encontros-3g'));
             }
         }
         if (categorizedPosts.opiniao?.length > 0) {
             const filtered = filterNew(categorizedPosts.opiniao);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection('Histórias Icónicas', filtered, 'historias-iconicas'));
+                elements.push(renderCategorySection(dict?.components?.categories?.['historias-iconicas']?.title || 'Histórias Icónicas', filtered, 'historias-iconicas'));
             }
         }
         if (categorizedPosts.ensaios?.length > 0) {
             const filtered = filterNew(categorizedPosts.ensaios);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection('Máquinas Intemporais', filtered, 'maquinas-intemporais'));
+                elements.push(renderCategorySection(dict?.components?.categories?.['maquinas-intemporais']?.title || 'Máquinas Intemporais', filtered, 'maquinas-intemporais'));
             }
         }
         if (categorizedPosts.noticias?.length > 0) {
             const filtered = filterNew(categorizedPosts.noticias);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection('Viagem Atlântica', filtered, 'viagem-atlantica'));
+                elements.push(renderCategorySection(dict?.components?.categories?.['viagem-atlantica']?.title || 'Viagem Atlântica', filtered, 'viagem-atlantica'));
             }
         }
         if (categorizedPosts.videos?.length > 0) {
             const filtered = filterNew(categorizedPosts.videos);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection('Vídeos', filtered, 'videos'));
+                elements.push(renderCategorySection(dict?.components?.categories?.['videos']?.title || 'Vídeos', filtered, 'videos'));
             }
         }
         if (categorizedPosts.copiloto?.length > 0) {
             const filtered = filterNew(categorizedPosts.copiloto);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection('Copiloto', filtered, 'copiloto'));
+                elements.push(renderCategorySection(dict?.components?.categories?.['copiloto']?.title || 'Copiloto', filtered, 'copiloto'));
             }
         }
 
@@ -347,7 +351,7 @@ export default function InfiniteFeed({
                         {chunkCount === 0 && (
                             <div className="flex justify-between items-end mb-12 border-b-4 border-double border-[var(--color-secondary)] pb-4">
                                 <h2 className="text-4xl font-black text-[var(--foreground)] pl-2 border-l-8 border-[var(--color-accent)] uppercase tracking-tighter">
-                                    Últimas Histórias
+                                    {dict?.components?.infiniteFeed?.latestStories || 'Últimas Histórias'}
                                 </h2>
                             </div>
                         )}
@@ -414,12 +418,12 @@ export default function InfiniteFeed({
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        <span className="text-sm font-bold uppercase tracking-widest">A carregar pista...</span>
+                        <span className="text-sm font-bold uppercase tracking-widest">{dict?.components?.infiniteFeed?.loadingTrack || 'A carregar pista...'}</span>
                     </div>
                 )}
                 {!hasMore && posts.length > 0 && (
                     <div className="text-sm font-bold opacity-30 uppercase tracking-widest text-center mt-8 border-t border-[var(--color-secondary)] pt-8 container mx-auto px-4">
-                        Fim da estrada. Não há mais artigos para carregar.
+                        {dict?.components?.infiniteFeed?.endOfRoad || 'Fim da estrada. Não há mais artigos para carregar.'}
                     </div>
                 )}
             </div>

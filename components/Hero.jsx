@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { normalizeImageUrl, getCategoryColor } from '../lib/utils';
+import { normalizeImageUrl, getCategoryColor, getBaseSlug } from '../lib/utils';
+import { getDisplayCategory } from '../lib/categoryUtils';
 import { useState, useRef } from 'react';
 import { getClient } from '../lib/apollo-client';
 import { GET_MORE_POSTS } from '../lib/queries';
 import AdRotatorClient from './AdRotatorClient';
 
-export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
+export default function Hero({ featuredPosts, latestPosts, ads = [], lang = 'pt-PT', dict }) {
     const mainFeature = featuredPosts?.[0];
     
     const [posts, setPosts] = useState((latestPosts || []).slice(0, 5));
@@ -27,6 +28,7 @@ export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
                 variables: {
                     first: 5,
                     after: endCursor,
+                    lang: lang.split('-')[0].toUpperCase(),
                 }
             });
 
@@ -67,7 +69,7 @@ export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
                 {/* 1. Left Column: Últimas (Pushed to 2nd position on mobile) */}
                 <div className="w-full lg:w-1/4 flex flex-col order-2 lg:order-1">
                     <h2 className="text-xl font-black uppercase tracking-tight mb-6 border-b-2 border-[var(--color-accent)] pb-2 inline-block self-start">
-                        Últimas
+                        {dict?.components?.postGrid?.latest || 'Últimas'}
                     </h2>
                     
                     <div 
@@ -76,7 +78,7 @@ export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
                         className="flex-1 overflow-y-auto max-h-[500px] lg:max-h-[600px] pr-4 custom-scrollbar space-y-2"
                     >
                         {posts.map((post) => (
-                            <Link key={post.id} href={`/${post.slug}`} className="group block border-b border-neutral-200/50 dark:border-neutral-800/50 pt-2 pb-6 last:border-0 transition-colors">
+                            <Link key={post.id} href={`/${lang}/${post.slug}`} className="group block border-b border-neutral-200/50 dark:border-neutral-800/50 pt-2 pb-6 last:border-0 transition-colors">
                                 <h3 className="text-[15px] font-black leading-tight group-hover:text-[var(--color-accent)] transition-colors mb-2 uppercase tracking-tight">
                                     {post.title}
                                 </h3>
@@ -86,14 +88,14 @@ export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
                             </Link>
                         ))}
                         
-                        {loading && <div className="py-4 text-center text-xs font-bold animate-pulse">A carregar...</div>}
+                        {loading && <div className="py-4 text-center text-xs font-bold animate-pulse">{lang.startsWith('en') ? 'Loading...' : 'A carregar...'}</div>}
                     </div>
                 </div>
 
                 {/* 2. Center Column: Main Feature (Pushed to 1st position on mobile) */}
                 <div className="w-full lg:w-2/3 order-1 lg:order-2">
                     <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl group">
-                        <Link href={`/${mainFeature.slug}`}>
+                        <Link href={`/${lang}/${mainFeature.slug}`}>
                             <Image
                                 src={normalizeImageUrl(mainFeature.featuredImage?.node?.sourceUrl) || '/placeholder.jpg'}
                                 alt={mainFeature.title}
@@ -108,8 +110,7 @@ export default function Hero({ featuredPosts, latestPosts, ads = [] }) {
 
                             {/* Category Tag */}
                             {(() => {
-                                const internalSlugs = ['featured', 'destaque-principal', 'destaque-scroll'];
-                                const category = mainFeature.categories?.nodes?.find(cat => !internalSlugs.includes(cat.slug));
+                                const category = getDisplayCategory(mainFeature.categories);
                                 if (!category) return null;
                                 return (
                                     <span 

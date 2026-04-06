@@ -1,0 +1,415 @@
+{
+  "nav": {
+    "latest": "Últimas",
+    "intemporais": "Máquinas Atemporales",
+    "atlantica": "Viaje Atlántico",
+    "videos": "Videos",
+    "iconicas": "Historias Icónicas",
+    "encontros": "Encuentros 3G",
+    "copiloto": "Copiloto",
+    "searchPlaceholder": "Buscar artículos..."
+  },
+  "footer": {
+    "description": "Periodismo automotriz sin concesiones. Historias directamente del asfalto a tu pantalla.",
+    "newsletterDesc": "Recibe las últimas historias automotrices en tu bandeja de entrada semanalmente.",
+    "emailPlaceholder": "Tu correo principal...",
+    "statusLoading": "Enviando...",
+    "statusSuccess": "¡Suscrito!",
+    "statusError": "Algo salió mal.",
+    "about": "Quiénes somos",
+    "editorial": "Estatus Editorial",
+    "ficha": "Ficha Técnica",
+    "contact": "Contactos",
+    "privacy": "Política de Privacidad",
+    "cookies": "Política de Cookies",
+    "terms": "Términos de Uso",
+    "subscribe": "Suscribirse",
+    "rights": "Todos los derechos reservados",
+    "sections": "Secciones",
+    "others": "Otros"
+  },
+  "pages": {
+    "latest": {
+      "title": "Últimas Historias",
+      "subtitle": "Explora todo nuestro contenido, organizado cronológicamente. Desde las últimas novedades hasta reseñas exhaustivas.",
+      "noStories": "Aún no hay historias.",
+      "roadUnexplored": "Este camino está aún por explorar."
+    },
+    "videos": {
+      "galleryPrefix": "Historias en ",
+      "galleryHighlight": "Movimiento",
+      "likeContent": "¿Te gusta nuestro contenido?",
+      "subscribe": "Suscribirse en YouTube",
+      "viewAll": "Ver Todo",
+      "youtubeChannel": "Canal YouTube",
+      "loadingGallery": "Cargando Galería..."
+    },
+    "search": {
+      "title": "Resultados de la Búsqueda",
+      "forTerm": "Para el término:",
+      "enterTerm": "Por favor, introduce un término para buscar.",
+      "noResults": "No se encontraron resultados",
+      "tryOther": "Prueba buscando con otras palabras clave."
+    },
+    "category": {
+      "explore": "Explora todas las historias, reseñas y noticias sobre",
+      "noStories": "Aún no hay historias.",
+      "roadUnexplored": "Este camino está aún por explorar."
+    },
+    "single": {
+      "notFound": "Artículo No Encontrado",
+      "by": "Por",
+      "relatedTitle": "Artículos Relacionados",
+      "viewMore": "Ver más artículos en esta categoría →"
+    },
+    "about": {
+      "title": "Sobre Nosotros",
+      "whoWeAre": {
+        "title": "Quiénes somos",
+        "p1": "Road Panda 92 es una plataforma editorial independiente dedicada a la cultura del automóvil, la memoria y las historias humanas que se construyen en torno a los coches.",
+        "p2": "No hablamos solo de máquinas. Hablamos de personas, de recorridos, de elecciones y de todo aquello que hace que un automóvil deje de ser solo un objeto y pase a tener significado.",
+        "p3": "Road Panda 92 nace de una relación personal con el automóvil — construida a lo largo de los años, en la carretera, en los garajes, en los encuentros improvisados y en las conversaciones que no caben en fichas técnicas. De ese lugar vivido parten nuestros contenidos."
+      },
+      "approach": {
+        "title": "Un enfoque editorial propio",
+        "p1": "Nuestra línea editorial cruza el periodismo cultural del automóvil, la crónica contemporánea y la observación de lo cotidiano. Damos contexto histórico cuando importa, pero nunca escribimos solo para explicar — escribimos para reconocer.",
+        "distinguish": "Distinguimos claramente entre:",
+        "items": [
+          "contenidos editoriales",
+          "opinión",
+          "alianzas o contenidos con marco comercial"
+        ],
+        "transparency": "Creemos que la credibilidad se construye con transparencia, coherencia y respeto por quien lee."
+      },
+      "topics": {
+        "title": "Sobre lo que escribimos",
+        "intro": "En Road Panda 92, hablamos de:",
+        "items": [
+          "coches clásicos y contemporáneos con valor cultural",
+          "historias reales de personas y sus coches",
+          "fiabilidad, longevidad y uso cotidiano",
+          "memoria generacional, identidad y herencia automotriz",
+          "cultura del automóvil más allá del bombo publicitario y las tendencias pasajeras"
+        ],
+        "summary": "No seguimos modas. Las observamos. No celebramos los números por sí solos. Buscamos el significado."
+      },
+      "presence": {
+        "title": "Presencia digital",
+        "intro": "Road Panda 92 desarrolla contenidos editoriales para:",
+        "items": [
+          "plataforma online",
+          "Instagram",
+          "vídeo corto y formato documental",
+          "proyectos audiovisuales y editoriales especiales"
+        ],
+        "footer": "Cada formato existe para servir a la historia — no al revés."
+      },
+      "project": {
+        "title": "Un proyecto en construcción",
+        "p1": "Road Panda 92 es un proyecto en crecimiento continuo, construido con tiempo, consistencia e intención. No pretende ser todo para todos, sino ser relevante para quien se reconoce en una cultura del automóvil hecha de experiencias reales.",
+        "footer": "Porque hay historias que no se cuentan rápido. Se viven."
+      }
+    },
+    "editorialStatus": {
+      "title": "Estatus Editorial",
+      "items": [
+        "Road Panda 92 es un órgano de información de naturaleza editorial en línea, especializado en cultura del automóvil, historia y memoria automovilística, cuyo objetivo fundamental es asegurar a todos los lectores el derecho a una información de calidad en las áreas mencionadas anteriormente.",
+        "Road Panda 92 respeta la Constitución de la República Portuguesa y todas las leyes portuguesas aplicables, en particular aquellas que se encuadran en los derechos, obligaciones y deberes previstos en la Ley de Prensa, así como los principios éticos y deontológicos que rigen la actividad informativa y editorial en Portugal.",
+        "Road Panda 92 distingue, de forma clara y juiciosa, el contenido de carácter informativo, de opinión y publicitario, reservándose el derecho de ordenar, interpretar y relacionar los hechos, eventos y contextos, en el ejercicio de su autonomía editorial.",
+        "Road Panda 92 se rige por criterios editoriales de rigor, imparcialidad e independencia, asegurando un enfoque responsable, contextualizado y plural a los temas tratados.",
+        "Road Panda 92 se compromete a respetar la confidencialidad de sus fuentes de información, no admitiendo, bajo ninguna circunstancia, la violación de este principio, salvo en los casos expresamente previstos por la ley.",
+        "Road Panda 92 asume el derecho de emitir opinión propia, particularmente en editoriales y textos de análisis, siempre en pleno respeto de la legislación vigente.",
+        "Road Panda 92 tiene un ámbito de difusión nacional, garantizando su proyección y acceso internacional a través de Internet, como plataforma editorial digital.",
+        "Road Panda 92 cumple con las directrices definidas en el presente Estatuto Editorial, así como con aquellas emanadas de su Dirección."
+      ]
+    },
+    "technicalInfo": {
+      "title": "Ficha Técnica",
+      "labels": {
+        "title": "Título",
+        "holder": "Titular del Registro",
+        "owner": "Propietario",
+        "director": "Director",
+        "headquarters": "Sede Editorial",
+        "contactEmail": "Correo de Contacto",
+        "platform": "Plataforma",
+        "periodicity": "Periodicidad",
+        "ercNumber": "Número de Registro en la ERC"
+      },
+      "values": {
+        "periodicity": "Contenidos publicados de forma regular, sin periodicidad fija."
+      }
+    },
+    "contact": {
+      "title": "Contacto",
+      "tag": "Hable con Nosotros",
+      "subtitle": "¿Dudas, sugerencias o comunicados de prensa? Estamos escuchando.",
+      "general": "General",
+      "editorial": "Editorial"
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "sections": [
+        {
+          "title": "1. Responsable del Tratamiento de Datos",
+          "content": "El responsable del tratamiento de los datos personales recogidos a través del sitio www.roadpanda92.com es:\nSINGELO E CRISTALINO UNIPESSOAL LDA\nNIF: 514762144\nDirección: Rua Jorge Bento, Número 34, 4450 Leça da Palmeira, Portugal\nEmail: roadpanda92@gmail.com"
+        },
+        {
+          "title": "2. Ámbito de la Política",
+          "content": "La presente Política de Privacidad se aplica al uso del sitio www.roadpanda92.com, como plataforma de contenidos editoriales, informativos e institucionales, incluyendo artículos, noticias, formularios de contacto y otros medios de interacción con los usuarios."
+        },
+        {
+          "title": "3. Datos Personales Recogidos",
+          "content": "En el marco del uso del sitio, se pueden recoger los siguientes datos personales:",
+          "list": [
+            "Nombre (cuando se proporciona voluntariamente)",
+            "Dirección de correo electrónico",
+            "Número de teléfono (cuando sea aplicable)",
+            "Contenido de los mensajes enviados a través de formularios",
+            "Dirección IP",
+            "Datos técnicos de navegación (navegador, sistema operativo, páginas visitadas, fecha y hora de acceso)"
+          ]
+        },
+        {
+          "title": "4. Finalidades del Tratamiento",
+          "content": "Los datos personales recogidos se tratan para las siguientes finalidades:",
+          "list": [
+            "Gestión y respuesta a solicitudes de contacto o aclaración",
+            "Comunicación con los usuarios",
+            "Envío de boletines o comunicaciones editoriales, cuando se autorice",
+            "Análisis estadístico y mejora del rendimiento del sitio",
+            "Garantía de la seguridad y el funcionamiento técnico de la plataforma",
+            "Cumplimiento de las obligaciones legales"
+          ]
+        },
+        {
+          "title": "5. Fundamentos Legales del Tratamiento",
+          "content": "El tratamiento de los datos personales se basa en los siguientes fundamentos legales:",
+          "list": [
+            "Consentimiento del titular de los datos, cuando sea aplicable",
+            "Ejecución de medidas precontractuales a petición del titular",
+            "Interés legítimo del responsable del tratamiento (concretamente para fines editoriales y analíticos)",
+            "Cumplimiento de las obligaciones legales"
+          ]
+        },
+        {
+          "title": "6. Conservación de los Datos",
+          "content": "Los datos personales se conservarán únicamente durante el período necesario para las finalidades para las que fueron recogidos, concretamente:",
+          "list": [
+            "Datos de contacto: hasta 12 meses después de la última interacción",
+            "Datos para el envío de boletines: hasta la retirada del consentimiento",
+            "Datos técnicos y estadísticos: durante el período necesario para el análisis y la mejora del sitio",
+            "Datos necesarios para el cumplimiento de obligaciones legales: por el plazo legalmente exigido"
+          ]
+        },
+        {
+          "title": "7. Compartir Datos con Terceros",
+          "content": "Los datos personales podrán ser compartidos solo cuando sea necesario con:",
+          "list": [
+            "Proveedores de servicios técnicos (alojamiento, correo electrónico, análisis)",
+            "Entidades legales o autoridades, cuando lo exija la ley"
+          ],
+          "footer": "Los datos personales no se venden, ceden ni se utilizan para fines comerciales no autorizados."
+        },
+        {
+          "title": "8. Derechos del Titular de los Datos",
+          "content": "Según el RGPD, el titular de los datos tiene derecho a:",
+          "list": [
+            "Acceso a sus datos personales",
+            "Rectificación de datos inexactos o incompletos",
+            "Supresión de los datos (“derecho al olvido”), cuando sea aplicable",
+            "Limitación del tratamiento",
+            "Oposición al tratamiento",
+            "Portabilidad de los datos",
+            "Retirada del consentimiento, cuando el tratamiento se base en el consentimiento"
+          ],
+          "footer": "El ejercicio de estos derechos se puede efectuar mediante solicitud por escrito al correo electrónico indicado en el punto 1."
+        },
+        {
+          "title": "9. Seguridad de los Datos",
+          "content": "SINGELO E CRISTALINO UNIPESSOAL LDA adopta las medidas técnicas y organizativas adecuadas para proteger los datos personales contra el acceso no autorizado, la pérdida, la destrucción o la divulgación indebida."
+        },
+        {
+          "title": "10. Cookies",
+          "content": "El sitio utiliza cookies para garantizar su correcto funcionamiento y para fines estadísticos.\nPara más información sobre el uso de cookies y cómo gestionarlas, el usuario debe consultar la Política de Cookies disponible en el sitio."
+        },
+        {
+          "title": "11. Cambios en la Política de Privacidad",
+          "content": "La presente Política de Privacidad puede actualizarse en cualquier momento.\nCualquier cambio se publicará en el sitio www.roadpanda92.com."
+        },
+        {
+          "title": "12. Autoridad de Control",
+          "content": "Sin perjuicio de cualquier otro recurso administrativo o judicial, el titular de los datos tiene el derecho de presentar una reclamación ante la:\nComisión Nacional de Protección de Datos (CNPD)\nhttps://www.cnpd.pt"
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Política de Cookies",
+      "sections": [
+        {
+          "title": "1. Qué son las Cookies",
+          "content": "Las cookies son pequeños archivos de texto almacenados en su dispositivo (ordenador, tableta o smartphone) cuando visita un sitio web. Estos archivos permiten reconocer el dispositivo del usuario y mejorar la experiencia de navegación."
+        },
+        {
+          "title": "2. Para qué sirven las Cookies",
+          "content": "El sitio www.roadpanda92.com utiliza cookies para:",
+          "list": [
+            "Asegurar el funcionamiento correcto del sitio",
+            "Memorizar las preferencias del usuario",
+            "Analizar estadísticas de uso del sitio",
+            "Mejorar la experiencia de navegación y los contenidos puestos a disposición"
+          ]
+        },
+        {
+          "title": "3. Tipos de Cookies Utilizadas",
+          "subsections": [
+            {
+              "title": "3.1 Cookies Estrictamente Necesarias",
+              "content": "Estas cookies son esenciales para el funcionamiento del sitio y no se pueden desactivar en nuestros sistemas. Normalmente solo se definen en respuesta a acciones realizadas por el usuario, como ajustes de las preferencias de privacidad o navegación segura."
+            },
+            {
+              "title": "3.2 Cookies de Rendimiento y Estadística",
+              "content": "Estas cookies permiten recoger información sobre la forma en que los visitantes utilizan el sitio, como las páginas visitadas, el tiempo de navegación o el origen del tráfico, ayudando a mejorar el rendimiento y los contenidos editoriales.\nLa recogida de esta información se efectúa de forma agregada y, siempre que sea posible, anónima."
+            },
+            {
+              "title": "3.3 Cookies de Funcionalidad",
+              "content": "Estas cookies permiten al sitio recordar las elecciones realizadas por el usuario, como preferencias de idioma o región, proporcionando una experiencia más personalizada."
+            },
+            {
+              "title": "3.4 Cookies de Marketing (cuando sea aplicable)",
+              "content": "Estas cookies se pueden utilizar para rastrear a los visitantes en los sitios web con el objetivo de presentar contenidos o comunicaciones pertinentes.\nEstas cookies solo se utilizarán mediante el consentimiento expreso del usuario."
+            }
+          ]
+        },
+        {
+          "title": "4. Gestión de Cookies y Consentimiento",
+          "content": "Al acceder al sitio, se informa al usuario del uso de cookies a través de un banner de consentimiento.\nEl usuario puede:",
+          "list": [
+            "Aceptar todas las cookies",
+            "Rechazar cookies no esenciales",
+            "Definir preferencias de cookies en cualquier momento"
+          ],
+          "footer": "Las cookies no esenciales solo se activarán tras el consentimiento explícito del usuario."
+        },
+        {
+          "title": "5. Cómo Gestionar o Desactivar las Cookies",
+          "content": "El usuario puede, en cualquier momento, configurar su navegador para aceptar, rechazar o eliminar cookies. Sin embargo, la desactivación de cookies esenciales puede afectar al funcionamiento correcto del sitio.\nLos ajustes de las cookies varían según el navegador utilizado."
+        },
+        {
+          "title": "6. Cookies de Terceros",
+          "content": "El sitio puede utilizar cookies de terceros, concretamente servicios de análisis, métricas de rendimiento o herramientas técnicas, los cuales están sujetos a las políticas de privacidad de esos terceros."
+        },
+        {
+          "title": "7. Cambios en la Política de Cookies",
+          "content": "Road Panda 92, operada por SINGELO E CRISTALINO UNIPESSOAL LDA, se reserva el derecho de modificar la presente Política de Cookies en cualquier momento. Los cambios se publicarán en el sitio www.roadpanda92.com."
+        },
+        {
+          "title": "8. Contactos",
+          "content": "Para cualquier cuestión relacionada con el uso de cookies, el usuario puede contactar con nosotros a través del correo electrónico:\nroadpanda92@gmail.com"
+        }
+      ]
+    },
+    "terms": {
+      "title": "Términos de Uso",
+      "sections": [
+        {
+          "title": "1. Identificación del Responsable",
+          "content": "El presente sitio es operado por:\nSINGELO E CRISTALINO UNIPESSOAL LDA\nNIF: 514762144\nDirección: Rua Jorge Bento, Número 34, 4450 Leça da Palmeira, Portugal\nEmail: roadpanda92@gmail.com"
+        },
+        {
+          "title": "2. Objeto y Ámbito",
+          "content": "Los presentes Términos de Uso regulan el acceso y el uso del sitio www.roadpanda92.com, como plataforma digital de contenidos editoriales, informativos e institucionales, incluyendo artículos, noticias, crónicas, imágenes, vídeos y otros contenidos publicados.\nAl acceder y utilizar el sitio, el usuario acepta estos Términos de Uso."
+        },
+        {
+          "title": "3. Acceso al Sitio",
+          "content": "3.1. El acceso al sitio es gratuito y no requiere registro previo, salvo funcionalidades específicas que lo puedan exigir.\n3.2. El responsable se reserva el derecho de suspender, limitar o interrumpir el acceso al sitio, de forma temporal o definitiva, por razones técnicas, legales o editoriales."
+        },
+        {
+          "title": "4. Contenidos Editoriales",
+          "content": "4.1. El contenido publicado refleja un enfoque editorial propio, de carácter informativo, cultural y de opinión.\n4.2. La información facilitada tiene carácter informativo y editorial, no constituyendo asesoramiento técnico, jurídico o profesional.\n4.3. A pesar del cuidado en la producción y verificación de los contenidos, no se garantiza la inexistencia de errores, omisiones o desactualizaciones."
+        },
+        {
+          "title": "5. Derechos de Autor y Propiedad Intelectual",
+          "content": "5.1. Todos los contenidos presentes en el sitio, incluyendo textos, imágenes, vídeos, ilustraciones, diseño gráfico y logotipos, son propiedad de Road Panda 92 o utilizados con autorización de los respectivos titulares, estando protegidos por derechos de autor.\n5.2. Se permite compartir extractos de los contenidos, siempre que:",
+          "list": [
+            "se indique la fuente",
+            "se incluya enlace al artículo original",
+            "no haya alteración del sentido del contenido"
+          ],
+          "footer": "5.3. Queda prohibida la reproducción total o parcial con fines comerciales, sin autorización previa."
+        },
+        {
+          "title": "6. Comentarios e Interacción (cuando sea aplicable)",
+          "content": "6.1. En caso de que el sitio ofrezca áreas de comentarios o interacción, el usuario se compromete a utilizar estas funcionalidades de forma responsable, respetuosa y legal.\n6.2. No se permiten comentarios que:",
+          "list": [
+            "sean ofensivos, discriminatorios o difamatorios",
+            "contengan discurso de odio o incitación a la violencia",
+            "violen derechos de terceros",
+            "tengan carácter promocional no autorizado"
+          ],
+          "footer": "6.3. El responsable del sitio se reserva el derecho de moderar, editar o eliminar comentarios que infrinjan estos Términos."
+        },
+        {
+          "title": "7. Enlaces a Sitios de Terceros",
+          "content": "7.1. El sitio puede contener enlaces a sitios externos.\n7.2. SINGELO E CRISTALINO UNIPESSOAL LDA no se responsabiliza del contenido, políticas o prácticas de esos sitios de terceros."
+        },
+        {
+          "title": "8. Responsabilidad",
+          "content": "8.1. El usuario reconoce que el uso del sitio se realiza por su cuenta y riesgo.\n8.2. El responsable del sitio no puede ser considerado responsable de los daños resultantes del uso o de la imposibilidad de uso del sitio, salvo en los casos legalmente previstos."
+        },
+        {
+          "title": "9. Protección de Datos Personales",
+          "content": "El tratamiento de los datos personales realizado en el marco del uso del sitio está regulado por la Política de Privacidad, disponible en el sitio."
+        },
+        {
+          "title": "10. Cambios en los Términos de Uso",
+          "content": "Los presentes Términos de Uso pueden ser modificados en cualquier momento.\nLos cambios se publicarán en el sitio www.roadpanda92.com y surtirán efecto a partir de la fecha de su publicación."
+        },
+        {
+          "title": "11. Ley Aplicable",
+          "content": "Los presentes Términos de Uso se rigen por la ley portuguesa."
+        }
+      ]
+    }
+
+  },
+  "components": {
+    "postGrid": {
+      "latest": "Últimas",
+      "viewArchive": "Ver Archivo",
+      "readStory": "Leer Historia"
+    },
+    "categories": {
+      "encontros-3g": {
+        "title": "Encuentros 3G",
+        "description": "La pasión automotriz que pasa de generación en generación. Historias de padres, hijos y los clásicos que los unen."
+      },
+      "historias-iconicas": {
+        "title": "Historias Icónicas",
+        "description": "Relatos fascinantes sobre el mundo del automóvil, momentos históricos y figuras singulares que moldearon la industria."
+      },
+      "maquinas-intemporais": {
+        "title": "Máquinas Atemporales",
+        "description": "Coches que han resistido el paso del tiempo y continúan marcando presencia en el imaginario de varias generaciones. Cada modelo se presenta no solo como máquina, sino como símbolo de una época. Una colección de automóviles que nunca salieron verdaderamente de escena."
+      },
+      "viagem-atlantica": {
+        "title": "Viaje Atlántico",
+        "description": "Las últimas novedades, tendencias y desarrollos del mundo del automóvil con una mirada atenta a ambos lados del Atlántico."
+      },
+      "copiloto": {
+        "title": "Copiloto",
+        "description": "Consejos prácticos, guías y sugerencias valiosas para mejorar tu experiencia al volante y cuidar mejor tu máquina."
+      },
+      "videos": {
+        "title": "Videos",
+        "description": "Mira nuestros últimos reportajes en vídeo, pruebas y documentales sobre la cultura del automóvil."
+      }
+    },
+    "infiniteFeed": {
+      "latestStories": "Últimas Historias",
+      "viewAll": "Ver Todo",
+      "loadingTrack": "Cargando pista...",
+      "endOfRoad": "Fin del camino. No hay más artículos por cargar."
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {
-  const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "http://35.188.192.145/graphql";
+  const API_URL = process.env.WORDPRESS_API_URL || process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "http://localhost:8000/graphql";
   
   try {
     const body = await request.json();

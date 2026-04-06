@@ -1,11 +1,12 @@
 'use client';
 
 import ThemeToggle from './ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
-export default function Header() {
+export default function Header({ dict, lang = 'pt-PT' }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -29,20 +30,20 @@ export default function Header() {
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchTerm.trim()) {
-            router.push(`/search?q=${encodeURIComponent(searchTerm.trim())}`);
+            router.push(`/${lang}/search?q=${encodeURIComponent(searchTerm.trim())}`);
             setIsMenuOpen(false);
             setSearchTerm('');
         }
     };
 
     const navItems = [
-        { label: 'Últimas', href: '/latest' },
-        { label: 'Máquinas Intemporais', href: '/category/maquinas-intemporais' },
-        { label: 'Viagem Atlântica', href: '/category/viagem-atlantica' },
-        { label: 'Vídeos', href: '/videos' },
-        { label: 'Histórias Icónicas', href: '/category/historias-iconicas' },
-        { label: 'Encontros 3G', href: '/category/encontros-3g' },
-        { label: 'Copiloto', href: '/category/copiloto' },
+        { label: dict?.nav?.latest || 'Últimas', href: `/${lang}/latest` },
+        { label: dict?.nav?.intemporais || 'Máquinas Intemporais', href: `/${lang}/category/maquinas-intemporais` },
+        { label: dict?.nav?.atlantica || 'Viagem Atlântica', href: `/${lang}/category/viagem-atlantica` },
+        { label: dict?.nav?.videos || 'Vídeos', href: `/${lang}/videos` },
+        { label: dict?.nav?.iconicas || 'Histórias Icónicas', href: `/${lang}/category/historias-iconicas` },
+        { label: dict?.nav?.encontros || 'Encontros 3G', href: `/${lang}/category/encontros-3g` },
+        { label: dict?.nav?.copiloto || 'Copiloto', href: `/${lang}/category/copiloto` },
     ];
 
     let headerClass = 'transition-all duration-300 py-4';
@@ -57,45 +58,36 @@ export default function Header() {
         <header className={`fixed w-full top-0 z-50 ${headerClass}`}>
             <div className={`container mx-auto px-4 flex items-center justify-between transition-colors duration-300`}>
                 
-                {/* Mobile Hamburger Menu Icon */}
-                <button className="md:hidden" onClick={() => setIsMenuOpen(true)}>
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                {/* Global Hamburger Menu Icon */}
+                <button className="flex-shrink-0 mr-4 hover:text-[var(--color-accent)] transition-colors" onClick={() => setIsMenuOpen(true)}>
+                    <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
 
-                {/* Search Icon (Desktop) - Replaces Hamburger */}
-                <button className="hidden md:block hover:text-[var(--color-accent)] transition-colors" onClick={() => setIsMenuOpen(true)}>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-
-                {/* Logo (Centered in visual flow) */}
-                <div className="flex-1 flex justify-center md:justify-start md:ml-6">
-                    <Link href="/" className="relative group flex items-center justify-center">
-                        <img src="/logo.png" alt="Road Panda 92" className="h-10 md:h-12 w-auto object-contain dynamic-logo transition-[filter] duration-300" />
+                {/* Logo (Fixed size, won't shrink) */}
+                <div className="flex-shrink-0 mr-auto xl:mr-8 transition-transform hover:scale-105">
+                    <Link href={`/${lang}`} className="relative group flex items-center justify-center">
+                        <img src="/logo.png" alt="Road Panda 92" className="h-10 md:h-12 w-auto object-contain dynamic-logo transition-[filter] duration-300 min-w-[120px]" />
                     </Link>
                 </div>
 
-                {/* Desktop Nav (Center/Right aligned) */}
-                <nav className="hidden md:flex space-x-6 lg:space-x-8 text-sm font-bold tracking-widest uppercase items-center mr-6">
+                {/* Desktop Nav (Center aligned, hidden on smaller screens to prevent cramping) */}
+                <nav className="hidden xl:flex flex-1 justify-center space-x-5 2xl:space-x-8 text-xs 2xl:text-sm font-black tracking-widest uppercase items-center shrink px-4">
                     {navItems.map((item) => (
-                        <Link key={item.href} href={item.href} className="hover:text-[var(--color-accent)] transition-colors relative group">
+                        <Link key={item.href} href={item.href} className="hover:text-[var(--color-accent)] transition-colors relative group whitespace-nowrap">
                             {item.label}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--color-accent)] transition-all group-hover:w-full"></span>
+                            <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-[var(--color-accent)] transition-all group-hover:w-full"></span>
                         </Link>
                     ))}
                 </nav>
 
-                {/* Right Side Options */}
-                <div className="flex items-center space-x-4">
+                {/* Right Side Options (Fixed size, won't shrink) */}
+                <div className="flex items-center space-x-3 md:space-x-4 flex-shrink-0 ml-auto xl:ml-0">
+                    <LanguageSwitcher />
                     <ThemeToggle />
-                    <button className="hidden md:block hover:text-[var(--color-accent)] transition-colors" onClick={() => setIsMenuOpen(true)}>
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    {/* Search Icon */}
+                    <button className="hover:text-[var(--color-accent)] transition-colors" onClick={() => setIsMenuOpen(true)}>
+                        <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </button>
-                    <a href="https://www.youtube.com/@roadpanda92" target="_blank" rel="noopener noreferrer" className="hidden lg:flex items-center gap-2 bg-[#FF0000] text-white px-5 py-2 text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-red-700 transition-colors shadow-lg shadow-red-900/20">
-                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                        Subscrever
-                    </a>
                 </div>
             </div>
         </header>
@@ -122,7 +114,7 @@ export default function Header() {
                     <div className="relative group">
                         <input 
                             type="text" 
-                            placeholder="Pesquisar artigos..." 
+                            placeholder={dict?.nav?.searchPlaceholder || 'Pesquisar artigos...'} 
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="w-full bg-[var(--color-secondary)] border-2 border-transparent focus:border-[var(--color-accent)] rounded-xl py-3.5 pl-5 pr-12 text-[15px] focus:outline-none transition-all duration-300 font-bold text-[var(--foreground)] placeholder-[var(--foreground)]/60 shadow-sm focus:shadow-md"
@@ -134,7 +126,7 @@ export default function Header() {
                 </form>
 
                 <nav className="flex flex-col space-y-4">
-                    <span className="text-xs font-black uppercase tracking-widest opacity-40 mb-2 border-b border-[var(--color-secondary)] pb-2 text-[var(--foreground)]">Navegação</span>
+                    <span className="text-xs font-black uppercase tracking-widest opacity-40 mb-2 border-b border-[var(--color-secondary)] pb-2 text-[var(--foreground)]">{dict?.footer?.sections || 'Navegação'}</span>
                     {navItems.map((item) => (
                         <Link key={item.href} href={item.href} className="text-lg font-bold hover:text-[var(--color-accent)] transition-colors flex items-center text-[var(--foreground)]">
                             {item.label}
@@ -142,8 +134,19 @@ export default function Header() {
                     ))}
                 </nav>
 
-                <div className="mt-auto pt-6 border-t border-[var(--color-secondary)]">
-                    <p className="text-xs opacity-50 font-medium text-[var(--foreground)]">© {new Date().getFullYear()} Road Panda 92</p>
+                <div className="mt-auto pt-6 border-t border-[var(--color-secondary)] flex flex-col gap-4">
+                    <a
+                        href="https://www.youtube.com/@roadpanda92"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-3 bg-[#FF0000] text-white px-5 py-3 text-xs font-black uppercase tracking-widest rounded-xl hover:bg-red-700 transition-all shadow-lg shadow-red-900/30 hover:shadow-red-900/50 hover:scale-[1.02]"
+                    >
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                        {dict?.footer?.subscribe || 'Subscrever no YouTube'}
+                    </a>
+                    <p className="text-xs opacity-40 font-medium text-[var(--foreground)] text-center">© {new Date().getFullYear()} Road Panda 92</p>
                 </div>
             </div>
         </div>

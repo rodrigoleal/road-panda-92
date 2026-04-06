@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function VideoGallery({ limit = 15 }) {
+export default function VideoGallery({ limit = 15, lang = 'pt-PT', dict }) {
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedVideo, setSelectedVideo] = useState(null);
@@ -30,7 +30,9 @@ export default function VideoGallery({ limit = 15 }) {
     if (loading) {
         return (
             <div className="py-20 bg-white dark:bg-[#0a0a0a] flex items-center justify-center transition-colors duration-500">
-                <div className="animate-pulse text-neutral-900 dark:text-white font-bold tracking-widest uppercase">Carregando Galeria...</div>
+                <div className="animate-pulse text-neutral-900 dark:text-white font-bold tracking-widest uppercase text-center">
+                    {dict?.pages?.videos?.loadingGallery || 'Carregando Galeria...'}
+                </div>
             </div>
         );
     }
@@ -43,17 +45,20 @@ export default function VideoGallery({ limit = 15 }) {
                 <div className="flex items-center gap-4">
                     <span className="w-12 h-1 bg-[var(--color-accent)]"></span>
                     <h2 className="text-3xl md:text-5xl font-black !normal-case tracking-tighter text-[var(--foreground)]">
-                        Histórias em <span className="text-[var(--color-accent)]">Movimento</span>
+                        {dict?.pages?.videos?.galleryPrefix || 'Histórias em '} 
+                        <span className="text-[var(--color-accent)]">
+                            {dict?.pages?.videos?.galleryHighlight || 'Movimento'}
+                        </span>
                     </h2>
                 </div>
                 
                 <div className="flex items-center gap-6">
                     {limit < 10 && (
                         <Link 
-                            href="/videos" 
+                            href={`/${lang}/videos`}
                             className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[var(--foreground)]/50 hover:text-[var(--foreground)] transition-colors border-r border-neutral-200 dark:border-white/10 pr-6"
                         >
-                            Ver Tudo <span className="text-lg">→</span>
+                            {dict?.pages?.videos?.viewAll || 'Ver Tudo'} <span className="text-lg">→</span>
                         </Link>
                     )}
                     <a 
@@ -62,7 +67,7 @@ export default function VideoGallery({ limit = 15 }) {
                         rel="noopener noreferrer"
                         className="hidden md:flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[var(--foreground)]/50 hover:text-[var(--foreground)] transition-colors"
                     >
-                        Canal YouTube <span className="text-lg">↗</span>
+                        {dict?.pages?.videos?.youtubeChannel || 'Canal YouTube'} <span className="text-lg">↗</span>
                     </a>
                 </div>
             </div>

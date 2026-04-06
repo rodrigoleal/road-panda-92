@@ -1,0 +1,415 @@
+{
+  "nav": {
+    "latest": "Latest",
+    "intemporais": "Timeless Machines",
+    "atlantica": "Atlantic Journey",
+    "videos": "Videos",
+    "iconicas": "Iconic Stories",
+    "encontros": "3G Meets",
+    "copiloto": "Co-pilot",
+    "searchPlaceholder": "Search articles..."
+  },
+  "footer": {
+    "description": "Uncompromising automotive journalism. Stories straight from the asphalt to your screen.",
+    "newsletterDesc": "Get the latest automotive stories in your inbox every week.",
+    "emailPlaceholder": "Your primary email...",
+    "statusLoading": "Sending...",
+    "statusSuccess": "Subscribed!",
+    "statusError": "Something went wrong.",
+    "about": "About Us",
+    "editorial": "Editorial Status",
+    "ficha": "Technical Info",
+    "contact": "Contacts",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "terms": "Terms of Use",
+    "subscribe": "Subscribe",
+    "rights": "All rights reserved",
+    "sections": "Sections",
+    "others": "Others"
+  },
+  "pages": {
+    "latest": {
+      "title": "Latest Stories",
+      "subtitle": "Explore all our content, organized chronologically. From the latest news to in-depth reviews.",
+      "noStories": "No stories yet.",
+      "roadUnexplored": "This road is yet to be explored."
+    },
+    "videos": {
+      "galleryPrefix": "Stories in ",
+      "galleryHighlight": "Motion",
+      "likeContent": "Like our content?",
+      "subscribe": "Subscribe on YouTube",
+      "viewAll": "View All",
+      "youtubeChannel": "YouTube Channel",
+      "loadingGallery": "Loading Gallery..."
+    },
+    "search": {
+      "title": "Search Results",
+      "forTerm": "For the term:",
+      "enterTerm": "Please enter a search term.",
+      "noResults": "No results found",
+      "tryOther": "Try searching with other keywords."
+    },
+    "category": {
+      "explore": "Explore all stories, reviews, and news about",
+      "noStories": "No stories yet.",
+      "roadUnexplored": "This road is yet to be explored."
+    },
+    "single": {
+      "notFound": "Article Not Found",
+      "by": "By",
+      "relatedTitle": "Related Articles",
+      "viewMore": "View more articles in this category →"
+    },
+    "about": {
+      "title": "About Us",
+      "whoWeAre": {
+        "title": "Who we are",
+        "p1": "Road Panda 92 is an independent editorial platform dedicated to automotive culture, memory, and the human stories built around cars.",
+        "p2": "We don't just talk about machines. We talk about people, journeys, choices, and everything that makes an automobile stop being just an object and take on meaning.",
+        "p3": "Road Panda 92 stems from a personal relationship with the automobile — built over years, on the road, in garages, at improvised meetings, and in conversations that don't fit into technical sheets. Our content starts from this lived experience."
+      },
+      "approach": {
+        "title": "A unique editorial approach",
+        "p1": "Our editorial line crosses cultural automotive journalism, contemporary chronicle, and daily observation. We give historical context when it matters, but we never write just to explain — we write to recognize.",
+        "distinguish": "We clearly distinguish between:",
+        "items": [
+          "editorial content",
+          "opinion",
+          "partnerships or content with a commercial framework"
+        ],
+        "transparency": "We believe that credibility is built through transparency, consistency, and respect for the reader."
+      },
+      "topics": {
+        "title": "What we write about",
+        "intro": "At Road Panda 92, we talk about:",
+        "items": [
+          "classic and contemporary cars with cultural value",
+          "real stories of people and their cars",
+          "reliability, longevity, and everyday use",
+          "generational memory, identity, and automotive heritage",
+          "automotive culture beyond the hype and passing trends"
+        ],
+        "summary": "We don't follow trends. We observe them. We don't celebrate numbers for their own sake. We search for meaning."
+      },
+      "presence": {
+        "title": "Digital presence",
+        "intro": "Road Panda 92 develops editorial content for:",
+        "items": [
+          "online platform",
+          "Instagram",
+          "short-form video and documentary format",
+          "special audiovisual and editorial projects"
+        ],
+        "footer": "Each format exists to serve the story — not the other way around."
+      },
+      "project": {
+        "title": "A project in construction",
+        "p1": "Road Panda 92 is a continuously growing project, built with time, consistency, and intention. It does not aim to be everything to everyone, but to be relevant to those who identify with an automotive culture made of real experiences.",
+        "footer": "Because there are stories that aren't told quickly. They are lived."
+      }
+    },
+    "editorialStatus": {
+      "title": "Editorial Status",
+      "items": [
+        "Road Panda 92 is an online editorial information outlet specializing in automotive culture, history, and memory, whose fundamental goal is to ensure all readers' right to quality information in the aforementioned areas.",
+        "Road Panda 92 respects the Constitution of the Portuguese Republic and all applicable Portuguese laws, particularly those falling within the rights, obligations, and duties provided in the Press Law, as well as the ethical and deontological principles governing informative and editorial activity in Portugal.",
+        "Road Panda 92 clearly and thoughtfully distinguishes between informative, opinionated, and advertising content, reserving the right to order, interpret, and relate facts, events, and contexts in the exercise of its editorial autonomy.",
+        "Road Panda 92 is governed by editorial criteria of rigor, impartiality, and independence, ensuring a responsible, contextualized, and plural approach to the topics treated.",
+        "Road Panda 92 commits to respecting the confidentiality of its information sources, not admitting, under any circumstances, the violation of this principle, except in cases expressly provided for by law.",
+        "Road Panda 92 assumes the right to express its own opinion, particularly in editorials and analytical texts, always in full compliance with current legislation.",
+        "Road Panda 92 has a national scope of dissemination, ensuring its international projection and access through the Internet as a digital editorial platform.",
+        "Road Panda 92 complies with the guidelines defined in this Editorial Status, as well as those issued by its Board."
+      ]
+    },
+    "technicalInfo": {
+      "title": "Technical Info",
+      "labels": {
+        "title": "Title",
+        "holder": "Registration Holder",
+        "owner": "Owner",
+        "director": "Director",
+        "headquarters": "Editorial Headquarters",
+        "contactEmail": "Contact Email",
+        "platform": "Platform",
+        "periodicity": "Periodicity",
+        "ercNumber": "ERC Registration Number"
+      },
+      "values": {
+        "periodicity": "Content published regularly, without a fixed periodicity."
+      }
+    },
+    "contact": {
+      "title": "Contact",
+      "tag": "Talk to Us",
+      "subtitle": "Questions, suggestions, or press releases? We're listening.",
+      "general": "General",
+      "editorial": "Editorial"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "sections": [
+        {
+          "title": "1. Data Controller",
+          "content": "The controller of personal data collected through the website www.roadpanda92.com is:\nSINGELO E CRISTALINO UNIPESSOAL LDA\nTax ID (NIF): 514762144\nAddress: Rua Jorge Bento, Number 34, 4450 Leça da Palmeira, Portugal\nEmail: roadpanda92@gmail.com"
+        },
+        {
+          "title": "2. Scope of the Policy",
+          "content": "This Privacy Policy applies to the use of the website www.roadpanda92.com as an editorial, informative, and institutional content platform, including articles, news, contact forms, and other means of interaction with users."
+        },
+        {
+          "title": "3. Personal Data Collected",
+          "content": "In the context of using the site, the following personal data may be collected:",
+          "list": [
+            "Name (when provided voluntarily)",
+            "Email address",
+            "Phone number (when applicable)",
+            "Content of messages sent through forms",
+            "IP address",
+            "Technical navigation data (browser, operating system, pages visited, date and time of access)"
+          ]
+        },
+        {
+          "title": "4. Purposes of Processing",
+          "content": "Personal data collected is processed for the following purposes:",
+          "list": [
+            "Management and response to requests for contact or clarification",
+            "Communication with users",
+            "Sending newsletters or editorial communications, when authorized",
+            "Statistical analysis and improvement of site performance",
+            "Ensuring the security and technical operation of the platform",
+            "Compliance with legal obligations"
+          ]
+        },
+        {
+          "title": "5. Legal Basis for Processing",
+          "content": "The processing of personal data is based on the following legal grounds:",
+          "list": [
+            "Consent of the data subject, when applicable",
+            "Execution of pre-contractual measures at the request of the subject",
+            "Legitimate interest of the controller (namely for editorial and analytical purposes)",
+            "Compliance with legal obligations"
+          ]
+        },
+        {
+          "title": "6. Data Retention",
+          "content": "Personal data will be stored only for the period necessary for the purposes for which they were collected, namely:",
+          "list": [
+            "Contact data: up to 12 months after the last interaction",
+            "Data for sending newsletters: until consent is withdrawn",
+            "Technical and statistical data: for the period necessary for analysis and site improvement",
+            "Data necessary for compliance with legal obligations: for the legally required period"
+          ]
+        },
+        {
+          "title": "7. Data Sharing with Third Parties",
+          "content": "Personal data may be shared only when necessary with:",
+          "list": [
+            "Technical service providers (hosting, email, analytics)",
+            "Legal entities or authorities, when required by law"
+          ],
+          "footer": "Personal data is not sold, transferred, or used for unauthorized commercial purposes."
+        },
+        {
+          "title": "8. Rights of the Data Subject",
+          "content": "Under the GDPR, the data subject has the right to:",
+          "list": [
+            "Access their personal data",
+            "Correction of inaccurate or incomplete data",
+            "Erasure of data ('right to be forgotten'), when applicable",
+            "Restriction of processing",
+            "Objection to processing",
+            "Data portability",
+            "Withdrawal of consent, when processing is based on consent"
+          ],
+          "footer": "The exercise of these rights can be made through a written request to the email indicated in point 1."
+        },
+        {
+          "title": "9. Data Security",
+          "content": "SINGELO E CRISTALINO UNIPESSOAL LDA adopts appropriate technical and organizational measures to protect personal data against unauthorized access, loss, destruction, or improper disclosure."
+        },
+        {
+          "title": "10. Cookies",
+          "content": "The site uses cookies to ensure its correct operation and for statistical purposes.\nFor more information on the use of cookies and how to manage them, the user should consult the Cookie Policy available on the site."
+        },
+        {
+          "title": "11. Changes to the Privacy Policy",
+          "content": "This Privacy Policy may be updated at any time.\nAny changes will be published on the website www.roadpanda92.com."
+        },
+        {
+          "title": "12. Supervisory Authority",
+          "content": "Without prejudice to any other administrative or judicial remedy, the data subject has the right to lodge a complaint with:\nNational Data Protection Commission (CNPD)\nhttps://www.cnpd.pt"
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "sections": [
+        {
+          "title": "1. What are Cookies",
+          "content": "Cookies are small text files stored on your device (computer, tablet, or smartphone) when you visit a website. These files allow the user's device to be recognized and improve the navigation experience."
+        },
+        {
+          "title": "2. What are Cookies for",
+          "content": "The website www.roadpanda92.com uses cookies to:",
+          "list": [
+            "Ensure the site's correct operation",
+            "Remember user preferences",
+            "Analyze site usage statistics",
+            "Improve the navigation experience and the content provided"
+          ]
+        },
+        {
+          "title": "3. Types of Cookies Used",
+          "subsections": [
+            {
+              "title": "3.1 Strictly Necessary Cookies",
+              "content": "These cookies are essential for the site's operation and cannot be disabled in our systems. They are usually only set in response to actions performed by the user, such as privacy preference settings or secure navigation."
+            },
+            {
+              "title": "3.2 Performance and Statistical Cookies",
+              "content": "These cookies allow for collecting information about how visitors use the site, such as pages visited, browsing time, or traffic source, helping to improve performance and editorial content.\nThe collection of this information is carried out in an aggregated and, whenever possible, anonymized manner."
+            },
+            {
+              "title": "3.3 Functionality Cookies",
+              "content": "These cookies allow the site to remember choices made by the user, such as language or region preferences, providing a more personalized experience."
+            },
+            {
+              "title": "3.4 Marketing Cookies (when applicable)",
+              "content": "These cookies can be used to track visitors on websites with the aim of presenting relevant content or communications.\nThese cookies will only be used based on the user's express consent."
+            }
+          ]
+        },
+        {
+          "title": "4. Cookie Management and Consent",
+          "content": "When accessing the site, the user is informed of the use of cookies through a consent banner.\nThe user can:",
+          "list": [
+            "Accept all cookies",
+            "Reject non-essential cookies",
+            "Set cookie preferences at any time"
+          ],
+          "footer": "Non-essential cookies will only be activated after the user's explicit consent."
+        },
+        {
+          "title": "5. How to Manage or Disable Cookies",
+          "content": "The user can, at any time, configure their browser to accept, refuse, or delete cookies. However, disabling essential cookies may affect the site's correct operation.\nCookie settings vary depending on the browser used."
+        },
+        {
+          "title": "6. Third-Party Cookies",
+          "content": "The site may use third-party cookies, namely analysis services, performance metrics, or technical tools, which are subject to those third parties' privacy policies."
+        },
+        {
+          "title": "7. Changes to the Cookie Policy",
+          "content": "Road Panda 92, operated by SINGELO E CRISTALINO UNIPESSOAL LDA, reserves the right to change this Cookie Policy at any time. Changes will be published on the website www.roadpanda92.com."
+        },
+        {
+          "title": "8. Contacts",
+          "content": "For any questions related to the use of cookies, the user can contact us via email:\nroadpanda92@gmail.com"
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "sections": [
+        {
+          "title": "1. Identification of the Responsible Party",
+          "content": "This site is operated by:\nSINGELO E CRISTALINO UNIPESSOAL LDA\nTax ID (NIF): 514762144\nAddress: Rua Jorge Bento, Number 34, 4450 Leça da Palmeira, Portugal\nEmail: roadpanda92@gmail.com"
+        },
+        {
+          "title": "2. Object and Scope",
+          "content": "These Terms of Use govern the access and use of the website www.roadpanda92.com as a digital platform for editorial, informative, and institutional content, including articles, news, chronicles, images, videos, and other published content.\nBy accessing and using the site, the user accepts these Terms of Use."
+        },
+        {
+          "title": "3. Access to the Site",
+          "content": "3.1. Access to the site is free and does not require prior registration, except for specific features that may require it.\n3.2. The party responsible reserves the right to suspend, limit, or interrupt access to the site, temporarily or permanently, for technical, legal, or editorial reasons."
+        },
+        {
+          "title": "4. Editorial Content",
+          "content": "4.1. Published content reflects its own editorial approach, of an informative, cultural, and opinionated nature.\n4.2. The information provided is informative and editorial in character, not constituting technical, legal, or professional advice.\n4.3. Despite the care in producing and verifying content, the absence of errors, omissions, or outdated information is not guaranteed."
+        },
+        {
+          "title": "5. Copyright and Intellectual Property",
+          "content": "5.1. All content on the site, including text, images, videos, illustrations, graphic design, and logos, is the property of Road Panda 92 or used with authorization from the respective owners, and is protected by copyright.\n5.2. Sharing excerpts of content is permitted, provided that:",
+          "list": [
+            "the source is indicated",
+            "a link to the original article is included",
+            "the meaning of the content is not altered"
+          ],
+          "footer": "5.3. Full or partial reproduction for commercial purposes, without prior authorization, is prohibited."
+        },
+        {
+          "title": "6. Comments and Interaction (when applicable)",
+          "content": "6.1. If the site provides comment or interaction areas, the user commits to using these features responsibly, respectfully, and legally.\n6.2. Comments are not permitted that:",
+          "list": [
+            "are offensive, discriminatory, or defamatory",
+            "contain hate speech or incitement to violence",
+            "violate third-party rights",
+            "have an unauthorized promotional character"
+          ],
+          "footer": "6.3. The party responsible for the site reserves the right to moderate, edit, or remove comments that violate these Terms."
+        },
+        {
+          "title": "7. Links to Third-Party Sites",
+          "content": "7.1. The site may contain links to external sites.\n7.2. SINGELO E CRISTALINO UNIPESSOAL LDA is not responsible for the content, policies, or practices of those third-party sites."
+        },
+        {
+          "title": "8. Responsibility",
+          "content": "8.1. The user acknowledges that the use of the site is at their own risk.\n8.2. The party responsible for the site cannot be held liable for damages resulting from the use or inability to use the site, except in cases legally provided."
+        },
+        {
+          "title": "9. Protection of Personal Data",
+          "content": "The processing of personal data carried out in the context of site use is regulated by the Privacy Policy, available on the site."
+        },
+        {
+          "title": "10. Changes to Terms of Use",
+          "content": "These Terms of Use may be changed at any time.\nChanges will be published on the website www.roadpanda92.com and take effect from the date of their publication."
+        },
+        {
+          "title": "11. Applicable Law",
+          "content": "These Terms of Use are governed by Portuguese law."
+        }
+      ]
+    }
+
+  },
+  "components": {
+    "postGrid": {
+      "latest": "Latest",
+      "viewArchive": "View Archive",
+      "readStory": "Read Story"
+    },
+    "categories": {
+      "encontros-3g": {
+        "title": "3G Meetings",
+        "description": "The automotive passion passed down from generation to generation. Stories of parents, children, and the classics that unite them."
+      },
+      "historias-iconicas": {
+        "title": "Iconic Stories",
+        "description": "Fascinating tales about the automotive world, historical moments, and unique figures who shaped the industry."
+      },
+      "maquinas-intemporais": {
+        "title": "Timeless Machines",
+        "description": "Cars that have stood the test of time and continue to be present in the imagination of several generations. Each model is presented not just as a machine, but as a symbol of an era. A collection of automobiles that never truly left the scene."
+      },
+      "viagem-atlantica": {
+        "title": "Atlantic Journey",
+        "description": "The latest news, trends, and developments in the automotive world with a close look from both sides of the Atlantic."
+      },
+      "copiloto": {
+        "title": "Co-pilot",
+        "description": "Practical tips, guides, and valuable advice to improve your driving experience and take better care of your machine."
+      },
+      "videos": {
+        "title": "Videos",
+        "description": "Watch our latest video reports, test drives, and documentaries about car culture."
+      }
+    },
+    "infiniteFeed": {
+      "latestStories": "Latest Stories",
+      "viewAll": "View All",
+      "loadingTrack": "Loading track...",
+      "endOfRoad": "End of the road. No more articles to load."
+    }
+  }
+}
