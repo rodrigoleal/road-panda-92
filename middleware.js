@@ -1,21 +1,5 @@
 import { NextResponse } from 'next/server';
 import { i18n } from './i18n-config';
-import { match as matchLocale } from '@formatjs/intl-localematcher';
-import Negotiator from 'negotiator';
-
-function getLocale(request) {
-  // Negotiator expects plain object so we need to transform headers
-  const negotiatorHeaders = {};
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
-
-  // Use negotiator and intl-localematcher to get best locale
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-  
-  // Filter out '*' and invalid locales that cause Intl to crash
-  languages = languages.filter((lang) => lang !== '*');
-
-  return matchLocale(languages, i18n.locales, i18n.defaultLocale);
-}
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
@@ -39,11 +23,9 @@ export function middleware(request) {
   if (pathnameHasLocale) return NextResponse.next();
 
   // Redirect if there is no locale
-  const locale = getLocale(request);
+  const locale = i18n.defaultLocale;
   request.nextUrl.pathname = `/${locale}${pathname}`;
   
-  // e.g. incoming request is /about
-  // The new URL is now /pt-PT/about
   return NextResponse.redirect(request.nextUrl);
 }
 
