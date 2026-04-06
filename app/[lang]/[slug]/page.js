@@ -200,7 +200,7 @@ export default async function SinglePost({ params }) {
             <h2 className="text-3xl font-black mb-10 text-[var(--foreground)]">{dict?.pages?.single?.relatedTitle || 'Artigos Relacionados'}</h2>
             <PostGrid posts={relatedPosts} showHeader={false} lang={lang} dict={dict} uniform />
             <div className="mt-12 text-center">
-              <Link href={`/${lang}/category/${getBaseSlug(primaryCategorySlug)}`} className="inline-block px-8 py-4 bg-[var(--color-accent)] text-[var(--foreground)] font-bold tracking-widest uppercase rounded hover:opacity-90 transition-opacity">
+              <Link href={`/${lang}/category/${getBaseSlug(primaryCategorySlug)}`} className="inline-block px-8 py-4 bg-[var(--color-accent)] text-white font-bold tracking-widest uppercase rounded hover:opacity-90 transition-opacity">
                 {dict?.pages?.single?.viewMore || 'Veja mais artigos nesta categoria →'}
               </Link>
             </div>
