@@ -6,11 +6,52 @@ import { useState, useRef, useEffect } from 'react';
 
 const locales = ['pt-PT', 'en-US', 'es-ES', 'it-IT'];
 
+const FlagIcon = ({ locale }) => {
+  switch (locale) {
+    case 'pt-PT':
+      return (
+        <svg viewBox="0 0 600 400" className="w-full h-full">
+          <rect width="600" height="400" fill="#E21837" />
+          <rect width="240" height="400" fill="#006600" />
+          <circle cx="240" cy="200" r="80" fill="#FCE300" />
+          <circle cx="240" cy="200" r="50" fill="#E21837" stroke="#000" strokeWidth="2" />
+        </svg>
+      );
+    case 'en-US':
+      return (
+        <svg viewBox="0 0 60 30" className="w-full h-full">
+          <rect width="60" height="30" fill="#012169" />
+          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
+          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="4" />
+          <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10" />
+          <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" strokeWidth="6" />
+        </svg>
+      );
+    case 'es-ES':
+      return (
+        <svg viewBox="0 20 750 460" className="w-full h-full">
+          <rect width="750" height="500" fill="#C60B1E" />
+          <rect width="750" height="250" y="125" fill="#FFC400" />
+        </svg>
+      );
+    case 'it-IT':
+      return (
+        <svg viewBox="0 0 3 2" className="w-full h-full">
+          <rect width="1" height="2" fill="#009246" />
+          <rect width="1" height="2" x="1" fill="#fff" />
+          <rect width="1" height="2" x="2" fill="#ce2b37" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
+
 const languages = {
-  'pt-PT': { label: 'Português', flag: '🇵🇹', code: 'PT' },
-  'en-US': { label: 'English', flag: '🇬🇧', code: 'EN' },
-  'es-ES': { label: 'Español', flag: '🇪🇸', code: 'ES' },
-  'it-IT': { label: 'Italiano', flag: '🇮🇹', code: 'IT' }
+  'pt-PT': { label: 'Português', code: 'PT' },
+  'en-US': { label: 'English', code: 'EN' },
+  'es-ES': { label: 'Español', code: 'ES' },
+  'it-IT': { label: 'Italiano', code: 'IT' }
 };
 
 export default function LanguageSwitcher() {
@@ -49,7 +90,9 @@ export default function LanguageSwitcher() {
         aria-label="Mudar idioma"
       >
         <div className="flex items-center gap-1.5 bg-neutral-100 dark:bg-white/5 px-2 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 group-hover:border-[var(--color-accent)]/30 transition-all">
-          <span className="text-base leading-none select-none">{currentLang.flag}</span>
+          <div className="w-5 h-3.5 rounded-[2px] overflow-hidden shadow-sm border border-black/5">
+            <FlagIcon locale={activeLocale} />
+          </div>
           <span className="text-xs font-bold uppercase tracking-widest leading-none translate-y-px">{currentLang.code}</span>
           <svg 
             className={`w-3 h-3 text-neutral-400 group-hover:text-[var(--color-accent)] transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
@@ -80,7 +123,9 @@ export default function LanguageSwitcher() {
                   ${isActive ? 'bg-[var(--color-accent)]/10 text-[var(--color-accent)]' : 'text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-white/5 opacity-85 hover:opacity-100'}`}
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-lg leading-none scale-110 select-none">{lang.flag}</span>
+                  <div className="w-6 h-4 rounded-[3px] overflow-hidden shadow-sm border border-black/5">
+                    <FlagIcon locale={locale} />
+                  </div>
                   <span translate="no">{lang.label}</span>
                 </div>
                 {isActive && (
