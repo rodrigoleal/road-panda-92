@@ -118,7 +118,12 @@ export default async function SinglePost({ params }) {
               {(() => {
                 const displayCat = getDisplayCategory(post.categories);
                 return displayCat ? (
-                  <span className="text-[var(--color-accent)] bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded-sm">{displayCat.name}</span>
+                  <span 
+                    className="text-white px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider"
+                    style={{ backgroundColor: getCategoryColor(displayCat.slug) }}
+                  >
+                    {displayCat.name}
+                  </span>
                 ) : null;
               })()}
               <span className="capitalize">{formatLocalizedDate(post.date, lang)}</span>
