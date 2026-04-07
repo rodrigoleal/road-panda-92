@@ -43,6 +43,9 @@
   --font-serif: var(--font-main);
   --font-display: var(--font-main);
   --font-body: var(--font-main);
+
+  /* Enable 'class' strategy for dark mode in Tailwind v4 */
+  --variant-dark: .dark &;
 }
 
 body {
