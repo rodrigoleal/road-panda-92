@@ -1,0 +1,16 @@
+kind: "AppHostingConfig"
+schemaVersion: "v1"
+
+# Environment variables for the application
+env:
+  - variable: NEXT_PUBLIC_WORDPRESS_API_URL
+    value: "https://your-wordpress-site.com/graphql" # Update this to the client's WP URL
+  - variable: NEXT_PUBLIC_ENABLE_ADS
+    value: "true"
+
+# Resources (optional scaling)
+# runConfig:
+#   minInstances: 0
+#   maxInstances: 10
+#   cpu: 1
+#   memory: 512Mi
