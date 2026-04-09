@@ -4,9 +4,12 @@ schemaVersion: "v1"
 # Environment variables for the application
 env:
   - variable: NEXT_PUBLIC_WORDPRESS_API_URL
-    value: "https://your-wordpress-site.com/graphql" # Update this to the client's WP URL
+    value: "http://35.188.192.145/graphql" # IP de produção identificado
+  - variable: WORDPRESS_URL
+    value: "http://35.188.192.145" # Usado pela API de Newsletter
   - variable: NEXT_PUBLIC_ENABLE_ADS
     value: "true"
+
 
 # Resources (optional scaling)
 # runConfig:
