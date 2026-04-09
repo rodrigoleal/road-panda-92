@@ -15,7 +15,7 @@ export async function POST(request) {
         // Ensure no trailing slash
         const wpBaseUrl = rawWpUrl.replace(/\/$/, '');
         
-        const targetUrl = `${wpBaseUrl}/?rest_route=/roadpanda/v1/subscribe`;
+        const targetUrl = `${wpBaseUrl}/wp-json/roadpanda/v1/subscribe/`;
 
         console.log(`Newsletter Subscription Attempt: ${targetUrl} for ${email}`);
 
