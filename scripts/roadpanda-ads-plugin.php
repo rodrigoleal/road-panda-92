@@ -33,7 +33,30 @@ add_action('init', function() {
     $table_name = $wpdb->prefix . 'roadpanda_subscribers';
     $charset_collate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    $sql = "CREATE TABLE $table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+        email varchar(100) NOT NULL,
+        PRIMARY KEY  (id),
+        UNIQUE KEY email (email)
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+
+    // Ensure the table exists, if dbDelta failed, try raw query
+    if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") !== $table_name) {
+        $wpdb->query($sql);
+    }
+});
+
+// 1.1 Activation Hook
+register_activation_hook(__FILE__, function() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'roadpanda_subscribers';
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE $table_name (
         id mediumint(9) NOT NULL AUTO_INCREMENT,
         time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
         email varchar(100) NOT NULL,
