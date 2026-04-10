@@ -1,4 +1,4 @@
-<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <style>
     .panda { 
       fill: #d34027; 
@@ -9,8 +9,9 @@
       }
     }
   </style>
-  <!-- Fiat Panda Silhouette (Transparent Background) -->
-  <path class="panda" d="M2.67 21.33h4.67c0-0.89 0.44-0.89 0.44-1.33h16.44c0 0.89 0.44 0.89 0.44 1.33h4.67l0.53-2.33-1.07-2.33-5.33-0.67h-8l-5.33 1.33-4.67 0.67z" />
-  <circle class="panda" cx="8.33" cy="21.33" r="1.33" />
-  <circle class="panda" cx="24.33" cy="21.33" r="1.33" />
+  <!-- Refined Fiat Panda 141 Silhouette -->
+  <path class="panda" d="M 5,69 L 5,61 L 22,58 L 40,31 L 86,31 L 95,65 L 95,69 L 85,69 A 7,7 0 0 0 71,69 L 29,69 A 7,7 0 0 0 15,69 Z" />
+  <!-- Wheels -->
+  <circle class="panda" cx="22" cy="69" r="6" />
+  <circle class="panda" cx="78" cy="69" r="6" />
 </svg>
