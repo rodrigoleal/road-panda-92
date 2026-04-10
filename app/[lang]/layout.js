@@ -19,7 +19,10 @@ export const metadata = {
   title: "Road Panda 92 | Cultura Automóvel Outdoor",
   description: "Comunidade e loja para entusiastas de carros, viagens e aventuras ao ar livre.",
   icons: {
-    icon: '/icon.png',
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
     apple: '/icon.png',
   },
 };
