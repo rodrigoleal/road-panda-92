@@ -18,6 +18,10 @@ const poppins = Poppins({
 export const metadata = {
   title: "Road Panda 92 | Cultura Automóvel Outdoor",
   description: "Comunidade e loja para entusiastas de carros, viagens e aventuras ao ar livre.",
+  icons: {
+    icon: '/icon.png',
+    apple: '/icon.png',
+  },
 };
 
 // Map locale
