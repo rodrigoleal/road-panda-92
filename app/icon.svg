@@ -1,17 +1,24 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .panda { 
-      fill: #d34027; 
+    .panda-line { 
+      stroke: #d34027; 
+      fill: none; 
+      stroke-width: 1.8; 
+      stroke-linecap: round; 
+      stroke-linejoin: round; 
     }
     @media (prefers-color-scheme: dark) {
-      .panda { 
-        fill: #ffffff; 
+      .panda-line { 
+        stroke: #ffffff; 
       }
     }
   </style>
-  <!-- Refined Fiat Panda 141 Silhouette -->
-  <path class="panda" d="M 5,69 L 5,61 L 22,58 L 40,31 L 86,31 L 95,65 L 95,69 L 85,69 A 7,7 0 0 0 71,69 L 29,69 A 7,7 0 0 0 15,69 Z" />
-  <!-- Wheels -->
-  <circle class="panda" cx="22" cy="69" r="6" />
-  <circle class="panda" cx="78" cy="69" r="6" />
+  <!-- Outline car body (matches logo's boxy silhouette) -->
+  <path class="panda-line" d="M 4,20 C 4,16 6,14 10,13 L 22,13 C 26,13 28,15 28,18 L 28,21" />
+  <path class="panda-line" d="M 28,24 L 25,24 M 18,24 L 14,24 M 7,24 L 4,24" />
+  <!-- Bottom connection -->
+  <path class="panda-line" d="M 4,21 L 4,24" />
+  <!-- Simple Wheel Circles -->
+  <circle class="panda-line" cx="10.5" cy="24" r="2.5" />
+  <circle class="panda-line" cx="21.5" cy="24" r="2.5" />
 </svg>
