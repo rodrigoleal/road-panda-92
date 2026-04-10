@@ -1,20 +1,16 @@
 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
   <style>
-    :root {
-      --icon-color: #d34027;
+    .panda { 
+      fill: #d34027; 
     }
     @media (prefers-color-scheme: dark) {
-      :root {
-        --icon-color: #ffffff;
+      .panda { 
+        fill: #ffffff; 
       }
     }
-    path {
-      fill: var(--icon-color);
-    }
   </style>
-  <!-- Fiat Panda 141 Silhouette -->
-  <path d="M2.67 21.33h4.67c0-0.89 0.44-0.89 0.44-1.33h16.44c0 0.89 0.44 0.89 0.44 1.33h4.67l0.53-2.33-1.07-2.33-5.33-0.67h-8l-5.33 1.33-4.67 0.67z" />
-  <!-- Wheels -->
-  <circle cx="8.33" cy="21.33" r="1.33" fill="var(--icon-color)" stroke="currentColor" stroke-width="0.5" />
-  <circle cx="24.33" cy="21.33" r="1.33" fill="var(--icon-color)" stroke="currentColor" stroke-width="0.5" />
+  <!-- Fiat Panda Silhouette (Transparent Background) -->
+  <path class="panda" d="M2.67 21.33h4.67c0-0.89 0.44-0.89 0.44-1.33h16.44c0 0.89 0.44 0.89 0.44 1.33h4.67l0.53-2.33-1.07-2.33-5.33-0.67h-8l-5.33 1.33-4.67 0.67z" />
+  <circle class="panda" cx="8.33" cy="21.33" r="1.33" />
+  <circle class="panda" cx="24.33" cy="21.33" r="1.33" />
 </svg>
