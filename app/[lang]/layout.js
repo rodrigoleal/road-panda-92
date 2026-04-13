@@ -20,10 +20,10 @@ export const metadata = {
   description: "Comunidade e loja para entusiastas de carros, viagens e aventuras ao ar livre.",
   icons: {
     icon: [
-      { url: '/icon-light.svg', media: '(prefers-color-scheme: light)' },
-      { url: '/icon-dark.svg', media: '(prefers-color-scheme: dark)' },
+      { url: '/icon-light.svg?v=6', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-dark.svg?v=6', media: '(prefers-color-scheme: dark)' },
     ],
-    apple: '/icon-light.svg',
+    apple: '/icon-light.svg?v=6',
   },
 };
 
