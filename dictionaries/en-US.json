@@ -130,14 +130,14 @@
         "holder": "Registration Holder",
         "owner": "Owner",
         "director": "Director",
-        "headquarters": "Editorial Headquarters",
+        "headquarters": "Editorial Headquarters/Newsroom",
         "contactEmail": "Contact Email",
         "platform": "Platform",
         "periodicity": "Periodicity",
         "ercNumber": "ERC Registration Number"
       },
       "values": {
-        "periodicity": "Content published regularly, without a fixed periodicity."
+        "periodicity": "Weekly"
       }
     },
     "contact": {

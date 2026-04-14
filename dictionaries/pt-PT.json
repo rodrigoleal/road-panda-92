@@ -130,14 +130,14 @@
         "holder": "Titular do Registo",
         "owner": "Proprietário",
         "director": "Diretor",
-        "headquarters": "Sede Editorial",
+        "headquarters": "Sede Editorial/Redação",
         "contactEmail": "Email de Contacto",
         "platform": "Plataforma",
         "periodicity": "Periodicidade",
         "ercNumber": "Número de Registo na ERC"
       },
       "values": {
-        "periodicity": "Conteúdos publicados de forma regular, sem periodicidade fixa."
+        "periodicity": "Semanal"
       }
     },
     "contact": {
