@@ -76,13 +76,18 @@ export default async function CategoryPage(props) {
   
   const dbName = wpCategory?.name || slug;
   
-  // Priority: 1. WP Polylang Translation 2. Local Dictionary 3. PT Fallback mapping 4. DB Name
   const dictCategory = dict?.components?.categories?.[querySlug] || dict?.components?.categories?.[slug];
-  const categoryName = wpTranslation?.name || dictCategory?.title || categoryDisplayMapping[slug] || categoryDisplayMapping[querySlug] || dbName;
+  
+  // Get text from WP (either the matched translation node or the node itself)
+  const wpName = wpTranslation?.name || wpCategory?.name;
+  const wpDesc = wpTranslation?.description || wpCategory?.description;
+  
+  // Priority: 1. WP Custom Value 2. Local Dictionary 3. Display Mapping / DB Name
+  const categoryName = wpName || dictCategory?.title || categoryDisplayMapping[slug] || categoryDisplayMapping[querySlug] || dbName;
   const posts = data?.posts?.nodes || [];
   
-  // Priority: 1. WP Polylang Translation 2. Local Dictionary 3. WP Portuguese Default
-  const description = wpTranslation?.description || dictCategory?.description || wpCategory?.description;
+  // Priority: 1. WP Custom Value 2. Local Dictionary
+  const description = wpDesc && wpDesc.trim() !== '' ? wpDesc : dictCategory?.description;
 
   return (
     <main className="min-h-screen pt-20 pb-20">
