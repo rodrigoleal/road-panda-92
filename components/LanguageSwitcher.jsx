@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
+import { useTranslations } from './TranslationContext';
 
 const locales = ['pt-PT', 'en-US', 'es-ES', 'it-IT'];
 
@@ -69,8 +70,31 @@ export default function LanguageSwitcher() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const { translations } = useTranslations();
+
   const redirectedPathname = (locale) => {
     if (!pathname) return '/';
+    if (locale === activeLocale) return pathname;
+    
+    // Check if we have article translations available
+    if (translations) {
+      const wpCode = locale.split('-')[0].toUpperCase();
+      // WPGraphQL translations usually return an array of objects
+      const translationArray = Array.isArray(translations) ? translations : (translations?.nodes || []);
+      const translation = translationArray.find(t => t.language?.code === wpCode || t.language?.code === locale);
+      
+      if (translation && translation.slug) {
+        const segments = pathname.split('/');
+        segments[1] = locale;
+        segments[segments.length - 1] = translation.slug;
+        return segments.join('/');
+      }
+      
+      // If we are on a single post but it has NO translation for the target language, redirect to category or home
+      // Safest is to redirect to home of that language
+      return `/${locale}`; 
+    }
+
     const segments = pathname.split('/');
     if (locales.includes(segments[1])) {
         segments[1] = locale;

@@ -10,6 +10,7 @@ import AdRotatorClient from '../../../components/AdRotatorClient';
 import PostGrid from '../../../components/PostGrid';
 import Link from 'next/link';
 import { GET_ALL_ADS, GET_RELATED_POSTS_BY_CATEGORY } from '../../../lib/queries';
+import ArticleTranslationsSetter from '../../../components/ArticleTranslationsSetter';
 
 export const revalidate = 600; // 10 minutes ISR
 
@@ -111,6 +112,7 @@ export default async function SinglePost({ params }) {
 
     return (
       <article className="min-h-screen pb-20 pt-10">
+        <ArticleTranslationsSetter translations={post.translations} />
         {/* Header */}
         <div className="text-[var(--foreground)] py-12 px-4 text-center">
           <div className="container mx-auto max-w-4xl">

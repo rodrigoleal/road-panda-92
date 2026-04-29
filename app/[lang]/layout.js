@@ -7,6 +7,7 @@ import Footer from '../../components/Footer';
 import CookieConsent from '../../components/CookieConsent';
 import { getDictionary } from '../../lib/dictionary';
 import Script from 'next/script';
+import { TranslationProvider } from '../../components/TranslationContext';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -49,11 +50,13 @@ export default async function RootLayout({ children, params }) {
           `}
         </Script>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Header dict={dict} lang={lang} />
-          <main className="flex-1 pt-20">
-            {children}
-          </main>
-          <Footer dict={dict} lang={lang} />
+          <TranslationProvider>
+            <Header dict={dict} lang={lang} />
+            <main className="flex-1 pt-20">
+              {children}
+            </main>
+            <Footer dict={dict} lang={lang} />
+          </TranslationProvider>
           <CookieConsent />
         </ThemeProvider>
       </body>

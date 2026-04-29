@@ -6,6 +6,7 @@ import AdRotatorClient from '../../../../components/AdRotatorClient';
 import { GET_ALL_ADS } from '../../../../lib/queries';
 import { normalizeImageUrl, getLocalizedSlug } from '../../../../lib/utils';
 import { getDictionary } from '../../../../lib/dictionary';
+import ArticleTranslationsSetter from '../../../../components/ArticleTranslationsSetter';
 
 export const revalidate = 600;
 
@@ -91,6 +92,7 @@ export default async function CategoryPage(props) {
 
   return (
     <main className="min-h-screen pt-20 pb-20">
+      <ArticleTranslationsSetter translations={wpCategory?.translations} />
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center">
           <h1 className="text-5xl md:text-7xl font-black text-[var(--foreground)] mb-6 tracking-tighter capitalize">
