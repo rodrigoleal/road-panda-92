@@ -59,7 +59,8 @@
     "single": {
       "notFound": "Artigo Não Encontrado",
       "by": "Por",
-      "relatedTitle": "Artigos Relacionados",
+      "relatedTitle": "Leia também!",
+      "aboutAuthor": "Autor",
       "viewMore": "Veja mais artigos nesta categoria →"
     },
     "about": {

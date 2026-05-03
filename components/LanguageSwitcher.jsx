@@ -81,7 +81,10 @@ export default function LanguageSwitcher() {
       const wpCode = locale.split('-')[0].toUpperCase();
       // WPGraphQL translations usually return an array of objects
       const translationArray = Array.isArray(translations) ? translations : (translations?.nodes || []);
-      const translation = translationArray.find(t => t.language?.code === wpCode || t.language?.code === locale);
+      const translation = translationArray.find(t => {
+        const tCode = t.language?.code?.toUpperCase();
+        return tCode === wpCode || tCode === locale.toUpperCase();
+      });
       
       if (translation && translation.slug) {
         const segments = pathname.split('/');

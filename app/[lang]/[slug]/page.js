@@ -190,13 +190,12 @@ export default async function SinglePost({ params }) {
                     prose-blockquote:border-l-[var(--color-accent)] prose-blockquote:bg-neutral-50 prose-blockquote:py-4 prose-blockquote:px-8 prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:text-neutral-600"
                     dangerouslySetInnerHTML={{ __html: sanitizedContent }}
                 />
-
-                <GuestAuthor author={post.author?.node} />
             </div>
             
             <aside className="w-full lg:w-1/4 pt-8">
-                <div className="sticky top-32">
+                <div className="sticky top-32 flex flex-col gap-8">
                     {sidebarAds.length > 0 && <AdRotatorClient activeAds={sidebarAds} />}
+                    <GuestAuthor author={post.author?.node} dict={dict} />
                 </div>
             </aside>
         </div>

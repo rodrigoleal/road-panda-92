@@ -2,28 +2,35 @@
 import Image from 'next/image';
 import { normalizeImageUrl } from '../lib/utils';
 // ...
-export default function GuestAuthor({ author }) {
+export default function GuestAuthor({ author, dict }) {
     if (!author) return null;
 
     const { name, description, avatar } = author;
     const avatarUrl = normalizeImageUrl(avatar?.url) || '/placeholder_avatar.png';
 
     return (
-        <div className="bg-neutral-50 border border-neutral-200 p-8 my-10 flex flex-col md:flex-row items-center md:items-start gap-6 rounded-lg">
-            <div className="shrink-0">
-                <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-[var(--color-accent)]">
-                    <Image
-                        src={avatarUrl}
-                        alt={name}
-                        fill
-                        className="object-cover"
-                    />
-                </div>
+        <div className="bg-white dark:bg-[#151918] rounded-2xl p-6 border border-neutral-100 dark:border-white/5 shadow-sm flex flex-col items-center text-center gap-4">
+            <div className="relative w-28 h-28 rounded-full border-4 border-white dark:border-[#151918] shadow-md overflow-hidden ring-2 ring-[var(--color-accent)]/30">
+                <Image
+                    src={avatarUrl}
+                    alt={name}
+                    fill
+                    className="object-cover"
+                />
             </div>
-            <div className="text-center md:text-left">
-                <h3 className="text-xl font-serif font-bold text-neutral-900 mb-2">About the Author</h3>
-                <div className="font-bold text-lg text-[var(--color-accent)] mb-3">{name}</div>
-                <div className="text-neutral-600 leading-relaxed max-w-2xl" dangerouslySetInnerHTML={{ __html: description || '' }} />
+            <div className="flex flex-col items-center">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-1">
+                    {dict?.pages?.single?.aboutAuthor || 'Sobre o Autor'}
+                </span>
+                <h3 className="text-xl font-black text-[var(--foreground)] leading-tight mb-3">
+                    {name}
+                </h3>
+                {description && (
+                    <div 
+                        className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed" 
+                        dangerouslySetInnerHTML={{ __html: description }} 
+                    />
+                )}
             </div>
         </div>
     );
