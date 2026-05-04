@@ -1,6 +1,5 @@
 import { getClient } from '../../../lib/apollo-client';
 import { GET_POST_BY_SLUG } from '../../../lib/queries';
-import GuestAuthor from '../../../components/GuestAuthor';
 import Image from 'next/image';
 import sanitizeHtml from 'sanitize-html';
 import { getDictionary } from '../../../lib/dictionary';
@@ -195,7 +194,6 @@ export default async function SinglePost({ params }) {
             <aside className="w-full lg:w-1/4 pt-8">
                 <div className="sticky top-32 flex flex-col gap-8">
                     {sidebarAds.length > 0 && <AdRotatorClient activeAds={sidebarAds} />}
-                    <GuestAuthor author={post.author?.node} dict={dict} />
                 </div>
             </aside>
         </div>
