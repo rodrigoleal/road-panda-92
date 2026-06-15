@@ -40,7 +40,7 @@ export default function Header({ dict, lang = 'pt-PT' }) {
         { label: dict?.nav?.latest || 'Últimas', href: `/${lang}/latest` },
         { label: dict?.nav?.intemporais || 'Máquinas Intemporais', href: `/${lang}/category/maquinas-intemporais` },
         { label: dict?.nav?.atlantica || 'Viagem Atlântica', href: `/${lang}/category/viagem-atlantica` },
-        { label: dict?.nav?.videos || 'Vídeos', href: `/${lang}/videos` },
+        { label: dict?.nav?.garage || 'Garage', href: `/${lang}/garage` },
         { label: dict?.nav?.iconicas || 'Histórias Icónicas', href: `/${lang}/category/historias-iconicas` },
         { label: dict?.nav?.encontros || 'Encontros 3G', href: `/${lang}/category/encontros-3g` },
         { label: dict?.nav?.copiloto || 'Copiloto', href: `/${lang}/category/copiloto` },

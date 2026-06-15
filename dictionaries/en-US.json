@@ -3,7 +3,7 @@
     "latest": "Latest",
     "intemporais": "Timeless Machines",
     "atlantica": "Atlantic Journey",
-    "videos": "Videos",
+    "garage": "Garage",
     "iconicas": "Iconic Stories",
     "encontros": "3G Meets",
     "copiloto": "Co-pilot",
@@ -35,7 +35,7 @@
       "noStories": "No stories yet.",
       "roadUnexplored": "This road is yet to be explored."
     },
-    "videos": {
+    "garage": {
       "galleryPrefix": "Stories in ",
       "galleryHighlight": "Motion",
       "likeContent": "Like our content?",
@@ -401,8 +401,8 @@
         "title": "Co-pilot",
         "description": "Practical tips, guides, and valuable advice to improve your driving experience and take better care of your machine."
       },
-      "videos": {
-        "title": "Videos",
+      "garage": {
+        "title": "Garage",
         "description": "Watch our latest video reports, test drives, and documentaries about car culture."
       }
     },

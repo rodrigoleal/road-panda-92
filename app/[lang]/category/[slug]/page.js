@@ -4,7 +4,7 @@ import { GET_POSTS_BY_CATEGORY } from '../../../../lib/queries';
 import PostGrid from '../../../../components/PostGrid';
 import AdRotatorClient from '../../../../components/AdRotatorClient';
 import { GET_ALL_ADS } from '../../../../lib/queries';
-import { normalizeImageUrl, getLocalizedSlug } from '../../../../lib/utils';
+import { normalizeImageUrl, getLocalizedSlug, getBaseSlug } from '../../../../lib/utils';
 import { getDictionary } from '../../../../lib/dictionary';
 import ArticleTranslationsSetter from '../../../../components/ArticleTranslationsSetter';
 
@@ -37,7 +37,7 @@ export default async function CategoryPage(props) {
     'opiniao': 'historias-iconicas'
   };
 
-  const querySlug = slugMapping[slug] || slug;
+  const querySlug = slugMapping[getBaseSlug(slug)] || slug;
 
   const client = getClient();
   const [dataResponse, adsResponse] = await Promise.all([
@@ -65,7 +65,7 @@ export default async function CategoryPage(props) {
   const categoryDisplayMapping = {
     'maquinas-intemporais': 'Máquinas Intemporais',
     'viagem-atlantica': 'Viagem Atlântica',
-    'videos': 'Vídeos',
+    'garage': 'Garage',
     'historias-iconicas': 'Histórias Icónicas',
     'encontros-3g': 'Encontros 3G',
     'copiloto': 'Copiloto',
@@ -77,14 +77,14 @@ export default async function CategoryPage(props) {
   
   const dbName = wpCategory?.name || slug;
   
-  const dictCategory = dict?.components?.categories?.[querySlug] || dict?.components?.categories?.[slug];
+  const dictCategory = dict?.components?.categories?.[getBaseSlug(querySlug)] || dict?.components?.categories?.[getBaseSlug(slug)];
   
   // Get text from WP (either the matched translation node or the node itself)
   const wpName = wpTranslation?.name || wpCategory?.name;
   const wpDesc = wpTranslation?.description || wpCategory?.description;
   
   // Priority: 1. WP Custom Value 2. Local Dictionary 3. Display Mapping / DB Name
-  const categoryName = wpName || dictCategory?.title || categoryDisplayMapping[slug] || categoryDisplayMapping[querySlug] || dbName;
+  const categoryName = wpName || dictCategory?.title || categoryDisplayMapping[getBaseSlug(slug)] || categoryDisplayMapping[getBaseSlug(querySlug)] || dbName;
   const posts = data?.posts?.nodes || [];
   
   // Priority: 1. WP Custom Value 2. Local Dictionary

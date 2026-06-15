@@ -3,7 +3,7 @@
     "latest": "Últimas",
     "intemporais": "Máquinas Atemporales",
     "atlantica": "Viaje Atlántico",
-    "videos": "Videos",
+    "garage": "Garage",
     "iconicas": "Historias Icónicas",
     "encontros": "Encuentros 3G",
     "copiloto": "Copiloto",
@@ -35,7 +35,7 @@
       "noStories": "Aún no hay historias.",
       "roadUnexplored": "Este camino está aún por explorar."
     },
-    "videos": {
+    "garage": {
       "galleryPrefix": "Historias en ",
       "galleryHighlight": "Movimiento",
       "likeContent": "¿Te gusta nuestro contenido?",
@@ -401,9 +401,9 @@
         "title": "Copiloto",
         "description": "Consejos prácticos, guías y sugerencias valiosas para mejorar tu experiencia al volante y cuidar mejor tu máquina."
       },
-      "videos": {
-        "title": "Videos",
-        "description": "Mira nuestros últimos reportajes en vídeo, pruebas y documentales sobre la cultura del automóvil."
+      "garage": {
+        "title": "Garage",
+        "description": "Todo clásico tiene dos destinos: la carretera o el olvido. Garage existe para inclinar la balanza hacia el lado correcto. Aquí no hay frías fichas técnicas, solo historias de coches que fueron de alguien, buscando a quien vuelva a ponerlos en marcha."
       }
     },
     "infiniteFeed": {

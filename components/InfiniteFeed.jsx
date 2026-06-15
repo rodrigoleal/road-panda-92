@@ -315,11 +315,11 @@ export default function InfiniteFeed({
                 elements.push(renderCategorySection(dict?.components?.categories?.['viagem-atlantica']?.title || 'Viagem Atlântica', filtered, 'viagem-atlantica'));
             }
         }
-        if (categorizedPosts.videos?.length > 0) {
-            const filtered = filterNew(categorizedPosts.videos);
+        if (categorizedPosts.garage?.length > 0) {
+            const filtered = filterNew(categorizedPosts.garage);
             if (filtered.length > 0) {
                 elements.push(renderNextHighlight());
-                elements.push(renderCategorySection(dict?.components?.categories?.['videos']?.title || 'Vídeos', filtered, 'videos'));
+                elements.push(renderCategorySection(dict?.components?.categories?.['garage']?.title || 'Garage', filtered, 'garage'));
             }
         }
         if (categorizedPosts.copiloto?.length > 0) {

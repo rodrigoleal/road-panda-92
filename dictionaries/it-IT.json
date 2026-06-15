@@ -3,7 +3,7 @@
     "latest": "Ultime",
     "intemporais": "Macchine Senza Tempo",
     "atlantica": "Viaggio Atlantico",
-    "videos": "Video",
+    "garage": "Garage",
     "iconicas": "Storie Iconiche",
     "encontros": "Incontri 3G",
     "copiloto": "Copilota",
@@ -35,7 +35,7 @@
       "noStories": "Nessuna storia ancora.",
       "roadUnexplored": "Questa strada è ancora da esplorare."
     },
-    "videos": {
+    "garage": {
       "galleryPrefix": "Storie in ",
       "galleryHighlight": "Movimento",
       "likeContent": "Ti piacciono i nostri contenuti?",
@@ -401,8 +401,8 @@
         "title": "Copilota",
         "description": "Consigli pratici, guide e suggerimenti preziosi per migliorare la tua esperienza di guida e prenderti cura della tua auto al meglio."
       },
-      "videos": {
-        "title": "Video",
+      "garage": {
+        "title": "Garage",
         "description": "Guarda i nostri ultimi reportage video, test drive e documentari sulla cultura automobilistica."
       }
     },

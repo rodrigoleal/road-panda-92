@@ -8,16 +8,16 @@ import { normalizeImageUrl, getLocalizedSlug } from '../../../lib/utils';
 import { getDictionary } from '../../../lib/dictionary';
 
 export const metadata = {
-    title: 'Vídeos | Road Panda 92',
-    description: 'Assista às nossas séries originais e vídeos exclusivos sobre cultura automóvel.',
+    title: 'Garage | Road Panda 92',
+    description: 'Todo o clássico tem dois destinos: a estrada ou o esquecimento. A Garage existe para inclinar a balança para o lado certo. Aqui não há fichas frias, só histórias de carros que foram alguém, à procura de quem os volte a pôr a andar.',
 };
 
-export default async function VideosPage(props) {
+export default async function GaragePage(props) {
     const params = await props.params;
     const { lang } = params;
     const dict = await getDictionary(lang);
     const wpLang = lang.split('-')[0].toUpperCase();
-    const slug = getLocalizedSlug('videos', wpLang);
+    const slug = getLocalizedSlug('garage', wpLang);
     const client = getClient();
 
     const [dataResponse, adsResponse] = await Promise.all([
@@ -41,7 +41,7 @@ export default async function VideosPage(props) {
 
     const videoTopAds = allAds.filter(ad => ad.position === 'video-top');
     const posts = data?.posts?.nodes || [];
-    const categoryName = data?.categories?.nodes[0]?.name || 'Vídeos';
+    const categoryName = data?.categories?.nodes[0]?.name || 'Garage';
     const description = data?.categories?.nodes[0]?.description;
 
     return (
@@ -83,7 +83,7 @@ export default async function VideosPage(props) {
             <section className="py-24 bg-[var(--color-secondary)] border-t border-neutral-100 dark:border-white/5 transition-colors duration-500">
                 <div className="container mx-auto px-4 text-center">
                     <h3 className="text-2xl md:text-3xl font-black mb-8 italic text-[var(--foreground)] tracking-tight">
-                        {dict.pages.videos.likeContent}
+                        {dict.pages.garage.likeContent}
                     </h3>
                     <a 
                         href="https://www.youtube.com/@roadpanda92?sub_confirmation=1" 
@@ -91,7 +91,7 @@ export default async function VideosPage(props) {
                         rel="noopener noreferrer"
                         className="inline-block bg-[var(--color-accent)] text-white px-10 py-5 rounded-full text-lg font-black uppercase tracking-widest hover:scale-110 active:scale-95 transition-all shadow-[0_20px_50px_rgba(227,24,55,0.3)]"
                     >
-                        {dict.pages.videos.subscribe}
+                        {dict.pages.garage.subscribe}
                     </a>
                 </div>
             </section>
