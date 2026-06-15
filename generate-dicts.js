@@ -8,7 +8,7 @@ const langs = [
         latest: 'Últimas',
         intemporais: 'Máquinas Intemporais',
         atlantica: 'Viagem Atlântica',
-        videos: 'Vídeos',
+        garage: 'Garage',
         iconicas: 'Histórias Icónicas',
         encontros: 'Encontros 3G',
         copiloto: 'Copiloto',
@@ -40,7 +40,7 @@ const langs = [
           noStories: 'Sem histórias ainda.',
           roadUnexplored: 'Esta estrada ainda está por explorar.'
         },
-        videos: {
+        garage: {
           galleryPrefix: 'Histórias em ',
           galleryHighlight: 'Movimento',
           likeContent: 'Gosta do nosso conteúdo?',
@@ -404,9 +404,9 @@ const langs = [
             title: 'Copiloto',
             description: 'Dicas práticas, guias e conselhos valiosos para melhorar a sua experiência ao volante e cuidar melhor da sua máquina.'
           },
-          'videos': {
-            title: 'Vídeos',
-            description: 'Assista às nossas últimas reportagens em vídeo, ensaios e documentários sobre a cultura automóvel.'
+          'garage': {
+            title: 'Garage',
+            description: 'Todo o clássico tem dois destinos: a estrada ou o esquecimento. A Garage existe para inclinar a balança para o lado certo. Aqui não há fichas frias, só histórias de carros que foram alguém, à procura de quem os volte a pôr a andar.'
           }
         },
         infiniteFeed: {
@@ -425,7 +425,7 @@ const langs = [
         latest: 'Latest',
         intemporais: 'Timeless Machines',
         atlantica: 'Atlantic Journey',
-        videos: 'Videos',
+        garage: 'Garage',
         iconicas: 'Iconic Stories',
         encontros: '3G Meets',
         copiloto: 'Co-pilot',
@@ -457,7 +457,7 @@ const langs = [
           noStories: 'No stories yet.',
           roadUnexplored: 'This road is yet to be explored.'
         },
-        videos: {
+        garage: {
           galleryPrefix: 'Stories in ',
           galleryHighlight: 'Motion',
           likeContent: 'Like our content?',
@@ -821,8 +821,8 @@ const langs = [
             title: 'Co-pilot',
             description: 'Practical tips, guides, and valuable advice to improve your driving experience and take better care of your machine.'
           },
-          'videos': {
-            title: 'Videos',
+          'garage': {
+            title: 'Garage',
             description: 'Watch our latest video reports, test drives, and documentaries about car culture.'
           }
         },
@@ -842,7 +842,7 @@ const langs = [
         latest: 'Últimas',
         intemporais: 'Máquinas Atemporales',
         atlantica: 'Viaje Atlántico',
-        videos: 'Videos',
+        garage: 'Garage',
         iconicas: 'Historias Icónicas',
         encontros: 'Encuentros 3G',
         copiloto: 'Copiloto',
@@ -874,7 +874,7 @@ const langs = [
           noStories: 'Aún no hay historias.',
           roadUnexplored: 'Este camino está aún por explorar.'
         },
-        videos: {
+        garage: {
           galleryPrefix: 'Historias en ',
           galleryHighlight: 'Movimiento',
           likeContent: '¿Te gusta nuestro contenido?',
@@ -1238,8 +1238,8 @@ const langs = [
             title: 'Copiloto',
             description: 'Consejos prácticos, guías e conselhos valiosos para melhorar a sua experiência ao volante e cuidar melhor da sua máquina.'
           },
-          'videos': {
-            title: 'Vídeos',
+          'garage': {
+            title: 'Garage',
             description: 'Mira nossos últimos reportagens em vídeo, ensaios e documentários sobre a cultura automóvel.'
           }
         },
@@ -1259,7 +1259,7 @@ const langs = [
         latest: 'Ultime',
         intemporais: 'Macchine Senza Tempo',
         atlantica: 'Viaggio Atlantico',
-        videos: 'Video',
+        garage: 'Garage',
         iconicas: 'Storie Iconiche',
         encontros: 'Incontri 3G',
         copiloto: 'Copilota',
@@ -1291,7 +1291,7 @@ const langs = [
           noStories: 'Nessuna storia ancora.',
           roadUnexplored: 'Questa strada è ancora da esplorare.'
         },
-        videos: {
+        garage: {
           galleryPrefix: 'Storie in ',
           galleryHighlight: 'Movimento',
           likeContent: 'Ti piacciono i nostri contenuti?',
@@ -1655,9 +1655,9 @@ const langs = [
             title: 'Copilota',
             description: 'Conselhos práticos, guias e sugestões valiosas para melhorar a sua experiência de guia e cuidar melhor da sua auto ao melhor.'
           },
-          'videos': {
-            title: 'Video',
-            description: 'Guarda i nossos últimos reportagens vídeo, ensaios e documentários sobre a cultura automobilística.'
+          'garage': {
+            title: 'Garage',
+            description: 'Ogni classico ha due destini: la strada o l'oblio. Garage esiste per far pendere la bilancia dalla parte giusta. Qui non ci sono fredde schede tecniche, ma solo storie di auto che sono appartenute a qualcuno, alla ricerca di chi le rimetta in moto.'
           }
         },
         infiniteFeed: {

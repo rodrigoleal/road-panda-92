@@ -47,7 +47,7 @@ export default async function Home(props) {
     ensaios: data?.maquinasIntemporais?.nodes || [],
     noticias: data?.viagemAtlantica?.nodes || [],
     opiniao: data?.historiasIconicas?.nodes || [],
-    videos: data?.videos?.nodes || [],
+    garage: data?.garage?.nodes || [],
     copiloto: data?.copiloto?.nodes || []
   };
 
@@ -56,7 +56,7 @@ export default async function Home(props) {
     ...categorizedPosts.ensaios.map(p => p.id),
     ...categorizedPosts.noticias.map(p => p.id),
     ...categorizedPosts.opiniao.map(p => p.id),
-    ...categorizedPosts.videos.map(p => p.id),
+    ...categorizedPosts.garage.map(p => p.id),
     ...categorizedPosts.copiloto.map(p => p.id)
   ];
 

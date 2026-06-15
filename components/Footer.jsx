@@ -65,7 +65,7 @@ export default function Footer({ dict, lang = 'pt-PT' }) {
                         <li><Link href={`/${lang}/latest`} className="hover:text-white transition-colors">{dict?.nav?.latest || 'Últimas'}</Link></li>
                         <li><Link href={`/${lang}/category/maquinas-intemporais`} className="hover:text-white transition-colors">{dict?.nav?.intemporais || 'Máquinas Intemporais'}</Link></li>
                         <li><Link href={`/${lang}/category/viagem-atlantica`} className="hover:text-white transition-colors">{dict?.nav?.atlantica || 'Viagem Atlântica'}</Link></li>
-                        <li><Link href={`/${lang}/videos`} className="hover:text-white transition-colors">{dict?.nav?.videos || 'Vídeos'}</Link></li>
+                        <li><Link href={`/${lang}/garage`} className="hover:text-white transition-colors">{dict?.nav?.garage || 'Garage'}</Link></li>
                         <li><Link href={`/${lang}/category/historias-iconicas`} className="hover:text-white transition-colors">{dict?.nav?.iconicas || 'Histórias Icónicas'}</Link></li>
                         <li><Link href={`/${lang}/category/encontros-3g`} className="hover:text-white transition-colors">{dict?.nav?.encontros || 'Encontros 3G'}</Link></li>
                         <li><Link href={`/${lang}/category/copiloto`} className="hover:text-white transition-colors">{dict?.nav?.copiloto || 'Copiloto'}</Link></li>
