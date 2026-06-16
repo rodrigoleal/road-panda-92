@@ -40,7 +40,7 @@ export default function Header({ dict, lang = 'pt-PT' }) {
         { label: dict?.nav?.latest || 'Últimas', href: `/${lang}/latest` },
         { label: dict?.nav?.intemporais || 'Máquinas Intemporais', href: `/${lang}/category/maquinas-intemporais` },
         { label: dict?.nav?.atlantica || 'Viagem Atlântica', href: `/${lang}/category/viagem-atlantica` },
-        { label: dict?.nav?.garage || 'Garage', href: `/${lang}/garage` },
+        { label: dict?.nav?.garage || 'Garage', href: `/${lang}/garage`, isHighlight: true },
         { label: dict?.nav?.iconicas || 'Histórias Icónicas', href: `/${lang}/category/historias-iconicas` },
         { label: dict?.nav?.encontros || 'Encontros 3G', href: `/${lang}/category/encontros-3g` },
         { label: dict?.nav?.copiloto || 'Copiloto', href: `/${lang}/category/copiloto` },
@@ -72,12 +72,21 @@ export default function Header({ dict, lang = 'pt-PT' }) {
 
                 {/* Desktop Nav (Center aligned, hidden on smaller screens to prevent cramping) */}
                 <nav className="hidden xl:flex flex-1 justify-center space-x-5 2xl:space-x-8 text-xs 2xl:text-sm font-black tracking-widest uppercase items-center shrink px-4">
-                    {navItems.map((item) => (
-                        <Link key={item.href} href={item.href} className="hover:text-[var(--color-accent)] transition-colors relative group whitespace-nowrap">
-                            {item.label}
-                            <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-[var(--color-accent)] transition-all group-hover:w-full"></span>
-                        </Link>
-                    ))}
+                    {navItems.map((item) => {
+                        if (item.isHighlight) {
+                            return (
+                                <Link key={item.href} href={item.href} className="bg-[var(--foreground)] text-[var(--background)] px-4 py-1.5 rounded flex items-center justify-center hover:opacity-80 transition-opacity whitespace-nowrap">
+                                    {item.label}
+                                </Link>
+                            );
+                        }
+                        return (
+                            <Link key={item.href} href={item.href} className="hover:text-[var(--color-accent)] transition-colors relative group whitespace-nowrap">
+                                {item.label}
+                                <span className="absolute -bottom-1 left-0 w-0 h-[3px] bg-[var(--color-accent)] transition-all group-hover:w-full"></span>
+                            </Link>
+                        );
+                    })}
                 </nav>
 
                 {/* Right Side Options (Fixed size, won't shrink) */}
@@ -127,11 +136,20 @@ export default function Header({ dict, lang = 'pt-PT' }) {
 
                 <nav className="flex flex-col space-y-4">
                     <span className="text-xs font-black uppercase tracking-widest opacity-40 mb-2 border-b border-[var(--color-secondary)] pb-2 text-[var(--foreground)]">{dict?.footer?.sections || 'Navegação'}</span>
-                    {navItems.map((item) => (
-                        <Link key={item.href} href={item.href} className="text-lg font-bold hover:text-[var(--color-accent)] transition-colors flex items-center text-[var(--foreground)]">
-                            {item.label}
-                        </Link>
-                    ))}
+                    {navItems.map((item) => {
+                        if (item.isHighlight) {
+                            return (
+                                <Link key={item.href} href={item.href} className="text-lg font-bold bg-[var(--foreground)] text-[var(--background)] px-4 py-2 rounded self-start hover:opacity-80 transition-opacity flex items-center">
+                                    {item.label}
+                                </Link>
+                            );
+                        }
+                        return (
+                            <Link key={item.href} href={item.href} className="text-lg font-bold hover:text-[var(--color-accent)] transition-colors flex items-center text-[var(--foreground)]">
+                                {item.label}
+                            </Link>
+                        );
+                    })}
                 </nav>
 
                 <div className="mt-auto pt-6 border-t border-[var(--color-secondary)] flex flex-col gap-4">
