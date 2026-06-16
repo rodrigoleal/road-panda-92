@@ -34,6 +34,17 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    // Get the base URL from the env, removing /graphql
+    const wpUrl = process.env.WORDPRESS_URL || 
+                 (process.env.NEXT_PUBLIC_WORDPRESS_API_URL ? process.env.NEXT_PUBLIC_WORDPRESS_API_URL.replace('/graphql', '') : 'http://35.188.192.145');
+    return [
+      {
+        source: '/wp-content/:path*',
+        destination: `${wpUrl}/wp-content/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

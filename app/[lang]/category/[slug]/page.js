@@ -6,6 +6,7 @@ import AdRotatorClient from '../../../../components/AdRotatorClient';
 import { GET_ALL_ADS } from '../../../../lib/queries';
 import { normalizeImageUrl, getLocalizedSlug, getBaseSlug } from '../../../../lib/utils';
 import { getDictionary } from '../../../../lib/dictionary';
+import { replaceContentUrls } from '../../../../lib/utils';
 import ArticleTranslationsSetter from '../../../../components/ArticleTranslationsSetter';
 
 export const revalidate = 600;
@@ -102,7 +103,7 @@ export default async function CategoryPage(props) {
           {description ? (
             <div 
               className="text-xl text-neutral-500 max-w-2xl mx-auto font-light leading-relaxed prose prose-neutral dark:prose-invert"
-              dangerouslySetInnerHTML={{ __html: description }}
+              dangerouslySetInnerHTML={{ __html: replaceContentUrls(description) }}
             />
           ) : (
             <p className="text-xl text-neutral-500 max-w-2xl mx-auto font-light leading-relaxed">

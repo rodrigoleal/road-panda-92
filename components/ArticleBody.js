@@ -1,11 +1,12 @@
 import DOMPurify from 'isomorphic-dompurify';
 import AdUnit from './AdUnit';
+import { replaceContentUrls } from '../lib/utils';
 
 export default function ArticleBody({ content }) {
     // Inject Ads logic could go here, e.g. splitting content
     // For now, simpler implementation
 
-    const cleanContent = DOMPurify.sanitize(content);
+    const cleanContent = DOMPurify.sanitize(replaceContentUrls(content));
 
     return (
         <div className="article-body max-w-3xl mx-auto">

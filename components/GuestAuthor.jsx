@@ -1,6 +1,6 @@
 
 import Image from 'next/image';
-import { normalizeImageUrl } from '../lib/utils';
+import { normalizeImageUrl, replaceContentUrls } from '../lib/utils';
 // ...
 export default function GuestAuthor({ author, dict }) {
     if (!author) return null;
@@ -28,7 +28,7 @@ export default function GuestAuthor({ author, dict }) {
                 {description && (
                     <div 
                         className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed" 
-                        dangerouslySetInnerHTML={{ __html: description }} 
+                        dangerouslySetInnerHTML={{ __html: replaceContentUrls(description) }} 
                     />
                 )}
             </div>

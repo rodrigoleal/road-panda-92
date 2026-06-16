@@ -4,7 +4,7 @@ import Image from 'next/image';
 import sanitizeHtml from 'sanitize-html';
 import { getDictionary } from '../../../lib/dictionary';
 import { getDisplayCategory } from '../../../lib/categoryUtils';
-import { normalizeImageUrl, formatLocalizedDate, getCategoryColor, getBaseSlug } from '../../../lib/utils';
+import { normalizeImageUrl, formatLocalizedDate, getCategoryColor, getBaseSlug, replaceContentUrls } from '../../../lib/utils';
 import AdRotatorClient from '../../../components/AdRotatorClient';
 import PostGrid from '../../../components/PostGrid';
 import Link from 'next/link';
@@ -96,7 +96,8 @@ export default async function SinglePost({ params }) {
       );
     }
 
-    const sanitizedContent = sanitizeHtml(post.content, {
+    const contentToSanitize = replaceContentUrls(post.content);
+    const sanitizedContent = sanitizeHtml(contentToSanitize, {
       allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure', 'figcaption', 'iframe', 'div', 'span']),
       allowedAttributes: {
         ...sanitizeHtml.defaults.allowedAttributes,
