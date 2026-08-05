@@ -53,14 +53,7 @@ export default function VideoGallery({ limit = 15, lang = 'pt-PT', dict }) {
                 </div>
                 
                 <div className="flex items-center gap-6">
-                    {limit < 10 && (
-                        <Link 
-                            href={`/${lang}/videos`}
-                            className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[var(--foreground)]/50 hover:text-[var(--foreground)] transition-colors border-r border-neutral-200 dark:border-white/10 pr-6"
-                        >
-                            {dict?.pages?.videos?.viewAll || 'Ver Tudo'} <span className="text-lg">→</span>
-                        </Link>
-                    )}
+
                     <a 
                         href="https://www.youtube.com/@roadpanda92" 
                         target="_blank" 
