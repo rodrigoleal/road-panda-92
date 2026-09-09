@@ -125,8 +125,9 @@ export default function Footer({ dict, lang = 'pt-PT' }) {
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 pt-8 border-t border-[var(--color-secondary)] text-center text-xs text-neutral-500 uppercase tracking-widest">
+            <div className="container mx-auto px-4 pt-8 border-t border-[var(--color-secondary)] text-center text-xs text-neutral-500 uppercase tracking-widest flex flex-col items-center justify-center gap-2">
                 <p>&copy; {currentYear} Road Panda 92 Media. {dict?.footer?.rights || 'Todos os direitos reservados'}.</p>
+                <p>{dict?.footer?.developedBy || 'Desenvolvido por'} <a href="https://rodrigoleal.com.br/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors underline underline-offset-4 decoration-white/20">Rodrigo Leal</a></p>
             </div>
         </footer>
     );

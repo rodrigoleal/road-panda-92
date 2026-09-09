@@ -164,7 +164,12 @@ export default function Header({ dict, lang = 'pt-PT' }) {
                         </svg>
                         {dict?.footer?.subscribe || 'Subscrever no YouTube'}
                     </a>
-                    <p className="text-xs opacity-40 font-medium text-[var(--foreground)] text-center">© {new Date().getFullYear()} Road Panda 92</p>
+                    <div className="flex flex-col items-center gap-1 text-center">
+                        <p className="text-xs opacity-40 font-medium text-[var(--foreground)]">© {new Date().getFullYear()} Road Panda 92</p>
+                        <p className="text-[10px] opacity-40 font-medium text-[var(--foreground)]">
+                            {dict?.footer?.developedBy || 'Desenvolvido por'} <a href="https://rodrigoleal.com.br/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-accent)] transition-colors underline underline-offset-2 decoration-[var(--foreground)]/20">Rodrigo Leal</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
