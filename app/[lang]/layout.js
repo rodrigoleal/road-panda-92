@@ -8,6 +8,7 @@ import CookieConsent from '../../components/CookieConsent';
 import { getDictionary } from '../../lib/dictionary';
 import Script from 'next/script';
 import { TranslationProvider } from '../../components/TranslationContext';
+import PromoModal from '../../components/PromoModal';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default async function RootLayout({ children, params }) {
             <Footer dict={dict} lang={lang} />
           </TranslationProvider>
           <CookieConsent />
+          <PromoModal />
         </ThemeProvider>
       </body>
     </html>
