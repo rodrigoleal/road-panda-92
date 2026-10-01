@@ -76,6 +76,7 @@ export default function Footer({ dict, lang = 'pt-PT' }) {
                 <div className="lg:col-span-2">
                     <h3 className="text-sm font-bold uppercase tracking-widest text-white mb-6">{dict?.footer?.others || 'Outros'}</h3>
                     <ul className="space-y-2 font-medium text-neutral-400 text-base">
+                        <li><a href="https://shop.roadpanda92.com/HIDDEN-LEGENDS/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-[var(--color-accent)] font-bold flex items-center gap-2">HIDDEN LEGENDS <span className="text-[10px]">↗</span></a></li>
                         <li><Link href={`/${lang}/about`} className="hover:text-white transition-colors">{dict?.footer?.about || 'Quem somos'}</Link></li>
                         <li><Link href={`/${lang}/estatuto-editorial`} className="hover:text-white transition-colors">{dict?.footer?.editorial || 'Estatuto Editorial'}</Link></li>
                         <li><Link href={`/${lang}/ficha-tecnica`} className="hover:text-white transition-colors">{dict?.footer?.ficha || 'Ficha Técnica'}</Link></li>

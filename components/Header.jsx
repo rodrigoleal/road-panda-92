@@ -136,6 +136,9 @@ export default function Header({ dict, lang = 'pt-PT' }) {
 
                 <nav className="flex flex-col space-y-4">
                     <span className="text-xs font-black uppercase tracking-widest opacity-40 mb-2 border-b border-[var(--color-secondary)] pb-2 text-[var(--foreground)]">{dict?.footer?.sections || 'Navegação'}</span>
+                    <a href="https://shop.roadpanda92.com/HIDDEN-LEGENDS/" target="_blank" rel="noopener noreferrer" className="text-lg font-black text-[var(--color-accent)] hover:text-white transition-colors flex items-center">
+                        HIDDEN LEGENDS
+                    </a>
                     {navItems.map((item) => {
                         if (item.isHighlight) {
                             return (

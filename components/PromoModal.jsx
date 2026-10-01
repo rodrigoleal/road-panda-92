@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
+import { usePathname } from 'next/navigation';
 import { Anton } from 'next/font/google';
 
 const anton = Anton({ 
@@ -12,20 +12,22 @@ const anton = Anton({
 
 export default function PromoModal() {
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
-        const hasSeenModal = localStorage.getItem('hasSeenPromoModal');
-        if (!hasSeenModal) {
+        // Verifica se é a home page (ex: '/', '/pt', '/en', etc)
+        const isHomePage = pathname === '/' || /^\/[a-zA-Z-]+\/?$/.test(pathname);
+        
+        if (isHomePage) {
             const timer = setTimeout(() => {
                 setIsOpen(true);
             }, 1500);
             return () => clearTimeout(timer);
         }
-    }, []);
+    }, [pathname]);
 
     const handleClose = () => {
         setIsOpen(false);
-        localStorage.setItem('hasSeenPromoModal', 'true');
     };
 
     if (!isOpen) return null;
