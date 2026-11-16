@@ -37,6 +37,7 @@ export default async function Home(props) {
   const infiniteAds = allAds.filter(ad => ad.position === 'infinite-feed');
 
   // Hero section Logic
+  const heroMode = data?.roadpandaSettings?.heroMode || 'manual';
   const manualHero = data?.heroSettings?.nodes || [];
   const scrollHighlights = data?.scrollHighlights?.nodes || [];
   const allLatest = data?.latestPosts?.nodes || [];
@@ -61,16 +62,18 @@ export default async function Home(props) {
   ];
 
   // Fallbacks for translated slugs: If the direct query fails, scan the latest posts
-  let mainFeature = manualHero[0];
-  if (!mainFeature) {
-      mainFeature = allLatest.find(post => 
+  let heroCandidates = manualHero.length > 0 ? manualHero : [];
+  if (heroCandidates.length === 0) {
+      heroCandidates = allLatest.filter(post => 
           post.categories?.nodes?.some(cat => cat.slug.includes('destaque-principal'))
       );
   }
   // Ultimate fallback to newest post
-  if (!mainFeature) {
-      mainFeature = allLatest[0];
+  if (heroCandidates.length === 0 && allLatest.length > 0) {
+      heroCandidates = allLatest.slice(0, 5);
   }
+
+  let mainFeature = heroCandidates[0] || allLatest[0];
 
   let finalScrollHighlights = scrollHighlights;
   if (finalScrollHighlights.length === 0) {
@@ -105,7 +108,8 @@ export default async function Home(props) {
   return (
     <div className="min-h-screen">
       <Hero 
-        featuredPosts={mainFeature ? [mainFeature] : []} 
+        featuredPosts={heroCandidates.length > 0 ? heroCandidates : (mainFeature ? [mainFeature] : [])} 
+        heroMode={heroMode}
         latestPosts={sidebarLatest} 
         ads={heroSidebarAds}
         lang={lang}

@@ -128,6 +128,26 @@ add_action('graphql_register_types', function() {
             return get_post_meta($post->ID, '_ad_link_url', true);
         }
     ]);
+
+    register_graphql_object_type('RoadPandaSettings', [
+        'description' => 'Configurações globais do portal Road Panda 92',
+        'fields' => [
+            'heroMode' => [
+                'type' => 'String',
+                'description' => 'Modo do destaque Hero: manual ou dynamic',
+            ],
+        ],
+    ]);
+
+    register_graphql_field('RootQuery', 'roadpandaSettings', [
+        'type' => 'RoadPandaSettings',
+        'description' => 'Definições do portal Road Panda 92',
+        'resolve' => function() {
+            return [
+                'heroMode' => get_option('roadpanda_hero_mode', 'manual'),
+            ];
+        }
+    ]);
 });
 
 // 5. Newsletter REST API Endpoint
@@ -168,7 +188,7 @@ function roadpanda_handle_subscription($request) {
     return new WP_Error('db_error', 'Erro ao guardar subscrição', ['status' => 500]);
 }
 
-// 6. Admin UI for Subscribers
+// 6. Admin UI for Subscribers & Highlights
 add_action('admin_menu', function() {
     add_submenu_page(
         'edit.php?post_type=ad',
@@ -178,7 +198,64 @@ add_action('admin_menu', function() {
         'roadpanda-subscribers',
         'roadpanda_subscribers_page'
     );
+    add_submenu_page(
+        'edit.php?post_type=ad',
+        'Destaques da Homepage',
+        'Destaques Homepage',
+        'manage_options',
+        'roadpanda-highlights',
+        'roadpanda_highlights_page'
+    );
 });
+
+function roadpanda_highlights_page() {
+    if (!current_user_can('manage_options')) return;
+
+    if (isset($_POST['roadpanda_highlights_nonce']) && wp_verify_nonce($_POST['roadpanda_highlights_nonce'], 'roadpanda_save_highlights')) {
+        $mode = sanitize_text_field($_POST['roadpanda_hero_mode'] ?? 'manual');
+        if (in_array($mode, ['manual', 'dynamic'])) {
+            update_option('roadpanda_hero_mode', $mode);
+            echo '<div class="notice notice-success is-dismissible" style="margin-top:15px;"><p><strong>Configuração atualizada com sucesso!</strong></p></div>';
+        }
+    }
+
+    $current_mode = get_option('roadpanda_hero_mode', 'manual');
+    ?>
+    <div class="wrap">
+        <h1 class="wp-heading-inline">Destaques da Página Inicial</h1>
+        <p class="description">Escolha se o artigo em destaque no topo (Hero) deve ser fixo ou alternar dinamicamente entre artigos a cada carregamento.</p>
+        <hr class="wp-header-end">
+
+        <form method="post" style="max-width: 650px; margin-top: 20px; background: #fff; padding: 20px 24px; border: 1px solid #c3c4c7; border-radius: 4px; box-shadow: 0 1px 1px rgba(0,0,0,.04);">
+            <?php wp_nonce_field('roadpanda_save_highlights', 'roadpanda_highlights_nonce'); ?>
+            
+            <h2 style="margin-top:0; padding-bottom: 10px; border-bottom: 1px solid #eee; font-size: 15px;">Modo do Destaque Principal (Hero)</h2>
+            
+            <div style="margin: 16px 0;">
+                <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-bottom: 16px;">
+                    <input type="radio" name="roadpanda_hero_mode" value="manual" <?php checked($current_mode, 'manual'); ?> style="margin-top: 3px;">
+                    <div>
+                        <strong style="font-size: 14px;">Fixo / Manual (Padrão)</strong>
+                        <p class="description" style="margin: 4px 0 0 0;">Exibe sempre o artigo mais recente marcado com a categoria <code>destaque-principal</code>. O destaque mantém-se fixo até que decida alterá-lo manualmente.</p>
+                    </div>
+                </label>
+
+                <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                    <input type="radio" name="roadpanda_hero_mode" value="dynamic" <?php checked($current_mode, 'dynamic'); ?> style="margin-top: 3px;">
+                    <div>
+                        <strong style="font-size: 14px; color: #2271b1;">Dinâmico / Aleatório</strong>
+                        <p class="description" style="margin: 4px 0 0 0;">A cada visita ou carregamento de página, o portal sorteia aleatoriamente um artigo de entre os artigos marcados com <code>destaque-principal</code>. Se nenhum estiver marcado, sorteia entre os artigos mais recentes do portal.</p>
+                    </div>
+                </label>
+            </div>
+
+            <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee;">
+                <?php submit_button('Guardar Alterações', 'primary', 'submit', false); ?>
+            </div>
+        </form>
+    </div>
+    <?php
+}
 
 function roadpanda_subscribers_page() {
     global $wpdb;

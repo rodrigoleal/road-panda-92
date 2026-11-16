@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Road Garage — Relatório de Atualizações e Melhorias do Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --surface-color: #16181f;
+            --surface-border: #272a38;
+            --text-main: #f0f2f5;
+            --text-muted: #9aa0ad;
+            --accent-red: #E63946;
+            --accent-red-hover: #d62828;
+            --accent-gold: #f4a261;
+            --accent-green: #2a9d8f;
+            --border-light: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 14.5px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 40px 24px 60px 24px;
+        }
+
+        /* ACTIONS BAR (FLOATING / TOP) */
+        .actions-bar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 24px;
+            gap: 12px;
+        }
+
+        .btn-print {
+            background-color: var(--accent-red);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+        }
+
+        .btn-print:hover {
+            background-color: var(--accent-red-hover);
+            transform: translateY(-1px);
+        }
+
+        /* HEADER & BRANDING */
+        .header {
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 28px;
+            margin-bottom: 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .brand-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ffffff;
+        }
+
+        .brand-badge {
+            background-color: var(--accent-red);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .meta-info {
+            text-align: right;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .meta-info strong {
+            color: #fff;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            color: #fff;
+            line-height: 1.25;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #fff;
+            margin: 36px 0 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background-color: var(--accent-red);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 18px 0 8px 0;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .lead-box {
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.08) 0%, rgba(22, 24, 31, 0.9) 100%);
+            border: 1px solid rgba(230, 57, 70, 0.25);
+            border-left: 4px solid var(--accent-red);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 30px;
+            font-size: 15px;
+            color: #e2e8f0;
+            line-height: 1.7;
+        }
+
+        /* CARDS & HIGHLIGHTS */
+        .card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 10px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+
+        .card-highlight {
+            border-left: 3px solid var(--accent-red);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 18px;
+            margin: 18px 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 18px 0;
+        }
+
+        .feature-item {
+            background: #11131a;
+            border: 1px solid var(--border-light);
+            padding: 18px;
+            border-radius: 8px;
+        }
+
+        .feature-item h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-item p {
+            font-size: 13px;
+            line-height: 1.55;
+            margin-bottom: 0;
+        }
+
+        .pill {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+        }
+
+        .pill-red {
+            background: rgba(230, 57, 70, 0.15);
+            color: var(--accent-red);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+        }
+
+        .pill-green {
+            background: rgba(42, 157, 143, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(42, 157, 143, 0.3);
+        }
+
+        .pill-gold {
+            background: rgba(244, 162, 97, 0.15);
+            color: var(--accent-gold);
+            border: 1px solid rgba(244, 162, 97, 0.3);
+        }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            font-size: 13.5px;
+            background: var(--surface-color);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--surface-border);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #11131a;
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11.5px;
+            letter-spacing: 0.8px;
+        }
+
+        td {
+            color: var(--text-muted);
+        }
+
+        td strong {
+            color: #fff;
+        }
+
+        /* LISTS */
+        ul.custom-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        ul.custom-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        ul.custom-list li::before {
+            content: '▪';
+            position: absolute;
+            left: 6px;
+            color: var(--accent-red);
+            font-size: 16px;
+            line-height: 1;
+            top: 2px;
+        }
+
+        /* CALLOUT BANNER */
+        .callout {
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.12) 0%, rgba(20, 22, 30, 0.85) 100%);
+            border: 1px solid rgba(230, 57, 70, 0.35);
+            border-radius: 10px;
+            padding: 22px;
+            margin: 28px 0;
+        }
+
+        .callout-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .site-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #fff;
+            background: var(--accent-red);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--surface-border);
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #1a1a1a !important;
+                font-size: 11pt;
+            }
+
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .header {
+                border-bottom: 2px solid #E63946 !important;
+                margin-bottom: 24px !important;
+            }
+
+            .brand-title, h1, h2, h3, th, td strong, .feature-item h4 {
+                color: #111111 !important;
+            }
+
+            p, td, .meta-info, ul.custom-list li {
+                color: #333333 !important;
+            }
+
+            .lead-box {
+                background: #f7f7f7 !important;
+                border: 1px solid #ddd !important;
+                border-left: 4px solid #E63946 !important;
+                color: #222 !important;
+            }
+
+            .card {
+                background: #ffffff !important;
+                border: 1px solid #e2e8f0 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+
+            .feature-item {
+                background: #f8fafc !important;
+                border: 1px solid #e2e8f0 !important;
+                page-break-inside: avoid;
+            }
+
+            table {
+                background: #fff !important;
+                border: 1px solid #cbd5e1 !important;
+                page-break-inside: avoid;
+            }
+
+            th {
+                background: #f1f5f9 !important;
+                color: #0f172a !important;
+                border-bottom: 1px solid #cbd5e1 !important;
+            }
+
+            td {
+                border-bottom: 1px solid #e2e8f0 !important;
+            }
+
+            .pill-red {
+                background: #fee2e2 !important;
+                color: #991b1b !important;
+                border: 1px solid #f87171 !important;
+            }
+
+            .pill-green {
+                background: #dcfce7 !important;
+                color: #166534 !important;
+                border: 1px solid #86efac !important;
+            }
+
+            .pill-gold {
+                background: #fef3c7 !important;
+                color: #92400e !important;
+                border: 1px solid #fcd34d !important;
+            }
+
+            .callout {
+                background: #fafafa !important;
+                border: 1px solid #e2e8f0 !important;
+                color: #111 !important;
+                page-break-inside: avoid;
+            }
+
+            .callout-title {
+                color: #111 !important;
+            }
+
+            .site-link {
+                background: #E63946 !important;
+                color: #ffffff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .footer {
+                border-top: 1px solid #cbd5e1 !important;
+                color: #64748b !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- BOTÃO DE IMPRESSÃO / PDF (OCULTO NA IMPRESSÃO) -->
+        <div class="actions-bar no-print">
+            <button class="btn-print" onclick="window.print()">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                    <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                </svg>
+                Guardar como PDF / Imprimir
+            </button>
+        </div>
+
+        <!-- HEADER INSTITUCIONAL -->
+        <header class="header">
+            <div>
+                <div class="brand-title">
+                    The Road Garage
+                    <span class="brand-badge">Website 2026</span>
+                </div>
+                <div style="font-size: 13px; color: var(--accent-red); font-weight: 700; margin-top: 4px; letter-spacing: 0.5px;">
+                    AUTOMÓVEIS COM UMA SEGUNDA VIDA
+                </div>
+            </div>
+            <div class="meta-info">
+                <div><strong>Data:</strong> 3 de Novembro de 2026</div>
+                <div><strong>Documento:</strong> Relatório de Atualizações & Melhorias</div>
+                <div><strong>Destinatário:</strong> Rui Santa Rita</div>
+                <div><strong>Preparado por:</strong> Rodrigo Leal</div>
+            </div>
+        </header>
+
+        <!-- TÍTULO PRINCIPAL & RESUMO EXECUTIVO -->
+        <h1>Relatório de Atualizações e Melhorias do Website</h1>
+        <div class="lead-box">
+            Este relatório sintetiza todas as intervenções, reorganização da estrutura de automóveis e atualização integral de conteúdos implementadas hoje no website oficial da <strong>The Road Garage</strong>. As alterações incorporam a escolha da <strong>Opção 1</strong> para segregação de viaturas entregues e o alinhamento com a nova redação editorial.
+        </div>
+
+        <!-- 1. ARQUITETURA E CICLO DE VIDA DOS AUTOMÓVEIS -->
+        <section>
+            <h2>1. Reorganização dos Automóveis (Implementação da Opção 1)</h2>
+            <p>
+                Foi implementada a solução mais elegante e direta para garantir que viaturas já entregues aos novos proprietários não se misturam com o stock comercial ativo, preservando em simultâneo a memória de cada projeto:
+            </p>
+
+            <div class="grid-2">
+                <div class="card card-highlight">
+                    <span class="pill pill-green">Comercial</span>
+                    <h3>Página Stock (Exclusivo Disponíveis)</h3>
+                    <ul class="custom-list">
+                        <li><strong>Foco absoluto em vendas:</strong> Apresenta unicamente automóveis prontos e disponíveis para aquisição imediata.</li>
+                        <li><strong>Eliminação de ruído:</strong> Foram retirados os carros concluídos e os filtros desnecessários que geravam confusão entre estados.</li>
+                        <li><strong>Transparência comercial:</strong> Cada viatura exibe o preço visível, especificações e o formulário direto de manifestação de interesse.</li>
+                    </ul>
+                </div>
+
+                <div class="card card-highlight">
+                    <span class="pill pill-red">Memória & Histórico</span>
+                    <h3>Nova Secção "Projetos Concluídos"</h3>
+                    <ul class="custom-list">
+                        <li><strong>Espaço próprio no menu:</strong> Criação da secção dedicada exclusivamente aos automóveis restaurados e entregues aos novos donos.</li>
+                        <li><strong>Preservação da história:</strong> Mantém-se o registo documental completo (etapas de recuperação, galerias fotográficas, vídeos e marcas apoiantes).</li>
+                        <li><strong>Sem cariz comercial:</strong> Preços e botões de compra foram retirados, dando lugar ao selo <em>"Projeto Concluído · Entregue"</em>.</li>
+                        <li><strong>Preservação de links:</strong> Redirecionamentos automáticos configurados para encaminhar qualquer visitante que aceda a referências anteriores.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TABELA DE ESTADOS -->
+            <table style="margin-top: 14px;">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Estado do Veículo</th>
+                        <th style="width: 35%;">Enquadramento no Site</th>
+                        <th style="width: 40%;">Visibilidade e Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="pill pill-gold">Em Projeto</span></td>
+                        <td>Veículos adquiridos pela garagem que aguardam o arranque dos trabalhos técnicos.</td>
+                        <td>Gestão interna no painel administrativo; sem secção pública nesta fase.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pill pill-gold">Em Preparação</span></td>
+                        <td>Veículos em processo ativo de intervenção mecânica e estética.</td>
+                        <td>Secção pública própria, com acompanhamento de progresso e botão de pedido de informações.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pill pill-green">Stock</span></td>
+                        <td>Automóveis finalizados e prontos para entrega a novos proprietários.</td>
+                        <td>Secção de Stock com preço aberto, galeria em detalhe e formulário de compra.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="pill pill-red">Projeto Concluído</span></td>
+                        <td>Automóveis já entregues aos novos proprietários.</td>
+                        <td>Secção "Projetos Concluídos", sem preço nem opção de compra; arquivo documental permanente.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 2. REVISÃO GERAL DE TEXTOS E COMUNICAÇÃO -->
+        <section>
+            <h2>2. Atualização Integral de Textos e Comunicação</h2>
+            <p>
+                Todos os textos do website foram revistos em detalhe com base no documento editorial fornecido, garantindo uma linguagem autêntica, próxima e rigorosa:
+            </p>
+
+            <div class="grid-3">
+                <div class="feature-item">
+                    <h4>Slide 1 — O Que Fazemos</h4>
+                    <p style="color: #fff; font-weight: 600; margin-bottom: 4px;">"Automóveis com uma segunda vida."</p>
+                    <p>Foco na compra, preparação e venda de clássicos e modelos especiais. Botões de ação direta: <strong>Ver Stock</strong> e <strong>Em Preparação</strong>.</p>
+                </div>
+
+                <div class="feature-item">
+                    <h4>Slide 2 — Quem Somos</h4>
+                    <p style="color: #fff; font-weight: 600; margin-bottom: 4px;">"Do primeiro dia ao regresso à estrada."</p>
+                    <p>Apresentação da equipa e do critério por trás da garagem. Botões de ação direta: <strong>Quem Somos</strong> e <strong>Tens um carro para vender?</strong>.</p>
+                </div>
+
+                <div class="feature-item">
+                    <h4>Slide 3 — Encontrar</h4>
+                    <p style="color: #fff; font-weight: 600; margin-bottom: 4px;">"O carro que nunca esqueceste..."</p>
+                    <p>Serviço de procura personalizada do clássico ideal. Botões de ação direta: <strong>Que carro procuras?</strong> e <strong>Ver Stock</strong>.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 16px;">
+                <h3 style="margin-top: 0;">Página "Quem Somos" — Narrativa & Pilares</h3>
+                <p>
+                    A narrativa institucional foi enriquecida com a menção expressa às origens no projeto <em>Road Panda 92</em> e à paixão genuína por automóveis clássicos de utilização quotidiana, estruturada em torno de 3 pilares:
+                </p>
+                <div class="grid-3" style="margin: 12px 0 16px 0;">
+                    <div style="background: #11131a; padding: 14px; border-radius: 6px; border: 1px solid var(--border-light);">
+                        <strong style="color: var(--accent-red); font-size: 13px; display: block; margin-bottom: 4px;">1. Clareza em cada automóvel</strong>
+                        <span style="font-size: 12.5px; color: var(--text-muted);">Transparência total sobre histórico, trabalhos realizados e estado real do veículo.</span>
+                    </div>
+                    <div style="background: #11131a; padding: 14px; border-radius: 6px; border: 1px solid var(--border-light);">
+                        <strong style="color: var(--accent-red); font-size: 13px; display: block; margin-bottom: 4px;">2. Preparação com critério</strong>
+                        <span style="font-size: 12.5px; color: var(--text-muted);">Foco na fiabilidade mecânica, segurança e respeito pela originalidade de cada modelo.</span>
+                    </div>
+                    <div style="background: #11131a; padding: 14px; border-radius: 6px; border: 1px solid var(--border-light);">
+                        <strong style="color: var(--accent-red); font-size: 13px; display: block; margin-bottom: 4px;">3. Uma paixão partilhada</strong>
+                        <span style="font-size: 12.5px; color: var(--text-muted);">Relação próxima e de confiança com entusiastas, compradores e parceiros.</span>
+                    </div>
+                </div>
+                <p style="margin-bottom: 0; font-size: 13px;">
+                    <strong>Visitas Privadas:</strong> Foi também inserido o bloco final de contacto para marcação de visitas à garagem, facilitando o contacto direto com potenciais interessados.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-top: 0;">Formulários de Contacto & Fichas Técnicas</h3>
+                <ul class="custom-list">
+                    <li><strong>Formulário "Tens um carro para vender?":</strong> Adicionado o novo campo de <em>Localização do Automóvel</em> (distrito/concelho) e nota informativa para envio de fotografias por canais diretos (WhatsApp / e-mail).</li>
+                    <li><strong>Formulário "Que carro procuras?":</strong> Mensagem revista com foco no acompanhamento dedicado na procura de clássicos.</li>
+                    <li><strong>Apoios e Parceiros:</strong> Textos ajustados na página inicial e nas páginas individuais, valorizando publicamente as marcas e patrocinadores que apoiam os projetos.</li>
+                    <li><strong>Sincronização Bilingue:</strong> Todas as alterações de texto, títulos e botões foram sincronizadas em simultâneo nas versões em <strong>Português</strong> e <strong>Inglês</strong>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 3. PLATAFORMA E MÉTRICAS -->
+        <section>
+            <h2>3. Monitorização e Métricas de Tráfego</h2>
+            <div class="card">
+                <p style="margin-bottom: 10px;">
+                    Foi integrada e ativada a ferramenta oficial de análise e acompanhamento de métricas do website (<strong>Google Analytics 4</strong>), permitindo a partir de agora:
+                </p>
+                <div class="grid-3">
+                    <div class="feature-item">
+                        <h4>Acessos e Visitas</h4>
+                        <p>Medição em tempo real do número de visitantes únicos, sessões e origem do tráfego (redes sociais, pesquisa Google, acessos diretos).</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Veículos Mais Procurados</h4>
+                        <p>Acompanhamento das viaturas com maior número de visualizações e maior tempo de leitura na ficha de detalhe.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Submissão de Formulários</h4>
+                        <p>Registo e taxa de conversão dos pedidos de informação, propostas de venda de viaturas e solicitações de procura de clássicos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ACESSO E VALIDAÇÃO -->
+        <section class="callout">
+            <div class="callout-title">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+                Disponível Online para Consulta e Validação
+            </div>
+            <p style="margin-bottom: 8px; color: #cbd5e1;">
+                Todas as alterações descritas encontram-se ativas no endereço do website. Podes navegar e testar a nova disposição das páginas e dos conteúdos através da seguinte ligação:
+            </p>
+            <a href="https://the-road-garage.web.app" target="_blank" class="site-link">
+                Abrir Website: the-road-garage.web.app
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+            </a>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>© 2026 The Road Garage. Relatório de desenvolvimento e acompanhamento de projeto.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

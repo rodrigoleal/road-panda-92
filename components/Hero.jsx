@@ -4,13 +4,24 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { normalizeImageUrl, getCategoryColor, getBaseSlug } from '../lib/utils';
 import { getDisplayCategory } from '../lib/categoryUtils';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { getClient } from '../lib/apollo-client';
 import { GET_MORE_POSTS } from '../lib/queries';
 import AdRotatorClient from './AdRotatorClient';
 
-export default function Hero({ featuredPosts, latestPosts, ads = [], lang = 'pt-PT', dict }) {
-    const mainFeature = featuredPosts?.[0];
+export default function Hero({ featuredPosts = [], latestPosts, ads = [], lang = 'pt-PT', dict, heroMode = 'manual' }) {
+    const [currentFeature, setCurrentFeature] = useState(featuredPosts?.[0]);
+
+    useEffect(() => {
+        if (heroMode === 'dynamic' && featuredPosts && featuredPosts.length > 1) {
+            const randomIndex = Math.floor(Math.random() * featuredPosts.length);
+            setCurrentFeature(featuredPosts[randomIndex]);
+        } else if (featuredPosts?.[0]) {
+            setCurrentFeature(featuredPosts[0]);
+        }
+    }, [heroMode, featuredPosts]);
+
+    const mainFeature = currentFeature || featuredPosts?.[0];
     
     const [posts, setPosts] = useState((latestPosts || []).slice(0, 5));
     const [hasMore, setHasMore] = useState(true);
@@ -77,7 +88,7 @@ export default function Hero({ featuredPosts, latestPosts, ads = [], lang = 'pt-
                         onScroll={handleScroll}
                         className="flex-1 overflow-y-auto max-h-[500px] lg:max-h-[600px] pr-4 custom-scrollbar space-y-2"
                     >
-                        {posts.map((post) => (
+                        {posts.filter(p => p.id !== mainFeature?.id).map((post) => (
                             <Link key={post.id} href={`/${lang}/${post.slug}`} className="group block border-b border-neutral-200/50 dark:border-neutral-800/50 pt-2 pb-6 last:border-0 transition-colors">
                                 <h3 className="text-[15px] font-black leading-tight group-hover:text-[var(--color-accent)] transition-colors mb-2 uppercase tracking-tight">
                                     {post.title}
