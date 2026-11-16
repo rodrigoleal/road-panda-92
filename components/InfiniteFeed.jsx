@@ -29,17 +29,7 @@ export default function InfiniteFeed({
     const [loading, setLoading] = useState(false);
     const [cursor, setCursor] = useState(initialCursor);
     const [hasMore, setHasMore] = useState(initialHasNext);
-    const [highlightsPool, setHighlightsPool] = useState(() => {
-        if (highlightMode === 'dynamic' && manualHighlights && manualHighlights.length > 1) {
-            const shuffled = [...manualHighlights];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        }
-        return manualHighlights;
-    });
+    const [highlightsPool, setHighlightsPool] = useState(manualHighlights);
 
     useEffect(() => {
         if (highlightMode === 'dynamic' && manualHighlights && manualHighlights.length > 1) {
