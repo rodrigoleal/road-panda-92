@@ -201,13 +201,12 @@ export default function InfiniteFeed({
                             </div>
                         </div>
                         <div className="w-full lg:w-1/2 order-1 lg:order-2">
-                             <Link href={`/${lang}/${post.slug}`} className="block relative w-full rounded-2xl overflow-hidden shadow-2xl group min-h-[300px] md:min-h-[400px]">
+                             <Link href={`/${lang}/${post.slug}`} className="block relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl group">
                                 <Image
                                     src={imageUrl}
                                     alt={post.title}
-                                    width={1200}
-                                    height={800}
-                                    className="w-full h-auto object-contain transition-transform duration-1000 group-hover:scale-105"
+                                    fill
+                                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                     sizes="(max-width: 1024px) 100vw, 50vw"
                                 />
                              </Link>
