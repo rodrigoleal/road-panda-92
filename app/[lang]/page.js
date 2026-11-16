@@ -123,6 +123,7 @@ export default async function Home(props) {
           allAds={infiniteAds}
           excludedPostIds={[heroId, ...Array.from(highlightIds), ...sidebarLatest.map(p => p.id), ...categorizedIds]}
           manualHighlights={finalScrollHighlights}
+          highlightMode={heroMode}
           categorizedPosts={categorizedPosts}
           lang={lang}
           dict={dict}
